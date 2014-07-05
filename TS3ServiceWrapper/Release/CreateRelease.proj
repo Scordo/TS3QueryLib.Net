@@ -1,0 +1,29 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Release">
+	<PropertyGroup>
+		<TargetPath>C:\Releases\TS3ServiceWrapper</TargetPath>
+	</PropertyGroup>
+
+	<Target Name="Release">
+		<Message Text="Creating Release..."/>
+
+		<Message Text="Compiling Release..."/>
+		<CallTarget Targets="Build"/>
+
+		<Message Text="Copying Release..."/>
+		<CallTarget Targets="CopyFiles"/>
+	</Target>
+
+	<Target Name="Build">
+		<MSBuild Projects="..\TS3ServiceWrapper.csproj" Properties="Configuration=Release"/>
+	</Target>
+
+	<Target Name="CopyFiles">
+		<RemoveDir Directories="$(TargetPath)" ContinueOnError="true"/>
+
+		<Copy SourceFiles="..\bin\Release\TS3ServiceWrapper.exe" DestinationFolder="$(TargetPath)"/>
+		<Copy SourceFiles="TS3ServiceWrapper.exe.config" DestinationFolder="$(TargetPath)"/>
+		<Copy SourceFiles="install.bat" DestinationFolder="$(TargetPath)"/>
+		<Copy SourceFiles="uninstall.bat" DestinationFolder="$(TargetPath)"/>
+		<Copy SourceFiles="InstallationHelp.pdf" DestinationFolder="$(TargetPath)"/>
+	</Target>
+</Project>

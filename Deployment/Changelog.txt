@@ -1,0 +1,260 @@
+Version 1.0.5.0
+==========================================
+- Added ClientIP property to ClientListEntry
+- Renamed Properties AntiFloodPointsNeededIPBan and AntiFloodPointsNeededCommandStop of ServerInfoResponse to AntiFloodPointsNeededIPBlock and AntiFloodPointsNeededCommandBlock
+- Added new VirtualServerStatus "OtherInstance"
+- Added Property OriginServerId to WhoAmIResponse
+- Removed check for server name when creating a new server using QueryRunner.CreateServer (command servercreate wont need an virtualserver_name anymore, will use the template default name instead)
+- Removed Properties: AntiFloodPointsNeededWarning, AntiFloodPointsNeededKick, AntiFloodPointsNeededBan, AntiFloodBanTime from ServerInfoResponse class. Added Properties: AntiFloodPointsNeededIPBan and AntiFloodPointsNeededCommandStop to ServerInfoResponse class
+- Fixed GetChannelConnectionInfo. Replaced parametername "channelid" with "cid"
+- Added basic support for client query (there are two namepsaces now: Client and Server), thats why QueryRunner and Co. does exist twice
+
+Version 1.0.0.0
+==========================================
+- Added LastIP property to ClientDbEntry class (Release change) 
+- Added LastIP property to ClientDbInfoResponse class (Release change) 
+- Added property LastServerConnectionHandlerId to IQueryDispatcher, Async- and SyncTcpDispatcher 
+- Added basic support for Client Query to AsyncTcpDispatcher 
+- Added basic support for ClientQuery to SyncTcpDispatcher 
+- Removed UnreadMessages property of ClientInfoResponse class (RC2 change) 
+- Added Sample apps for most technologies
+- Changed AsyncTcpDispatcher to raise events on the same thread it was created on
+- Added method DetachAllEventListeners to TcpDispatcherBase and AsyncTcpDispatcher which detaches all methods attached to any event on the dispatcher
+- Fixed bug in AsyncTcpDispatcher that the ServerClosedConnection event was fired twice when disposing the AsyncTcpDispatcher and a connection to a server was established
+
+Version 0.100.26.0
+==========================================
+- Added support for windows phone 7.1 
+- Added overloads of methods "AddServerGroupPermission, DeleteServerGroupPermission, DeleteServerGroupPermissions, AddChannelGroupPermissions, DeleteChannelGroupPermission, DeleteChannelGroupPermissions" of class QueryRunner having "continueOnError" parameter (RC1 change) 
+- Added properties "FileTransferBytesSentTotal, FileTransferBytesReceivedTotal" to HostInfoResponse class (RC1 change) 
+- Added properties "HostBannerMode, WeblistEnabled" to VirtualServerModification class (RC1 change) 
+- Added properties "TotalPacketLossSpeech, TotalPacketLossKeepalive, TotalPacketLossControl, TotalPacketLossTotal, TotalPing, IP, WeblistEnabled, AskForPrivilegKey, HostBannerMode, FileTransferBytesSentTotal, FileTransferBytesReceiveTotal, PacketsSentSpeech, BytesSentSpeech, PacketsReceivedSpeech, BytesReceivedSpeech, PacketsSentKeepAlive, BytesSentKeepAlive, PacketsReceivedKeepAlive, BytesReceivedKeepAlive, PacketsSentControl, BytesSentControl, PacketsReceivedControl, BytesReceivedControl" to class ServerInfoResponse (RC1 change) 
+
+Version 0.30.25.0
+==========================================
+- Added new event "TokenUsed" to QueryRunner.Notifications (beta 30 change)
+- Added properties SortId and NameMode to ChannelGroup class which is used by QueryRunner.GetChannelGrouLists(). (beta 30 change)
+- Added method GetOwnPermissionDetails to QueryRunner class. This method reflects the new "permget" command. (beta 30 change)
+- Added property ParentChannelId to class ChannelInfoResponse which is used in QueryRunner.GetChannelInfo(..) (beta 30 change)
+- Added properties ClientCreated and ClientLastConnected to ClientListEntry class used by QueryRunner.GetClientList (beta 30 change)
+- Added ServerPort to WhoAmIResponse class which is used in QueryRunner.SendWhoAmI(). (beta 30 change) 
+
+Version 0.29.24.0
+==========================================
+- Changed greeting check to detect wrong greetings earlier. 
+- Added check to SyncTcpDispatcher whether the client received a ban message after connect. 
+- Added some tracing 
+
+Version 0.29.23.0
+==========================================
+- Changed "ServerMachineId" property of classes "ServerListItem", "ServerInfoResponse" and "VirtualServerModification" from uint? to string. 
+- Fixed a bug in AsyncTcpDispatcher that may occur when disconnecting and reconnecting using the same instance. 
+- Removed debug tracing in SyncTcpDispatcher 
+
+Version 0.29.22.0
+==========================================
+- Fixed problem that was raised by the new greeting of server beta 29. 
+
+Version 0.29.21.0
+==========================================
+- Renamed methods of class "QueryRunner": (beta 29 change)
+  - GetTokenList --> GetPrivilegeKeyList
+  - AddToken --> AddPrivilegeKey
+  - DeleteToken --> DeletePrivilegeKey
+  - UseToken --> UsePrivilegeKey
+- Changed calculation of property "Uptime" of class "HostInfoResponse" (beta 29 change)
+- Added overload (new parameter: includeCountry) to method: GetClientList of class QueryRunner. (Beta 28 change)
+- Added property "ClientCountry" to class "ClientListEntry" (beta 28 change) 
+
+Version 0.27.19.0
+==========================================
+- Added methods "CopyChannelGroup" and "OverwriteChannelGroup" to class "QueryRunner" (beta 26 change)
+- Added methods "CopyServerGroup" and "OverwriteServerGroup" to class "QueryRunner" (beta 26 change)
+- Added property "ClientCountry" to class "ClientInfoResponse" (beta 26 change)
+- Added property "ClientIP" to class "ClientInfoResponse" (beta 26 change)
+- Added property "IsChannelCommand" to class "ClientListEntry" (beta 26 change)
+- Added parameter "onlyOfflineServers" to method "GetServerList" of class "QueryRunner" (beta 26 change)
+- Fixed wrong references in silverlight project. Referencing the silverlight library in a silverlight project does work now.
+
+Version 0.25.18.0
+==========================================
+- Added overloads (new parameter: returnNameInsteadOfId) to methods: GetServerGroupPermissionList, GetChannelGroupPermissionList, GetChannelPermissionList, GetClientPermissionList and GetChannelClientPermissionList of class QueryRunner. This overloaded methods are alowing you to return the permission name instead of the id when the parameter is set to true. (Beta 25 change) 
+- Added overloads to QueryRunner.GetClientDatabaseList method and changed method signature to return a custom response containing the new property "TotalClientsInDatabase" (Beta 25 change)
+- Added method "GetClientDatabaseInfo" to class "QueryRunner" (Beta 25 change) 
+- Added property ChannelIconId to ClientListEntry class (Beta 25 change)
+- Added parameter "includeIcon" to method "GetChannelList" of QueryRunner class (Beta 25 change) 
+- Added property ClientIconId to ClientListEntry class (Beta 25 change)
+- Added parameter "includeIcon" to method "GetClientList" of QueryRunner class (Beta 25 change) 
+- Fixed bug in CommandParameterGroup.ConvertValue<T> which caused the conversion from string to uint? to behave wrong when the string was null. The result of a null string was 0, which is wrong. 
+- Fixed uint conversion bevhaviour. 
+- Refactoring: Renamed method "IsNullOrTimmedEmpty" to "IsNullOrTrimmedEmpty" in class "ExtensionMethods". 
+
+Version 0.23.17.0
+==========================================
+- Added Properties "IsSpacer" and "SpacerInfo" to ChannelListEntry. "IsSpacer" allows you to check whether the channel is a spacer channel and "SpacerInfo" returns a class that gives you more information about a spacer channel like the alignment and whats getting repeated. (Change of Beta23) 
+- Added overload to methods "AddChannelGroup" and "AddServerGroup" of QueryRunnerClass to allow passing the group type. (Change of Beta 23) 
+- Added property "ReservedSlots" to classes "VirtualServerModification" and "ServerInfoResponse" which are used in method "GetServerInfo", "CreateServer" and "EditServer" of QueryRunner class. (Change of Beta 23) 
+- Implemented more detailed exception reporting when a value could not be converted to the expected target type. 
+- Fixed uptime due to beta23 changes 
+- Renamed class "ClientlFindEntry" to "ClientFindEntry". 
+- Renamed Property "DatbaseId" of class "ClientDbEntry" to "DatabaseId"
+
+Version 0.21.16.0
+==========================================
+- Fixed bug in IP-Address-Determination. A DNS resolve was done for IP-Adresses which wasn't necessary and lead to the case, that a wrong IP was determined. So the connect failed because of the wrong IP. 
+- Added missing ParentChannelId property to class ChannelModification. Now its possible to create subchannels everywhere. 
+- Fixed issue 12471: Invalid cast from PermissionLight to Permission 
+- Fixed Isssue 12453: Changed type of property IconId of class ChannelModification from uint to nullable uint. 
+- Fixed Issue 12464: Typo in QueryRunner.AddClientPermissions 
+
+Version 0.21.15.0
+==========================================
+- Added class "ServerListItemBase" which is used in the new method "GetServerListShort" of QueryRunner class. (Change of Beta 21) 
+- Added property "HostButtonGraphicsUrl" to class "VirtualServerModification" which is used in methods "CreateServer" and "EditServer" of QueryRunner class. (Change of Beta 21)
+- Added property "HostButtonGraphicsUrl" to class "ServerInfoResponse" which is used in method "GetServerInfo" of QueryRunner class. (Change of Beta 21) 
+
+Version 0.19.14.0
+==========================================
+- Added property "IsClientRecording" to class "ClientListEntry" which is used in method "GetClientList" of QueryRunner class. (Change of Beta 19)
+- Added property "IconId" to classes "ClientInfoResponse" and "ClientJoinedEventArgs" which are used in method "GetClientInfo" and event "ClientJoined" of QueryRunner class and Notifications class. (Change of Beta 19) 
+- Added property "IconId" to classes "ChannelInfoResponse" and "ChannelModification" which are used in methods "GetChannelInfo", "CreateChannel" and "EditChannel" of QueryRunner class. (Change of Beta 19) 
+- Added properties "PhoneticName" and "IconId" to classes ServerInfoResponse and VirtualServerModification which are used in methods "GetServerInfo", "CreateServer" and "EditServer" of QueryRunner class. (Change of Beta 19) 
+- Added property "TotalConnections" to class ClientDBEntry which is used in method "GetClientDatabaseList" of QueryRunner class. (Change of Beta 19) 
+- Changed the order of parameters for SendMessage. There shouldn't be any warnings in the log now. 
+
+Version 0.18.13.0
+==========================================
+- Added overloads to all methods of QueryRunenr class handling permission tasks to allow passing of permission name instead of permissionid 
+- Fixed a bug in DeleteClientPermission and DeleteClientPermissions methods of QueryRunner class. 
+
+Version 0.17.12.0
+==========================================
+- Fixed memory leak. (undisposed SocketAsyncEventArgs)
+
+Version 0.17.11.0
+==========================================
+- Added method ResetPermissions to QueryRunner class. This method calls the command "permreset" which is introduced with the beta17 release.
+
+Version 0.17.10.0
+==========================================
+- Fixed a possible bug in TS3Util class related to static field initialization.
+- Added methods GetPermissionInfoByName and GetPermissionInfoByNames to QueryRunner class. These methods are calling the command "permidgetbyname" which is introduced with the beta17 release.
+- Added method GetCustomInfo to QueryRunner class. This method calls the command "custominfo" which is introduced with the beta17 release.
+- Fixed bug in AddToken method of queryrunner class. Customsetting were not added to the command when description was null or empty.
+- Added IsPrioritySpeaker property to ClientListEntry class. This property is part of the Beta17 release where the clientlist command includes CLIENT_IS_PRIORITY_SPEAKER when called with option "voice".
+
+Version 0.16.9.0
+==========================================
+- Fixed bug in method DeleteClientFromServerGroup of QueryRunner class.
+- Fixed bug in GetChannelGroupClientList method of queryrunner when using clientId parameter which is now renamed to clientDatabaseId
+- Changed type of parameter clientId of EditClient method of QueryRunner class from int to uint.
+
+Version 0.15.8.0
+==========================================
+- Added method GetAvatarFilename to QueryUtils class
+- Added HashedUniqueId property to ClientInfoResponse class
+- Renamed property WelcomMessage to WelcomeMessage for ServerInfoResponse class
+- Renamed method GetServerIdGetByPort to GetServerIdByPort for QueryRunner class
+- Renamed method SendServerDelete to DeleteServer for QueryRunner class
+- Renamed method SendServerProcessStop to StopServerProcess for QueryRunner class
+- Renamed method SendServerRequestConnectionInfo to GetServerConnectionInfo for QueryRunner class
+- Renamed method RegisterNotification to RegisterForNotifications for QueryRunner class
+- Renamed method UnregisterNotification to UnregisterNotifications for QueryRunner class
+- Renamed method SendChannelMove to MoveChannel for QueryRunner class
+- Renamed method ClientGetIDs to GetClientIdsByUniqueId for QueryRunner class
+- Renamed method ClientGetDbIdFromUId to GetClientDatabaseIdsByUniqueId for QueryRunner class
+- Renamed method ClientGetNameFromUId to GetClientNameAndDatabaseIdByUniqueId for QueryRunner class
+- Renamed method ClientGetNameFromDbId to GetClientNameAndUniqueIdByClientDatabaseId for QueryRunner class
+- Renamed method ClientSetServerQueryLogin to UpdateServerQueryLogin for QueryRunner class
+- Renamed method SendClientMove to MoveClient for QueryRunner class
+- Renamed method SendClientPoke to PokeClient for QueryRunner class
+- Renamed method DeleteClientPermissions to DeleteChannelClientPermissions for QueryRunner class
+- Renamed method FindPermission to FindPermissions for QueryRunner class
+- Moved method GetChannelTree from QueryRunner class to  QueryUtils class. You can now access this method by using QueryRunner.Utils.GetChannelTree(..)
+- The Utils property of QueryRunner class will be filled with utility functions in future versions of the lib.
+- Changed type of property TotalClientsFamily of class ChannelListEntry from uint to int
+- Added overload of method AddToken() to QueryRunner class allowing you to provide a Dictionary<string, string> or a List<KeyValue<string, string>> to be passed when creating the token. The dictionary or list entries are uses to provide ident/value pairs with the token. When someone uses this token during connection the ident/value pairs are written to the custom_fields table.
+- Added another ban-check to ResponseBase<T>
+
+Version 0.15.7.0
+==========================================
+- Added event BanDetected to dispatcher classes to allow detection of ban when connecting to a server.
+- Added BanExtraMessage to ResponseBase
+- Changed type of ChannelListEntry.TotalClients from uint to int becasue when the client does not have the right to get information about the channel, the amount of clients is set to -1
+- Added CustomSearch method to QueryRunner. (New method of query port starting with Beta13)
+- Added TemplateServerDefaultGroupId, TemplateChannelAdminGroupId, TemplateChannelDefaultGroupId, ServerQueryFloodCommandsCount, ServerQueryFloodRatingDuration, ServerQueryBanDuration to InstanceInfoResponse class
+- Added TotalMaxClients, TotalClientsOnline, TotalChannelsOnline to HostInfoResponse class
+- Added ServerPort to CreateServerResponse class
+- Renamed ChannelgroupId in ClientInfoResponse to ChannelGroupId
+- Added ChannelId to ClientInfoResponse class
+- Added Description to Token class
+- Added TemplateServerDefaultGroupId, TemplateChannelAdminGroupId, TemplateChannelDefaultGroupId, ServerQueryFloodCommandsCount, ServerQueryFloodRatingDuration, ServerQueryBanDuration to InstanceInfoResponse to ServerInstanceModification class
+- Added ClientIdleDuration to ClientListEntry class
+- Removed check for required port when creating a server using CreateServer method on QueryRunner class. Only the name is required to create a virtual server.
+- GetClientList method of QueryRunner class got an additional parameter: bool includeTimes
+
+Version 0.12.7.0
+==========================================
+- QueryRunner has got a new property called "Notifications". The class behind the property provides 11 new type safe events: ClientBan, ClientKick, ClientDisconnect, ClientConnectionLost, ClientMessageReceived, ChannelMessageReceived, ServerMessageReceived, ClientMoved, ClientMovedByTemporaryChannelCreate, ClientMoveForced, ClientJoined.
+- Removed BasicTcpDispatcher. SyncTcpDispatcher is the replacement.
+- Fixed bug in Channel-Sorting
+- Added possibility to allow partial uploads using UploadData method in AsyncFileTransfer class
+- Added UploadFile method to AsyncFileTransfer to allow asynchronous file uploads
+
+Version 0.12.6.0
+==========================================
+- Added sorting of Users for GetChannelTree method of QueryRunner
+- Implemented recent changes of Beta 13: new virtualserver property VIRTUALSERVER_MIN_CLIENT_VERSION
+- Fixed bug in DecodeString method.
+- Added class AsyncFileTransfer for downloading files in an asynchronous manner.
+- Added forgotten log-properties to VirtualServerModification class
+- Fixed bug in ServerInfoResponse: ClientLog was not set
+- Changed method InitializeFileUpload of QueryRunner class to return the correct class
+- Added SyncFileTransfer class which allows downloading and uploading of files in a synchronous manner.
+- Fixed bug in ListResponse<T> which may lead to exceptions when receiving more then 1 element.
+
+Version 0.12.5.0
+==========================================
+- Implemented IEnumerable<T>-Interface for ListResponse<T>
+- Changed read-behaviour of AsynTcpDispatcher to be more robust when using notifications.
+
+Version 0.4.12.0
+==========================================
+
+- fixed bug in AsyncpDispatcher which may have lead to data inconsistency when using multiple threads calling the Dispatch-Method.
+- Added IsDisposed property to to IQueryDispatcher and all implementing classes
+- Added raising of ServerClosedConnection when calling the disconnect method of AsyncTcpDispatcher
+- Fixed dispose issues in AsyncTcpDispatcher
+- Fixed ServerGroups-Property of ClientInfoResponse. The property is now a list of unsigned integers instead of a single unsigned integer.
+
+Version 0.3.12.0
+==========================================
+- renamed BasicTcpDispatcher to SyncTcpDispatcher
+- introduced new class: AsyncTcpDispatcher
+
+The new dispatcher is able to receive notifications and acts in a async manner with events for disconnects, connects and so on.
+The QueryRunner has a new event "UnknownNotificationReceived" that is fired when a notification was received when using AsyncTcpDispatcher.
+The Value_property of the eventargs contains the notification response text.
+
+Version 0.2.12.0
+==========================================
+- added recent beta 12 changes: + added CLIENT_IS_TALKER to clienlist (parameter -voice) 
+
+Version 0.2.11.0
+==========================================
+- Improved BasicTcpDispatcher
+- Fixed bug in ServerListItem that caused an exception when an offline server was present.
+
+Version 0.1.11.0
+==========================================
+- Implemented beta 11 changes: added CLIENT_ID to whoami
+- Changed statusline detection logic. 
+- Added method: GetChannelTree to QueryRunner. This method allows you to get a structure with channels and users correctly sorted.
+
+Version 0.1.10.0
+==========================================
+- QueryRunner.GetClientDatabaseList got 2 new parameters: startIndex, numberOfRecords according to the changes in Beta 10 (clientdblist takes now optional parameters "start" and "duration" default values are start=0, duration=25)
+
+Version 0.1.0.0
+==========================================
+- Initial Release

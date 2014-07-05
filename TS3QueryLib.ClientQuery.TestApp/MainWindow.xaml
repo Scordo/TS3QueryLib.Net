@@ -1,0 +1,27 @@
+﻿<Window x:Class="TS3QueryLib.ClientQuery.TestApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Connection Example" Height="350" Width="525">
+    <Grid>
+        <TabControl>
+            <TabItem>
+                <TabItem.Header>
+                    Main
+                </TabItem.Header>
+                <StackPanel Grid.Row="1">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Connect" Name="ConnectButton" Click="ConnectButton_Click" IsEnabled="{Binding CanConnect}" />
+                        <Button Content="Disconnect" Name="DisconnectButton" Click="DisconnectButton_Click" IsEnabled="{Binding CanDisconnect}"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    Log
+                </TabItem.Header>
+                <TextBox Name="LogTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto"/>
+            </TabItem>
+        </TabControl>
+        
+    </Grid>
+</Window>

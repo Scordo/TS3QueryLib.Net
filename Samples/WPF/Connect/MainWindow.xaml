@@ -1,0 +1,17 @@
+﻿<Window x:Class="Connect.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Connection Example" Height="350" Width="525">
+    <Grid>
+        <StackPanel Grid.Row="1">
+            <TextBlock>Server-Address</TextBlock>
+            <TextBox HorizontalAlignment="Stretch" Name="AddressBox" Text="{Binding ServerAddress, Mode=TwoWay}" VerticalAlignment="Top" IsEnabled="{Binding IsDisconnected}" />
+            <TextBlock>Query-Port</TextBlock>
+            <TextBox HorizontalAlignment="Stretch" Name="PortBox" Text="{Binding ServerPort, Mode=TwoWay}" VerticalAlignment="Top" IsEnabled="{Binding IsDisconnected}" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Connect" Name="ConnectButton" Click="ConnectButton_Click" IsEnabled="{Binding CanConnect}" />
+                <Button Content="Disconnect" Name="DisconnectButton" Click="DisconnectButton_Click" IsEnabled="{Binding CanDisconnect}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BE2D6663-0B1E-40F3-ACA7-B06F4B04A952}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TS3QueryLib.Core</RootNamespace>
+    <AssemblyName>TS3QueryLib.Core.Silverlight</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignManifests>false</SignManifests>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\TS3QueryLib.Core.Silverlight.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\TS3QueryLib.Core.Silverlight.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AsyncFileTransfer.cs" />
+    <Compile Include="AsyncTcpDispatcher.cs" />
+    <Compile Include="Client\CommandName.cs" />
+    <Compile Include="Client\Entities\ChannelListEntry.cs" />
+    <Compile Include="Client\Entities\ClientModification.cs" />
+    <Compile Include="Client\Entities\ClientNotifyRegisterEvent.cs" />
+    <Compile Include="Client\Notification\Enums\TalkStatus.cs" />
+    <Compile Include="Client\Notification\EventArgs\TalkStatusEventArgs.cs" />
+    <Compile Include="Client\Notification\EventArgs\TalkStatusEventArgsBase.cs" />
+    <Compile Include="Client\Notification\Notifications.cs" />
+    <Compile Include="Client\QueryRunner.cs" />
+    <Compile Include="Client\Responses\ChannelConnectionInfoResponse.cs" />
+    <Compile Include="Client\Responses\WhoAmIResponse.cs" />
+    <Compile Include="CommandHandling\Command.cs" />
+    <Compile Include="Common\Entities\ChannelListEntryBase.cs" />
+    <Compile Include="Common\Entities\ClientModificationBase.cs" />
+    <Compile Include="Common\Notification\NotificationsBase.cs" />
+    <Compile Include="Common\SharedCommandName.cs" />
+    <Compile Include="Server\CommandName.cs" />
+    <Compile Include="CommandHandling\CommandParameter.cs" />
+    <Compile Include="CommandHandling\CommandParameterBlock.cs" />
+    <Compile Include="CommandHandling\CommandParameterGroup.cs" />
+    <Compile Include="CommandHandling\CommandParameterGroupList.cs" />
+    <Compile Include="CommandHandling\GroupDatabaseType.cs" />
+    <Compile Include="CommandHandling\KickReason.cs" />
+    <Compile Include="CommandHandling\LogLevel.cs" />
+    <Compile Include="CommandHandling\MessageTarget.cs" />
+    <Compile Include="Common\EventArgs.cs" />
+    <Compile Include="Common\IDump.cs" />
+    <Compile Include="Common\IQueryDispatcher.cs" />
+    <Compile Include="Common\QueryRunnerBase.cs" />
+    <Compile Include="Common\ReadOnlyDictionary.cs" />
+    <Compile Include="Common\ChannelTreeItem.cs" />
+    <Compile Include="Common\Responses\WhoAmIResponseBase.cs" />
+    <Compile Include="Common\TS3Util.cs" />
+    <Compile Include="Communication\AsyncSocketMethodHelper.cs" />
+    <Compile Include="Communication\SocketAsyncEventArgsUserToken.cs" />
+    <Compile Include="Communication\SocketErrorEventArgs.cs" />
+    <Compile Include="FileTransferBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\Entities\BanListEntry.cs" />
+    <Compile Include="Server\Entities\ChannelFindEntry.cs" />
+    <Compile Include="Server\Entities\ChannelGroup.cs" />
+    <Compile Include="Server\Entities\ChannelGroupClient.cs" />
+    <Compile Include="Server\Entities\ChannelListEntry.cs" />
+    <Compile Include="Server\Entities\ChannelModification.cs" />
+    <Compile Include="Server\Entities\ClientDBEntry.cs" />
+    <Compile Include="Server\Entities\ClientDbEntryListResponse.cs" />
+    <Compile Include="Server\Entities\ClientIdEntry.cs" />
+    <Compile Include="Server\Entities\ClientListEntry.cs" />
+    <Compile Include="Server\Entities\ClientFindEntry.cs" />
+    <Compile Include="Server\Entities\ClientModification.cs" />
+    <Compile Include="Server\Entities\ClientPermission.cs" />
+    <Compile Include="Server\Entities\ComplainListEntry.cs" />
+    <Compile Include="Server\Entities\CustomInfoEntry.cs" />
+    <Compile Include="Server\Entities\CustomSearchEntry.cs" />
+    <Compile Include="Server\Entities\FileTransferFileEntry.cs" />
+    <Compile Include="Server\Entities\FileTransferListEntry.cs" />
+    <Compile Include="Server\Entities\LogEntry.cs" />
+    <Compile Include="Server\Entities\LogEntryLight.cs" />
+    <Compile Include="Server\Entities\MessageEntry.cs" />
+    <Compile Include="Common\Entities\ModificationBase.cs" />
+    <Compile Include="Server\Entities\NamedClientPermission.cs" />
+    <Compile Include="Server\Entities\NamedPermission.cs" />
+    <Compile Include="Server\Entities\NamedPermissionLight.cs" />
+    <Compile Include="Server\Entities\Permission.cs" />
+    <Compile Include="Server\Entities\PermissionDetails.cs" />
+    <Compile Include="Server\Entities\PermissionFindEntry.cs" />
+    <Compile Include="Server\Entities\PermissionInfo.cs" />
+    <Compile Include="Server\Entities\PermissionLight.cs" />
+    <Compile Include="Server\Entities\PermissionOverviewEntry.cs" />
+    <Compile Include="Server\Entities\ServerGroup.cs" />
+    <Compile Include="Server\Entities\ServerGroupClient.cs" />
+    <Compile Include="Server\Entities\ServerGroupLight.cs" />
+    <Compile Include="Server\Entities\ServerInstanceModification.cs" />
+    <Compile Include="Server\Entities\ServerListItem.cs" />
+    <Compile Include="Server\Entities\ServerListItemBase.cs" />
+    <Compile Include="Server\Entities\ServerNotifyRegisterEvent.cs" />
+    <Compile Include="Server\Entities\SpacerAlignment.cs" />
+    <Compile Include="Common\Entities\SpacerInfo.cs" />
+    <Compile Include="Server\Entities\Token.cs" />
+    <Compile Include="Server\Entities\VirtualServerModification.cs" />
+    <Compile Include="Server\Notification\EventArgs\ClientBanEventArgs.cs" />
+    <Compile Include="Server\Notification\EventArgs\ClientConnectionLostEventArgs.cs" />
+    <Compile Include="Server\Notification\EventArgs\ClientDisconnectEventArgs.cs" />
+    <Compile Include="Server\Notification\EventArgs\ClientJoinedEventArgs.cs" />
+    <Compile Include="Server\Notification\EventArgs\ClientKickEventArgs.cs" />
+    <Compile Include="Server\Notification\EventArgs\ClientMovedByClientEventArgs.cs" />
+    <Compile Include="Server\Notification\EventArgs\ClientMovedEventArgs.cs" />
+    <Compile Include="Server\Notification\EventArgs\MessageReceivedEventArgs.cs" />
+    <Compile Include="Server\Notification\EventArgs\TokenUsedEventArgs.cs" />
+    <Compile Include="Server\Notification\Notifications.cs" />
+    <Compile Include="Server\Notification\ReasonEnums.cs" />
+    <Compile Include="Server\QueryRunner.cs" />
+    <Compile Include="Server\QueryUtils.cs" />
+    <Compile Include="Server\Responses\ClientDbInfoResponse.cs" />
+    <Compile Include="Server\Responses\ClientInfoBaseResponse.cs" />
+    <Compile Include="Server\Responses\HostBannerMode.cs" />
+    <Compile Include="Server\Responses\InitializeFileUploadResponse.cs" />
+    <Compile Include="Server\Responses\OwnPermissionResponse.cs" />
+    <Compile Include="SyncFileTransfer.cs" />
+    <Compile Include="SyncTcpDispatcher.cs" />
+    <Compile Include="Server\Responses\ChannelInfoResponse.cs" />
+    <Compile Include="Server\Responses\ClientGetNameFromDbIdResponse.cs" />
+    <Compile Include="Server\Responses\ClientGetNameFromUniqueIdResponse.cs" />
+    <Compile Include="Server\Responses\ClientInfoResponse.cs" />
+    <Compile Include="Server\Responses\ConnectionInfoResponse.cs" />
+    <Compile Include="Server\Responses\CreateServerResponse.cs" />
+    <Compile Include="Server\Responses\GetMessageResponse.cs" />
+    <Compile Include="Server\Responses\InitializeFileDownloadResponse.cs" />
+    <Compile Include="Server\Responses\ServerInfoResponse.cs" />
+    <Compile Include="Common\Responses\ListResponse.cs" />
+    <Compile Include="Common\Responses\SingleValueResponse.cs" />
+    <Compile Include="Server\Responses\HostInfoResponse.cs" />
+    <Compile Include="Server\Responses\InstanceInfoResponse.cs" />
+    <Compile Include="Common\Responses\ResponseBase.cs" />
+    <Compile Include="Common\Responses\SimpleResponse.cs" />
+    <Compile Include="Server\Responses\VersionResponse.cs" />
+    <Compile Include="Server\Responses\WhoAmIResponse.cs" />
+    <Compile Include="TcpDispatcherBase.cs" />
+    <Compile Include="TypeExtensions\ExtensionMethods.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Windows.Browser" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

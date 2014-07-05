@@ -1,0 +1,52 @@
+Requirements
+==============================================================
+
+- Visual Studio 2008 with .Net Framework 3.5
+- Silverlight Toolkit and so on (only if you want to use this library with silverlight)
+
+How to use?
+==============================================================
+
+For Windows Phone 7.1 reference the assembly : TS3QueryLib.Core.WP7
+For Silverlight reference the assembly : TS3QueryLib.Core.Silverlight
+For ASP.Net, Winforms, WPF and so on reference the assembly: TS3QueryLib.Core.Framework
+
+
+Sample Code (Silverlight)
+==============================================================
+
+using System.Windows;
+using System.Windows.Controls;
+using TS3QueryLib.Core;
+using TS3QueryLib.Core.Common;
+using TS3QueryLib.Core.Query;
+
+namespace TS3RemoteControl
+{
+    public partial class MainPage : UserControl
+    {
+        public MainPage()
+        {
+            InitializeComponent();
+        }
+
+        private void ConnectButton_Click(object sender, RoutedEventArgs e)
+        {
+            // The QueryRunner is used to send queries. All Queries are implemented type save and return objects with properties
+
+            using (QueryRunner queryRunner = new QueryRunner(new SyncTcpDispatcher("127.0.0.1", 10011)))  // host and port
+            {
+                // connection to the TS3-Server is established with the first query command
+
+                //AppendToOutput(queryRunner.Login("serveradmin", "YourPassword")).GetDumpString(); // login using the provided username and password and show a dump-output of the response in a textbox
+                AppendToOutput(queryRunner.SelectVirtualServerById(1).GetDumpString()); // select server with id 1 and show a dump-output of the response in a textbox
+                AppendToOutput(queryRunner.SendWhoAmI().GetDumpString()); // get information about yourself and show a dump-output of the response in a textbox
+            }
+        }
+
+        private void AppendToOutput(string text)
+        {
+            OutputTextBox.Text += "\n" + text;
+        }
+    }
+}

@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4DE36FD7-ED4F-4A0D-ACD7-E83C2A02C95D}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TS3QueryLib.Core</RootNamespace>
+    <AssemblyName>TS3QueryLib.Core.WP7</AssemblyName>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <SilverlightVersion>
+    </SilverlightVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Bin\Debug\TS3QueryLib.Core.WP7.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Bin\Release\TS3QueryLib.Core.WP7.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget />
+    <OutputPath>Bin\x86\Debug</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget />
+    <OutputPath>Bin\x86\Release</OutputPath>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <PlatformTarget />
+    <OutputPath>Bin\ARM\Debug</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <PlatformTarget />
+    <OutputPath>Bin\ARM\Release</OutputPath>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\AsyncFileTransfer.cs">
+      <Link>AsyncFileTransfer.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\AsyncTcpDispatcher.cs">
+      <Link>AsyncTcpDispatcher.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Client\CommandName.cs">
+      <Link>Client\CommandName.cs</Link>
+    </Compile>
+    <Compile Include="..\ts3querylib.core.silverlight\client\entities\ChannelListEntry.cs">
+      <Link>Client\Entities\ChannelListEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Client\Entities\ClientModification.cs">
+      <Link>Client\Entities\ClientModification.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Client\Entities\ClientNotifyRegisterEvent.cs">
+      <Link>Client\Entities\ClientNotifyRegisterEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\ts3querylib.core.silverlight\client\notification\enums\TalkStatus.cs">
+      <Link>Client\Notification\Enums\TalkStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\ts3querylib.core.silverlight\client\notification\eventargs\TalkStatusEventArgs.cs">
+      <Link>Client\Notification\EventArgs\TalkStatusEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\ts3querylib.core.silverlight\client\notification\eventargs\TalkStatusEventArgsBase.cs">
+      <Link>Client\Notification\EventArgs\TalkStatusEventArgsBase.cs</Link>
+    </Compile>
+    <Compile Include="..\ts3querylib.core.silverlight\client\notification\Notifications.cs">
+      <Link>Client\Notification\Notifications.cs</Link>
+    </Compile>
+    <Compile Include="..\ts3querylib.core.silverlight\client\QueryRunner.cs">
+      <Link>Client\QueryRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Client\Responses\ChannelConnectionInfoResponse.cs">
+      <Link>Client\Responses\ChannelConnectionInfoResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\ts3querylib.core.silverlight\client\responses\WhoAmIResponse.cs">
+      <Link>Client\Responses\WhoAmIResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\CommandHandling\GroupDatabaseType.cs">
+      <Link>CommandHandling\GroupDatabaseType.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Common\ChannelTreeItem.cs">
+      <Link>Common\ChannelTreeItem.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Common\Entities\ChannelListEntryBase.cs">
+      <Link>Common\Entities\ChannelListEntryBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Common\Entities\ClientModificationBase.cs">
+      <Link>Common\Entities\ClientModificationBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Common\Entities\ModificationBase.cs">
+      <Link>Common\Entities\ModificationBase.cs</Link>
+    </Compile>
+    <Compile Include="..\ts3querylib.core.silverlight\common\entities\SpacerInfo.cs">
+      <Link>Common\Entities\SpacerInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Common\EventArgs.cs">
+      <Link>Common\EventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\ts3querylib.core.silverlight\common\notification\NotificationsBase.cs">
+      <Link>Common\Notification\NotificationsBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Common\QueryRunnerBase.cs">
+      <Link>Common\QueryRunnerBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Common\Responses\ListResponse.cs">
+      <Link>Common\Responses\ListResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Common\Responses\ResponseBase.cs">
+      <Link>Common\Responses\ResponseBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Common\Responses\SimpleResponse.cs">
+      <Link>Common\Responses\SimpleResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Common\Responses\SingleValueResponse.cs">
+      <Link>Common\Responses\SingleValueResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\ts3querylib.core.silverlight\common\responses\WhoAmIResponseBase.cs">
+      <Link>Common\Responses\WhoAmIResponseBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Common\SharedCommandName.cs">
+      <Link>Common\SharedCommandName.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\FileTransferBase.cs">
+      <Link>FileTransferBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\CommandHandling\Command.cs">
+      <Link>CommandHandling\Command.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\CommandHandling\CommandParameter.cs">
+      <Link>CommandHandling\CommandParameter.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\CommandHandling\CommandParameterBlock.cs">
+      <Link>CommandHandling\CommandParameterBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\CommandHandling\CommandParameterGroup.cs">
+      <Link>CommandHandling\CommandParameterGroup.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\CommandHandling\CommandParameterGroupList.cs">
+      <Link>CommandHandling\CommandParameterGroupList.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\CommandHandling\KickReason.cs">
+      <Link>CommandHandling\KickReason.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\CommandHandling\LogLevel.cs">
+      <Link>CommandHandling\LogLevel.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\CommandHandling\MessageTarget.cs">
+      <Link>CommandHandling\MessageTarget.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Common\IDump.cs">
+      <Link>Common\IDump.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Common\IQueryDispatcher.cs">
+      <Link>Common\IQueryDispatcher.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Common\ReadOnlyDictionary.cs">
+      <Link>Common\ReadOnlyDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Common\TS3Util.cs">
+      <Link>Common\TS3Util.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Communication\AsyncSocketMethodHelper.cs">
+      <Link>Communication\AsyncSocketMethodHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Communication\SocketAsyncEventArgsUserToken.cs">
+      <Link>Communication\SocketAsyncEventArgsUserToken.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Communication\SocketErrorEventArgs.cs">
+      <Link>Communication\SocketErrorEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\CommandName.cs">
+      <Link>Server\CommandName.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\BanListEntry.cs">
+      <Link>Server\Entities\BanListEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ChannelFindEntry.cs">
+      <Link>Server\Entities\ChannelFindEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ChannelGroup.cs">
+      <Link>Server\Entities\ChannelGroup.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ChannelGroupClient.cs">
+      <Link>Server\Entities\ChannelGroupClient.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ChannelListEntry.cs">
+      <Link>Server\Entities\ChannelListEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ChannelModification.cs">
+      <Link>Server\Entities\ChannelModification.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ClientDBEntry.cs">
+      <Link>Server\Entities\ClientDBEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ClientDbEntryListResponse.cs">
+      <Link>Server\Entities\ClientDbEntryListResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ClientFindEntry.cs">
+      <Link>Server\Entities\ClientFindEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ClientIdEntry.cs">
+      <Link>Server\Entities\ClientIdEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ClientListEntry.cs">
+      <Link>Server\Entities\ClientListEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ClientModification.cs">
+      <Link>Server\Entities\ClientModification.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ClientPermission.cs">
+      <Link>Server\Entities\ClientPermission.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ComplainListEntry.cs">
+      <Link>Server\Entities\ComplainListEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\CustomInfoEntry.cs">
+      <Link>Server\Entities\CustomInfoEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\CustomSearchEntry.cs">
+      <Link>Server\Entities\CustomSearchEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\FileTransferFileEntry.cs">
+      <Link>Server\Entities\FileTransferFileEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\FileTransferListEntry.cs">
+      <Link>Server\Entities\FileTransferListEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\LogEntry.cs">
+      <Link>Server\Entities\LogEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\LogEntryLight.cs">
+      <Link>Server\Entities\LogEntryLight.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\MessageEntry.cs">
+      <Link>Server\Entities\MessageEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\NamedClientPermission.cs">
+      <Link>Server\Entities\NamedClientPermission.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\NamedPermission.cs">
+      <Link>Server\Entities\NamedPermission.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\NamedPermissionLight.cs">
+      <Link>Server\Entities\NamedPermissionLight.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\Permission.cs">
+      <Link>Server\Entities\Permission.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\PermissionDetails.cs">
+      <Link>Server\Entities\PermissionDetails.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\PermissionFindEntry.cs">
+      <Link>Server\Entities\PermissionFindEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\PermissionInfo.cs">
+      <Link>Server\Entities\PermissionInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\PermissionLight.cs">
+      <Link>Server\Entities\PermissionLight.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\PermissionOverviewEntry.cs">
+      <Link>Server\Entities\PermissionOverviewEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ServerGroup.cs">
+      <Link>Server\Entities\ServerGroup.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ServerGroupClient.cs">
+      <Link>Server\Entities\ServerGroupClient.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ServerGroupLight.cs">
+      <Link>Server\Entities\ServerGroupLight.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ServerInstanceModification.cs">
+      <Link>Server\Entities\ServerInstanceModification.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ServerListItem.cs">
+      <Link>Server\Entities\ServerListItem.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ServerListItemBase.cs">
+      <Link>Server\Entities\ServerListItemBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ServerNotifyRegisterEvent.cs">
+      <Link>Server\Entities\ServerNotifyRegisterEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\SpacerAlignment.cs">
+      <Link>Server\Entities\SpacerAlignment.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\Token.cs">
+      <Link>Server\Entities\Token.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\VirtualServerModification.cs">
+      <Link>Server\Entities\VirtualServerModification.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\ClientBanEventArgs.cs">
+      <Link>Server\Notification\EventArgs\ClientBanEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\ClientConnectionLostEventArgs.cs">
+      <Link>Server\Notification\EventArgs\ClientConnectionLostEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\ClientDisconnectEventArgs.cs">
+      <Link>Server\Notification\EventArgs\ClientDisconnectEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\ClientJoinedEventArgs.cs">
+      <Link>Server\Notification\EventArgs\ClientJoinedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\ClientKickEventArgs.cs">
+      <Link>Server\Notification\EventArgs\ClientKickEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\ClientMovedByClientEventArgs.cs">
+      <Link>Server\Notification\EventArgs\ClientMovedByClientEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\ClientMovedEventArgs.cs">
+      <Link>Server\Notification\EventArgs\ClientMovedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\MessageReceivedEventArgs.cs">
+      <Link>Server\Notification\EventArgs\MessageReceivedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\TokenUsedEventArgs.cs">
+      <Link>Server\Notification\EventArgs\TokenUsedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\Notifications.cs">
+      <Link>Server\Notification\Notifications.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\ReasonEnums.cs">
+      <Link>Server\Notification\ReasonEnums.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\QueryRunner.cs">
+      <Link>Server\QueryRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\QueryUtils.cs">
+      <Link>Server\QueryUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\ChannelInfoResponse.cs">
+      <Link>Server\Responses\ChannelInfoResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\ClientDbInfoResponse.cs">
+      <Link>Server\Responses\ClientDbInfoResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\ClientGetNameFromDbIdResponse.cs">
+      <Link>Server\Responses\ClientGetNameFromDbIdResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\ClientGetNameFromUniqueIdResponse.cs">
+      <Link>Server\Responses\ClientGetNameFromUniqueIdResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\ClientInfoBaseResponse.cs">
+      <Link>Server\Responses\ClientInfoBaseResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\ClientInfoResponse.cs">
+      <Link>Server\Responses\ClientInfoResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\ConnectionInfoResponse.cs">
+      <Link>Server\Responses\ConnectionInfoResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\CreateServerResponse.cs">
+      <Link>Server\Responses\CreateServerResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\GetMessageResponse.cs">
+      <Link>Server\Responses\GetMessageResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\HostBannerMode.cs">
+      <Link>Server\Responses\HostBannerMode.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\HostInfoResponse.cs">
+      <Link>Server\Responses\HostInfoResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\InitializeFileDownloadResponse.cs">
+      <Link>Server\Responses\InitializeFileDownloadResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\InitializeFileUploadResponse.cs">
+      <Link>Server\Responses\InitializeFileUploadResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\InstanceInfoResponse.cs">
+      <Link>Server\Responses\InstanceInfoResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\OwnPermissionResponse.cs">
+      <Link>Server\Responses\OwnPermissionResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\ServerInfoResponse.cs">
+      <Link>Server\Responses\ServerInfoResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\VersionResponse.cs">
+      <Link>Server\Responses\VersionResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\WhoAmIResponse.cs">
+      <Link>Server\Responses\WhoAmIResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\SyncFileTransfer.cs">
+      <Link>SyncFileTransfer.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\SyncTcpDispatcher.cs">
+      <Link>SyncTcpDispatcher.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\TcpDispatcherBase.cs">
+      <Link>TcpDispatcherBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\TypeExtensions\ExtensionMethods.cs">
+      <Link>TypeExtensions\ExtensionMethods.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
