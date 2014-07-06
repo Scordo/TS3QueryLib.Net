@@ -847,14 +847,14 @@ namespace TS3QueryLib.Core.Server
         }
 
 		/// <summary>
-        /// Displays a specified number of entries from the servers log. Depending on your permissions, you'll receive 
-        /// entries from the server instance log and/or your virtual server log. Using a combination of the comparator and 
-        /// timestamp parameters allows you to filter for log entries based on a specific date/time. 
+        /// Displays a specified number of entries from the servers log. Use a combination of lines and beginPos
+        /// to get all available LogEntries. 
         /// </summary>
-        /// <param name="limitCount">The max amount of entries to retrieve (30)</param>
-		public ListResponse<LogEntry> GetLogEntries(ushort limitCount)
+        /// <param name="lines">The max amount of entries to retrieve (max. 100)</param>
+        /// <param name="beginPos">Where to start looking for Logs</param>
+		public ListResponse<LogEntry> GetLogEntries(ushort lines, ushort beginPos = 0)
 		{
-			return GetLogEntries(limitCount, null, null);
+            return GetLogEntries(lines, beginPos, false, false);
 		}
 
         /// <summary>
@@ -862,24 +862,19 @@ namespace TS3QueryLib.Core.Server
         /// entries from the server instance log and/or your virtual server log. Using a combination of the comparator and 
         /// timestamp parameters allows you to filter for log entries based on a specific date/time. 
         /// </summary>
-        /// <param name="limitCount">The max amount of entries to retrieve (30)</param>
-        /// <param name="comparator">a comparator for filtering</param>
-        /// <param name="timestamp">A timestamp for filtering</param>
-        public ListResponse<LogEntry> GetLogEntries(ushort limitCount, char? comparator, DateTime? timestamp)
+        /// <param name="lines">The max amount of entries to retrieve (30)</param>
+        /// <param name="beginPos">Where to start looking for Logs</param>
+        /// <param name="reverse">Reverse start? (Not documented by TS)</param>
+        /// <param name="instance">If true, it will return logs from the master server, else from the selected one</param>
+        public ListResponse<LogEntry> GetLogEntries(ushort lines,ushort beginPos,Boolean reverse,Boolean instance)
         {
-            if (comparator.HasValue && comparator != '>' && comparator != '<' && comparator != '=')
-                throw new ArgumentOutOfRangeException("comparator", "comparator must be '<', '>' or '='");
-
-            limitCount = Math.Max(Math.Min(limitCount, (ushort) 500), (ushort) 1);
+            lines = Math.Max(Math.Min(lines, (ushort) 100), (ushort) 1);
 
             Command command = CommandName.LogView.CreateCommand();
-            command.AddParameter("limitcount", limitCount);
-
-            if (comparator.HasValue)
-                command.AddParameter("comparator", comparator.Value);
-
-            if (timestamp.HasValue)
-                command.AddParameter("comparator", timestamp.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+            command.AddParameter("lines", lines);
+            command.AddParameter("begin_pos", beginPos);
+            command.AddParameter("instance", instance ? 1 : 0);
+            command.AddParameter("reverse", reverse ? 1 : 0);
 
             return ListResponse<LogEntry>.Parse(SendCommand(command), LogEntry.Parse);
         }
@@ -895,7 +890,6 @@ namespace TS3QueryLib.Core.Server
                 throw new ArgumentNullException("logEntry");
 
             Command command = CommandName.LogAdd.CreateCommand();
-            command.AddParameter("loglevel", (uint)logEntry.LogLevel);
             command.AddParameter("logmsg", logEntry.Message);
 
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
@@ -908,9 +902,9 @@ namespace TS3QueryLib.Core.Server
         /// <param name="logLevel">the loglevel</param>
         /// <param name="message">the message</param>
         /// <returns></returns>
-        public SimpleResponse AddLogEntry(LogLevel logLevel, string message)
+        public SimpleResponse AddLogEntry(string message)
         {
-            return AddLogEntry(new LogEntryLight(logLevel, message));
+            return AddLogEntry(new LogEntryLight(message));
         }
 
 		public ListResponse<ChannelListEntry> GetChannelList()

@@ -9,7 +9,8 @@ namespace TS3QueryLib.Core.Server.Entities
         #region Properties
 
         public DateTime TimeStamp { get; protected set; }
-        public string Channel { get; protected set; } 
+        public uint LastPos { get; protected set; }
+        public uint FileSize { get; protected set; }
 
         #endregion
 
@@ -29,12 +30,14 @@ namespace TS3QueryLib.Core.Server.Entities
             if (currentParameterGroup == null)
                 throw new ArgumentNullException("currentParameterGroup");
 
+            String message = currentParameterGroup.GetParameterValue("l");
+
             return new LogEntry
             {
-                TimeStamp = new DateTime(1970, 1, 1).AddSeconds(currentParameterGroup.GetParameterValue<ulong>("timestamp")),
-                LogLevel = (LogLevel)currentParameterGroup.GetParameterValue<uint>("level"),
-                Channel = currentParameterGroup.GetParameterValue("channel"),
-                Message = currentParameterGroup.GetParameterValue("msg")
+                LastPos = firstParameterGroup.GetParameterValue<uint>("last_pos"),
+                FileSize = firstParameterGroup.GetParameterValue<uint>("file_size"),
+                Message = message,
+                TimeStamp = DateTime.Parse(message.Split('|')[0])
             };
         }
 
