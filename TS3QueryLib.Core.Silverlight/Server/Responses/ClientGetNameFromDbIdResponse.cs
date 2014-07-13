@@ -25,7 +25,7 @@ namespace TS3QueryLib.Core.Server.Responses
 
             ClientUniqueId = list.GetParameterValue("cluid");
             NickName = list.GetParameterValue("name");
-            ClientDatabaseId = list.GetParameterValue<uint?>("cldbid");            
+            ClientDatabaseId = list.GetParameterValue<uint?>("cldbid");
         }
 
         #endregion

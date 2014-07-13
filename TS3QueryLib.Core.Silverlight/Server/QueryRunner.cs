@@ -17,7 +17,7 @@ namespace TS3QueryLib.Core.Server
     {
         #region Properties
 
-        
+
         /// <summary>
         /// Provides access to events raised by notifications
         /// </summary>
@@ -46,7 +46,7 @@ namespace TS3QueryLib.Core.Server
         #region Public Methods
 
         /// <summary>
-        /// Authenticates with the TeamSpeak 3 Server instance using given ServerQuery login credentials. 
+        /// Authenticates with the TeamSpeak 3 Server instance using given ServerQuery login credentials.
         /// </summary>
         /// <param name="username">The username</param>
         /// <param name="password">The password</param>
@@ -66,7 +66,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Deselects the active virtual server and logs out from the server instance. 
+        /// Deselects the active virtual server and logs out from the server instance.
         /// </summary>
         public SimpleResponse Logout()
         {
@@ -74,7 +74,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays the servers version information including platform and build number. 
+        /// Displays the servers version information including platform and build number.
         /// </summary>
         public VersionResponse GetVersion()
         {
@@ -82,7 +82,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays detailed connection information about the server instance including uptime, number of virtual servers online, traffic information, etc. 
+        /// Displays detailed connection information about the server instance including uptime, number of virtual servers online, traffic information, etc.
         /// </summary>
         public HostInfoResponse GetHostInfo()
         {
@@ -90,7 +90,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays the server instance configuration including database revision number, the file transfer port, default group IDs, etc. 
+        /// Displays the server instance configuration including database revision number, the file transfer port, default group IDs, etc.
         /// </summary>
         public InstanceInfoResponse GetInstanceInfo()
         {
@@ -98,7 +98,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Changes the server instance configuration using given properties. 
+        /// Changes the server instance configuration using given properties.
         /// </summary>
         public SimpleResponse EditServerInstance(ServerInstanceModification modificationInstance)
         {
@@ -112,17 +112,17 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a list of IP addresses used by the server instance on multi-homed machines. 
+        /// Displays a list of IP addresses used by the server instance on multi-homed machines.
         /// </summary>
-		public ListResponse<string> GetBindingList()
+        public ListResponse<string> GetBindingList()
         {
-			return ResponseBase<ListResponse<string>>.Parse(SendCommand(CommandName.BindingList.CreateCommand()), "ip");
+            return ResponseBase<ListResponse<string>>.Parse(SendCommand(CommandName.BindingList.CreateCommand()), "ip");
         }
 
         /// <summary>
-        /// Selects the virtual server specified with virtualServerId to allow further interaction. The ServerQuery client will 
-        /// appear on the virtual server and acts like a real TeamSpeak 3 Client, except it's unable to send or receive voice 
-        /// data. 
+        /// Selects the virtual server specified with virtualServerId to allow further interaction. The ServerQuery client will
+        /// appear on the virtual server and acts like a real TeamSpeak 3 Client, except it's unable to send or receive voice
+        /// data.
         /// </summary>
         /// <param name="virtualServerId">The id of the virtual server</param>
         public SimpleResponse SelectVirtualServerById(uint virtualServerId)
@@ -134,9 +134,9 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Selects the virtual server specified with virtualServerPort to allow further interaction. The ServerQuery client will 
-        /// appear on the virtual server and acts like a real TeamSpeak 3 Client, except it's unable to send or receive voice 
-        /// data. 
+        /// Selects the virtual server specified with virtualServerPort to allow further interaction. The ServerQuery client will
+        /// appear on the virtual server and acts like a real TeamSpeak 3 Client, except it's unable to send or receive voice
+        /// data.
         /// </summary>
         /// <param name="virtualServerPort">The port of the virtual server</param>
         public SimpleResponse SelectVirtualServerByPort(uint virtualServerPort)
@@ -159,34 +159,34 @@ namespace TS3QueryLib.Core.Server
         }
 
 
-		public ListResponse<ServerListItem> GetServerList()
-		{
-			return GetServerList(false);
-		}
+        public ListResponse<ServerListItem> GetServerList()
+        {
+            return GetServerList(false);
+        }
 
-		public ListResponse<ServerListItem> GetServerList(bool includeAll)
-		{
-			return GetServerList(includeAll, false, false);
-		}
+        public ListResponse<ServerListItem> GetServerList(bool includeAll)
+        {
+            return GetServerList(includeAll, false, false);
+        }
 
-		/// <summary>
-        /// Displays a list of virtual servers including their ID, status, number of clients online, etc. If you're using the -all 
-        /// option, the server will list all virtual servers stored in the database. This can be useful when multiple server 
-        /// instances with different machine IDs are using the same database. The machine ID is used to identify the 
-        /// server instance a virtual server is associated with. 
+        /// <summary>
+        /// Displays a list of virtual servers including their ID, status, number of clients online, etc. If you're using the -all
+        /// option, the server will list all virtual servers stored in the database. This can be useful when multiple server
+        /// instances with different machine IDs are using the same database. The machine ID is used to identify the
+        /// server instance a virtual server is associated with.
         /// The status of a virtual server can be either online, none and virtual. While online and none are self-
-        /// explanatory, virtual is a bit more complicated. Whenever you select a virtual server which is currently 
-        /// stopped, it will be started in virtual mode which means you are able to change its configuration, create 
-        /// channels or change permissions, but no regular TeamSpeak 3 Client can connect. As soon as the last 
-        /// ServerQuery client deselects the virtual server, its status will be changed back to none. 
+        /// explanatory, virtual is a bit more complicated. Whenever you select a virtual server which is currently
+        /// stopped, it will be started in virtual mode which means you are able to change its configuration, create
+        /// channels or change permissions, but no regular TeamSpeak 3 Client can connect. As soon as the last
+        /// ServerQuery client deselects the virtual server, its status will be changed back to none.
         /// </summary>
         /// <param name="includeRemoteServers">whether to get only local servers</param>
         /// <param name="includeUniqueId">whether to include the virtual servers unique id</param>
         /// <returns></returns>
-		public ListResponse<ServerListItem> GetServerList(bool includeRemoteServers, bool includeUniqueId)
-		{
-			return GetServerList(includeRemoteServers, includeUniqueId, false);
-		}
+        public ListResponse<ServerListItem> GetServerList(bool includeRemoteServers, bool includeUniqueId)
+        {
+            return GetServerList(includeRemoteServers, includeUniqueId, false);
+        }
 
         public ListResponse<ServerListItem> GetServerList(bool includeRemoteServers, bool includeUniqueId, bool onlyOfflineServers)
         {
@@ -222,7 +222,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Deletes the virtual server specified with virtualServerId. Please note that only virtual servers in stopped state can be deleted. 
+        /// Deletes the virtual server specified with virtualServerId. Please note that only virtual servers in stopped state can be deleted.
         /// </summary>
         /// <param name="virtualServerId">the virtual server id</param>
         public SimpleResponse DeleteServer(uint virtualServerId)
@@ -234,10 +234,10 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Creates a new virtual server using the given properties and displays its ID and initial administrator token. If 
-        /// virtualserver_port is not specified, the server will test for the first unused UDP port. 
-        /// The first virtual server will be running on UDP port 9987 by default. Subsequently started virtual servers will 
-        /// be running on increasing UDP port numbers. 
+        /// Creates a new virtual server using the given properties and displays its ID and initial administrator token. If
+        /// virtualserver_port is not specified, the server will test for the first unused UDP port.
+        /// The first virtual server will be running on UDP port 9987 by default. Subsequently started virtual servers will
+        /// be running on increasing UDP port numbers.
         /// </summary>
         /// <param name="serverModification">the properties as class</param>
         public CreateServerResponse CreateServer(VirtualServerModification serverModification)
@@ -255,8 +255,8 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Starts the virtual server specified with sid. Depending on your permissions, you're able to start either your 
-        /// own virtual server only or all virtual servers in the server instance. 
+        /// Starts the virtual server specified with sid. Depending on your permissions, you're able to start either your
+        /// own virtual server only or all virtual servers in the server instance.
         /// </summary>
         /// <param name="virtualServerId">the virtual server id</param>
         public SimpleResponse StartVirtualServer(uint virtualServerId)
@@ -268,8 +268,8 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Stops the virtual server specified with sid. Depending on your permissions, you're able to stop either your own 
-        /// virtual server only or all virtual servers in the server instance. 
+        /// Stops the virtual server specified with sid. Depending on your permissions, you're able to stop either your own
+        /// virtual server only or all virtual servers in the server instance.
         /// </summary>
         /// <param name="virtualServerId">the virtual server id</param>
         public SimpleResponse StopVirtualServer(uint virtualServerId)
@@ -290,7 +290,7 @@ namespace TS3QueryLib.Core.Server
 
         /// <summary>
         /// Displays detailed configuration information about the selected virtual server including unique ID, number of
-        /// clients online, configuration, etc. 
+        /// clients online, configuration, etc.
         /// </summary>
         public ServerInfoResponse GetServerInfo()
         {
@@ -298,7 +298,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays detailed connection information about the selected virtual server including uptime, traffic information, etc. 
+        /// Displays detailed connection information about the selected virtual server including uptime, traffic information, etc.
         /// </summary>
         public ConnectionInfoResponse GetServerConnectionInfo()
         {
@@ -306,7 +306,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Changes the selected virtual servers configuration using given properties.  
+        /// Changes the selected virtual servers configuration using given properties.
         /// </summary>
         /// <param name="serverModification">the properties as class</param>
         public SimpleResponse EditServer(VirtualServerModification serverModification)
@@ -321,7 +321,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a list of server groups available. Depending on your permissions, the output may also contain global ServerQuery groups and template groups. 
+        /// Displays a list of server groups available. Depending on your permissions, the output may also contain global ServerQuery groups and template groups.
         /// </summary>
         public ListResponse<ServerGroup> GetServerGroupList()
         {
@@ -329,7 +329,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Creates a new server group using the name specified with name and displays its ID. 
+        /// Creates a new server group using the name specified with name and displays its ID.
         /// </summary>
         /// <param name="serverGroupName">Name of the new group to create</param>
         public SingleValueResponse<uint?> AddServerGroup(string serverGroupName)
@@ -338,7 +338,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Creates a new server group using the name specified with name and displays its ID. 
+        /// Creates a new server group using the name specified with name and displays its ID.
         /// </summary>
         /// <param name="serverGroupName">Name of the new group to create</param>
         /// <param name="groupType">Type of the new group to create</param>
@@ -361,12 +361,12 @@ namespace TS3QueryLib.Core.Server
             return ResponseBase<SingleValueResponse<uint?>>.Parse(SendCommand(command), "sgid");
         }
 
-        
 
-		public SimpleResponse DeleteServerGroup(uint serverGroupId)
-		{
-			return DeleteServerGroup(serverGroupId, false);
-		}
+
+        public SimpleResponse DeleteServerGroup(uint serverGroupId)
+        {
+            return DeleteServerGroup(serverGroupId, false);
+        }
 
         /// <summary>
         /// Deletes the server group specified with sgid. If force is set to 1, the server group will be deleted even if there are clients within
@@ -401,7 +401,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a list of permissions assigned to the server group specified with sgid. 
+        /// Displays a list of permissions assigned to the server group specified with sgid.
         /// </summary>
         /// <param name="serverGroupId">The id of the group to get permissions for</param>
         public ListResponse<Permission> GetServerGroupPermissionList(uint serverGroupId)
@@ -410,7 +410,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a list of permissions assigned to the server group specified with sgid. 
+        /// Displays a list of permissions assigned to the server group specified with sgid.
         /// </summary>
         /// <param name="serverGroupId">The id of the group to get permissions for</param>
         /// <param name="returnNameInsteadOfId">If set to true, the returned permissions have the Id property set to 0 and the name property will be filled with the permission name</param>
@@ -447,7 +447,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Adds a set of specified permissions to the server group specified with sgid. Multiple permissions can be added by providing the four parameters of each permission. 
+        /// Adds a set of specified permissions to the server group specified with sgid. Multiple permissions can be added by providing the four parameters of each permission.
         /// </summary>
         /// <param name="serverGroupId">the id of the server group</param>
         /// <param name="permissions">the permissions to add</param>
@@ -554,7 +554,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Removes the specified permissions from the server group specified with sgid. 
+        /// Removes the specified permissions from the server group specified with sgid.
         /// </summary>
         /// <param name="serverGroupId">The id of the group to delete the permission from</param>
         /// <param name="permissionId">The id of the permission to remove</param>
@@ -622,7 +622,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Removes the specified permissions from the server group specified with sgid. 
+        /// Removes the specified permissions from the server group specified with sgid.
         /// </summary>
         /// <param name="serverGroupId">The id of the group to delete the permission from</param>
         /// <param name="permissionName">The name of the permission to remove</param>
@@ -704,7 +704,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Removes a client from the server group specified with sgid. 
+        /// Removes a client from the server group specified with sgid.
         /// </summary>
         /// <param name="serverGroupId">The id of the server group</param>
         /// <param name="clientDatabaseId">The database id of the client</param>
@@ -717,14 +717,14 @@ namespace TS3QueryLib.Core.Server
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }
 
-		public ListResponse<ServerGroupClient> GetServerGroupClientList(uint serverGroupId)
-		{
-			return GetServerGroupClientList(serverGroupId, false);
-		}
+        public ListResponse<ServerGroupClient> GetServerGroupClientList(uint serverGroupId)
+        {
+            return GetServerGroupClientList(serverGroupId, false);
+        }
 
         /// <summary>
-        /// Displays the IDs of all clients currently residing in the server group specified with sgid. If you're using the 
-        /// -names option, the output will also contain the last known nickname and the unique identifier of the clients. 
+        /// Displays the IDs of all clients currently residing in the server group specified with sgid. If you're using the
+        /// -names option, the output will also contain the last known nickname and the unique identifier of the clients.
         /// </summary>
         /// <param name="serverGroupId">The id of the server group</param>
         /// <param name="includeNicknamesAndUid">whether to include nickname and unique id</param>
@@ -752,9 +752,9 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a snapshot of the selected virtual server containing all settings, groups and known client identities. 
-        /// The data from a server snapshot can be used to restore a virtual servers configuration, channels and 
-        /// permissions using the serversnapshotdeploy command. 
+        /// Displays a snapshot of the selected virtual server containing all settings, groups and known client identities.
+        /// The data from a server snapshot can be used to restore a virtual servers configuration, channels and
+        /// permissions using the serversnapshotdeploy command.
         /// </summary>
         public SimpleResponse GetServerSnapshot()
         {
@@ -762,9 +762,9 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Restores the selected virtual servers configuration using the data from a previously created server snapshot. 
-        /// Please note that the TeamSpeak 3 Server does NOT check for necessary permissions while deploying a 
-        /// snapshot so the command could be abused to gain additional privileges. 
+        /// Restores the selected virtual servers configuration using the data from a previously created server snapshot.
+        /// Please note that the TeamSpeak 3 Server does NOT check for necessary permissions while deploying a
+        /// snapshot so the command could be abused to gain additional privileges.
         /// </summary>
         /// <param name="snapshotData">The data that was got by calling GetServerSnapshot()</param>
         public SimpleResponse DeployServerSnapshot(string snapshotData)
@@ -778,16 +778,16 @@ namespace TS3QueryLib.Core.Server
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }
 
-		public SimpleResponse RegisterForNotifications(ServerNotifyRegisterEvent eventSource)
-		{
-			return RegisterForNotifications(eventSource, null);
-		}
+        public SimpleResponse RegisterForNotifications(ServerNotifyRegisterEvent eventSource)
+        {
+            return RegisterForNotifications(eventSource, null);
+        }
 
         /// <summary>
-        /// Registers for a specified category of events on a virtual server to receive notification messages. Depending on 
-        /// the notifications you've registered for, the server will send you a message on every event in the view of your 
-        /// ServerQuery client (e.g. clients joining your channel, incoming text messages, server configuration changes, 
-        /// etc). The event source is declared by the event parameter while id can be used to limit the notifications to a specific channel. 
+        /// Registers for a specified category of events on a virtual server to receive notification messages. Depending on
+        /// the notifications you've registered for, the server will send you a message on every event in the view of your
+        /// ServerQuery client (e.g. clients joining your channel, incoming text messages, server configuration changes,
+        /// etc). The event source is declared by the event parameter while id can be used to limit the notifications to a specific channel.
         /// </summary>
         /// <param name="eventSource">the event to register for</param>
         /// <param name="channelId">the optional channel id</param>
@@ -803,7 +803,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Unregisters all events previously registered with servernotifyregister so you will no longer receive notification messages. 
+        /// Unregisters all events previously registered with servernotifyregister so you will no longer receive notification messages.
         /// </summary>
         public SimpleResponse UnregisterNotifications()
         {
@@ -826,7 +826,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Sends a text message a specified target. The type of the target is determined by targetmode while target 
+        /// Sends a text message a specified target. The type of the target is determined by targetmode while target
         /// specifies the ID of the recipient, whether it be a virtual server, a channel or a client.
         /// </summary>
         /// <param name="target">The target of the message</param>
@@ -846,27 +846,27 @@ namespace TS3QueryLib.Core.Server
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }
 
-		/// <summary>
+        /// <summary>
         /// Displays a specified number of entries from the servers log. Use a combination of lines and beginPos
-        /// to get all available LogEntries. 
+        /// to get all available LogEntries. Note that you first have to select a virtual server.
         /// </summary>
-        /// <param name="lines">The max amount of entries to retrieve (max. 100)</param>
-        /// <param name="beginPos">Where to start looking for Logs</param>
-		public ListResponse<LogEntry> GetLogEntries(ushort lines, ushort beginPos = 0)
-		{
+        /// <param name="lines">The max amount of entries to retrieve. (max. 100)</param>
+        /// <param name="beginPos">Must be 0 or the last_pos value of the previous log query response.</param>
+        public ListResponse<LogEntry> GetLogEntries(ushort lines, uint beginPos = 0)
+        {
             return GetLogEntries(lines, beginPos, false, false);
-		}
+        }
 
         /// <summary>
-        /// Displays a specified number of entries from the servers log. Depending on your permissions, you'll receive 
-        /// entries from the server instance log and/or your virtual server log. Using a combination of the comparator and 
-        /// timestamp parameters allows you to filter for log entries based on a specific date/time. 
+        /// Displays a specified number of entries from the servers log. Depending on your permissions, you'll receive
+        /// entries from the server instance log and/or your virtual server log. Using a combination of the comparator and
+        /// timestamp parameters allows you to filter for log entries based on a specific date/time.
         /// </summary>
-        /// <param name="lines">The max amount of entries to retrieve (30)</param>
-        /// <param name="beginPos">Where to start looking for Logs</param>
+        /// <param name="lines">The max amount of entries to retrieve. (max. 100)</param>
+        /// <param name="beginPos">Must be 0 or the last_pos value of the previous log query response.</param>
         /// <param name="reverse">Reverse start? (Not documented by TS)</param>
-        /// <param name="instance">If true, it will return logs from the master server, else from the selected one</param>
-        public ListResponse<LogEntry> GetLogEntries(ushort lines,ushort beginPos,Boolean reverse,Boolean instance)
+        /// <param name="instance">If set to true, the server will return lines from the master logfile (ts3server_0.log) instead of the selected virtual server logfile.</param>
+        public ListResponse<LogEntry> GetLogEntries(ushort lines,uint beginPos,Boolean reverse,Boolean instance)
         {
             lines = Math.Max(Math.Min(lines, (ushort) 100), (ushort) 1);
 
@@ -880,8 +880,8 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Writes a custom entry into the servers log. Depending on your permissions, you'll be able to add entries into 
-        /// the server instance log and/or your virtual servers log. The loglevel parameter specifies the type of the entry. 
+        /// Writes a custom entry into the servers log. Depending on your permissions, you'll be able to add entries into
+        /// the server instance log and/or your virtual servers log. The loglevel parameter specifies the type of the entry.
         /// </summary>
         /// <param name="logEntry">The logentry to add</param>
         public SimpleResponse AddLogEntry(LogEntryLight logEntry)
@@ -896,8 +896,8 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Writes a custom entry into the servers log. Depending on your permissions, you'll be able to add entries into 
-        /// the server instance log and/or your virtual servers log. The loglevel parameter specifies the type of the entry. 
+        /// Writes a custom entry into the servers log. Depending on your permissions, you'll be able to add entries into
+        /// the server instance log and/or your virtual servers log. The loglevel parameter specifies the type of the entry.
         /// </summary>
         /// <param name="logLevel">the loglevel</param>
         /// <param name="message">the message</param>
@@ -907,28 +907,28 @@ namespace TS3QueryLib.Core.Server
             return AddLogEntry(new LogEntryLight(message));
         }
 
-		public ListResponse<ChannelListEntry> GetChannelList()
-		{
-			return GetChannelList(false);
-		}
+        public ListResponse<ChannelListEntry> GetChannelList()
+        {
+            return GetChannelList(false);
+        }
 
-		public ListResponse<ChannelListEntry> GetChannelList(bool includeAll)
-		{
-			return GetChannelList(includeAll, false, false, false, false, false);
-		}
+        public ListResponse<ChannelListEntry> GetChannelList(bool includeAll)
+        {
+            return GetChannelList(includeAll, false, false, false, false, false);
+        }
 
-		/// <summary>
-		/// Displays a list of channels created on a virtual server including their ID, order, name, etc. The output can be modified using several command options. 
-		/// </summary>
-		/// <param name="includeTopics">if set to true topic is included</param>
-		/// <param name="includeFlags">if set to true flag parameters are included</param>
-		/// <param name="includeVoiceInfo">if set to true voice parameters are included</param>
-		/// <param name="includeLimits">if set to true limit parameters are included</param>
-		/// <param name="includeIcon">if set to true icon parameter is included</param>
-		public ListResponse<ChannelListEntry> GetChannelList(bool includeTopics, bool includeFlags, bool includeVoiceInfo, bool includeLimits, bool includeIcon)
-		{
-			return GetChannelList(false, includeTopics, includeFlags, includeVoiceInfo, includeLimits, includeIcon);
-		}
+        /// <summary>
+        /// Displays a list of channels created on a virtual server including their ID, order, name, etc. The output can be modified using several command options.
+        /// </summary>
+        /// <param name="includeTopics">if set to true topic is included</param>
+        /// <param name="includeFlags">if set to true flag parameters are included</param>
+        /// <param name="includeVoiceInfo">if set to true voice parameters are included</param>
+        /// <param name="includeLimits">if set to true limit parameters are included</param>
+        /// <param name="includeIcon">if set to true icon parameter is included</param>
+        public ListResponse<ChannelListEntry> GetChannelList(bool includeTopics, bool includeFlags, bool includeVoiceInfo, bool includeLimits, bool includeIcon)
+        {
+            return GetChannelList(false, includeTopics, includeFlags, includeVoiceInfo, includeLimits, includeIcon);
+        }
 
         private ListResponse<ChannelListEntry> GetChannelList(bool includeAll, bool includeTopics, bool includeFlags, bool includeVoiceInfo, bool includeLimits, bool includeIcon)
         {
@@ -946,16 +946,16 @@ namespace TS3QueryLib.Core.Server
             if (includeLimits || includeAll)
                 command.AddOption("limits");
 
-			if (includeIcon || includeAll)
-				command.AddOption("icon");
+            if (includeIcon || includeAll)
+                command.AddOption("icon");
 
             return ListResponse<ChannelListEntry>.Parse(SendCommand(command), ChannelListEntry.Parse);
         }
 
-		
+
 
         /// <summary>
-        /// Displays detailed configuration information about a channel including ID, topic, description, etc. 
+        /// Displays detailed configuration information about a channel including ID, topic, description, etc.
         /// </summary>
         /// <param name="channelId">the id of the channel</param>
         public ChannelInfoResponse GetChannelInfo(uint channelId)
@@ -967,7 +967,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a list of channels matching a given name pattern. 
+        /// Displays a list of channels matching a given name pattern.
         /// </summary>
         /// <param name="pattern">The pattern used for searchinf</param>
         public ListResponse<ChannelFindEntry> FindChannels(string pattern /* = null*/)
@@ -980,13 +980,13 @@ namespace TS3QueryLib.Core.Server
             return ListResponse<ChannelFindEntry>.Parse(SendCommand(command), ChannelFindEntry.Parse);
         }
 
-		public SimpleResponse MoveChannel(uint channelId, uint channelParentId)
-		{
-			return MoveChannel(channelId, channelParentId, null);
-		}
+        public SimpleResponse MoveChannel(uint channelId, uint channelParentId)
+        {
+            return MoveChannel(channelId, channelParentId, null);
+        }
 
         /// <summary>
-        /// Moves a channel to a new parent channel with the ID cpid. If order is specified, the channel will be sorted right 
+        /// Moves a channel to a new parent channel with the ID cpid. If order is specified, the channel will be sorted right
         /// under the channel with the specified ID. If order is set to 0, the channel will be sorted right below the new parent.
         /// </summary>
         /// <param name="channelId">The id of the channel to move</param>
@@ -1006,7 +1006,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Creates a new channel using the given properties and displays its ID. 
+        /// Creates a new channel using the given properties and displays its ID.
         /// </summary>
         /// <param name="channelModification">the parameters of the channel as properties</param>
         public SingleValueResponse<uint?> CreateChannel(ChannelModification channelModification)
@@ -1023,7 +1023,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Changes a channels configuration using given properties. 
+        /// Changes a channels configuration using given properties.
         /// </summary>
         /// <param name="channelId">the id of the channel to edit</param>
         /// <param name="channelModification">the parameters of the channel as properties</param>
@@ -1039,13 +1039,13 @@ namespace TS3QueryLib.Core.Server
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }
 
-		public SimpleResponse DeleteChannel(uint channelId)
-		{
-			return DeleteChannel(channelId, false);
-		}
+        public SimpleResponse DeleteChannel(uint channelId)
+        {
+            return DeleteChannel(channelId, false);
+        }
 
         /// <summary>
-        /// Deletes an existing channel by ID. If force is set to 1, the channel will be deleted even if there are clients within. 
+        /// Deletes an existing channel by ID. If force is set to 1, the channel will be deleted even if there are clients within.
         /// </summary>
         /// <param name="channelId">The id of the channel to delete</param>
         /// <param name="forceDeleteWhenClientsExist">delete even if clients are within the channel</param>
@@ -1059,7 +1059,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a list of permissions defined for a channel. 
+        /// Displays a list of permissions defined for a channel.
         /// </summary>
         /// <param name="channelId">The id of the channel to retrieve permissions for</param>
         public ListResponse<Permission> GetChannelPermissionList(uint channelId)
@@ -1068,7 +1068,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a list of permissions defined for a channel. 
+        /// Displays a list of permissions defined for a channel.
         /// </summary>
         /// <param name="channelId">The id of the channel to retrieve permissions for</param>
         /// <param name="returnNameInsteadOfId">If set to true, the returned permissions have the Id property set to 0 and the name property will be filled with the permission name</param>
@@ -1094,7 +1094,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Adds a set of specified permissions to a channel. Multiple permissions can be added by providing the two parameters of each permission. 
+        /// Adds a set of specified permissions to a channel. Multiple permissions can be added by providing the two parameters of each permission.
         /// </summary>
         /// <param name="channelId">the id of the channel</param>
         /// <param name="permissions">the permissions to add</param>
@@ -1131,7 +1131,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Adds a set of specified permissions to a channel. Multiple permissions can be added by providing the two parameters of each permission. 
+        /// Adds a set of specified permissions to a channel. Multiple permissions can be added by providing the two parameters of each permission.
         /// </summary>
         /// <param name="channelId">the id of the channel</param>
         /// <param name="permissions">the permissions to add</param>
@@ -1238,7 +1238,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a list of channel groups available on the selected virtual server. 
+        /// Displays a list of channel groups available on the selected virtual server.
         /// </summary>
         public ListResponse<ChannelGroup> GetChannelGroupList()
         {
@@ -1246,7 +1246,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Creates a new channel group using a given name and displays its ID. 
+        /// Creates a new channel group using a given name and displays its ID.
         /// </summary>
         /// <param name="channelGroupName">the name of the group</param>
         public SingleValueResponse<uint?> AddChannelGroup(string channelGroupName)
@@ -1255,7 +1255,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Creates a new channel group using a given name and displays its ID. 
+        /// Creates a new channel group using a given name and displays its ID.
         /// </summary>
         /// <param name="channelGroupName">the name of the group</param>
         /// <param name="groupType">the type of the group</param>
@@ -1278,13 +1278,13 @@ namespace TS3QueryLib.Core.Server
             return ResponseBase<SingleValueResponse<uint?>>.Parse(SendCommand(command), "cgid");
         }
 
-		public SimpleResponse DeleteChannelGroup(uint channelGroupId)
-		{
-			return DeleteChannelGroup(channelGroupId, false);
-		}
+        public SimpleResponse DeleteChannelGroup(uint channelGroupId)
+        {
+            return DeleteChannelGroup(channelGroupId, false);
+        }
 
         /// <summary>
-        /// Deletes a channel group by ID. If force is set to 1, the channel group will be deleted even if there are clients within. 
+        /// Deletes a channel group by ID. If force is set to 1, the channel group will be deleted even if there are clients within.
         /// </summary>
         /// <param name="channelGroupId">the id of the channel group to delete</param>
         /// <param name="forceDeleteWhenClientsExist">delete even if there are members within the group</param>
@@ -1325,7 +1325,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Adds a set of specified permissions to a channel group. Multiple permissions can be added by providing the two parameters of each permission. 
+        /// Adds a set of specified permissions to a channel group. Multiple permissions can be added by providing the two parameters of each permission.
         /// </summary>
         /// <param name="channelGroupId">the id of the channel group</param>
         /// <param name="permissions">the permissions to add</param>
@@ -1376,7 +1376,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Adds a set of specified permissions to a channel group. Multiple permissions can be added by providing the two parameters of each permission. 
+        /// Adds a set of specified permissions to a channel group. Multiple permissions can be added by providing the two parameters of each permission.
         /// </summary>
         /// <param name="channelGroupId">the id of the channel group</param>
         /// <param name="permissions">the permissions to add</param>
@@ -1431,7 +1431,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Removes a set of specified permissions from the channel group. Multiple permissions can be removed at once. 
+        /// Removes a set of specified permissions from the channel group. Multiple permissions can be removed at once.
         /// </summary>
         /// <param name="channelGroupId">The id of the channel group to delete the permissions from</param>
         /// <param name="permissionIdList">The ids of the permissions to remove</param>
@@ -1485,7 +1485,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Removes a set of specified permissions from the channel group. Multiple permissions can be removed at once. 
+        /// Removes a set of specified permissions from the channel group. Multiple permissions can be removed at once.
         /// </summary>
         /// <param name="channelGroupId">The id of the channel group to delete the permissions from</param>
         /// <param name="permissionNameList">The names of the permissions to remove</param>
@@ -1549,14 +1549,14 @@ namespace TS3QueryLib.Core.Server
             return ListResponse<Permission>.Parse(SendCommand(command), Permission.Parse);
         }
 
-		public ListResponse<ChannelGroupClient> GetChannelGroupClientList()
-		{
-			return GetChannelGroupClientList(null, null, null);
-		}
+        public ListResponse<ChannelGroupClient> GetChannelGroupClientList()
+        {
+            return GetChannelGroupClientList(null, null, null);
+        }
 
         /// <summary>
-        /// Displays all the client and/or channel IDs currently assigned to channel groups. All three parameters are 
-        /// optional so you're free to choose the most suitable combination for your requirements. 
+        /// Displays all the client and/or channel IDs currently assigned to channel groups. All three parameters are
+        /// optional so you're free to choose the most suitable combination for your requirements.
         /// </summary>
         /// <param name="channelId">The channel id</param>
         /// <param name="clientDatabaseId">The client database id</param>
@@ -1578,7 +1578,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Sets the channel group of a client to the ID specified with cgid. 
+        /// Sets the channel group of a client to the ID specified with cgid.
         /// </summary>
         /// <param name="channelId">The channel id</param>
         /// <param name="clientDatabaseId">The client database id</param>
@@ -1593,20 +1593,20 @@ namespace TS3QueryLib.Core.Server
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }
 
-		public ListResponse<ClientListEntry> GetClientList()
-		{
-			return GetClientList(false);
-		}
+        public ListResponse<ClientListEntry> GetClientList()
+        {
+            return GetClientList(false);
+        }
 
-		public ListResponse<ClientListEntry> GetClientList(bool includeAll)
-		{
-			return GetClientList(includeAll, false, false, false, false, false, false, false, false, false);
-		}
+        public ListResponse<ClientListEntry> GetClientList(bool includeAll)
+        {
+            return GetClientList(includeAll, false, false, false, false, false, false, false, false, false);
+        }
 
-		/// <summary>
-        /// Displays a list of clients online on a virtual server including their ID, nickname, status flags, etc. The output can 
-        /// be modified using several command options. Please note that the output will only contain clients which are 
-        /// currently in channels you're able to subscribe to. 
+        /// <summary>
+        /// Displays a list of clients online on a virtual server including their ID, nickname, status flags, etc. The output can
+        /// be modified using several command options. Please note that the output will only contain clients which are
+        /// currently in channels you're able to subscribe to.
         /// </summary>
         /// <param name="includeUniqueId">if set to true, the unique id is included</param>
         /// <param name="includeAwayState">if set to true, the away info is included</param>
@@ -1614,13 +1614,13 @@ namespace TS3QueryLib.Core.Server
         /// <param name="includeGroupInfo">if set to true, the group info is included</param>
         /// <param name="includeClientInfo">if set to true, the client info is included</param>
         /// <param name="includeTimes">if set to true, time information is included</param>
-		/// <param name="includeIcon">if set to true, icon information is included</param>
-		/// <param name="includeCountry">if set to true, country information is included</param>
+        /// <param name="includeIcon">if set to true, icon information is included</param>
+        /// <param name="includeCountry">if set to true, country information is included</param>
         public ListResponse<ClientListEntry> GetClientList(bool includeUniqueId, bool includeAwayState, bool includeVoiceInfo, bool includeGroupInfo, bool includeClientInfo, bool includeTimes, bool includeIcon, bool includeCountry, bool includeIPs)
-		{
-			return GetClientList(false, includeUniqueId, includeAwayState, includeVoiceInfo, includeGroupInfo, includeClientInfo, includeTimes, includeIcon, includeCountry);
-		}
-        
+        {
+            return GetClientList(false, includeUniqueId, includeAwayState, includeVoiceInfo, includeGroupInfo, includeClientInfo, includeTimes, includeIcon, includeCountry);
+        }
+
         private ListResponse<ClientListEntry> GetClientList(bool includeAll, bool includeUniqueId, bool includeAwayState, bool includeVoiceInfo, bool includeGroupInfo, bool includeClientInfo, bool includeTimes, bool includeIcon, bool includeCountry, bool includeIPs)
         {
             Command command = CommandName.ClientList.CreateCommand();
@@ -1643,11 +1643,11 @@ namespace TS3QueryLib.Core.Server
             if (includeTimes || includeAll)
                 command.AddOption("times");
 
-			if (includeIcon || includeAll)
-				command.AddOption("icon");
+            if (includeIcon || includeAll)
+                command.AddOption("icon");
 
-			if (includeCountry || includeAll)
-				command.AddOption("country");
+            if (includeCountry || includeAll)
+                command.AddOption("country");
 
             if (includeIPs || includeAll)
                 command.AddOption("ip");
@@ -1656,7 +1656,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays detailed configuration information about a client including unique ID, nickname, client version, etc. 
+        /// Displays detailed configuration information about a client including unique ID, nickname, client version, etc.
         /// </summary>
         /// <param name="clientId">the client id</param>
         public ClientInfoResponse GetClientInfo(uint clientId)
@@ -1668,7 +1668,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a list of clients matching a given name pattern. 
+        /// Displays a list of clients matching a given name pattern.
         /// </summary>
         /// <param name="pattern">the pattern used for searching</param>
         /// <returns></returns>
@@ -1684,7 +1684,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Changes a clients settings using given properties. 
+        /// Changes a clients settings using given properties.
         /// </summary>
         /// <param name="clientId">the id of the client to edit</param>
         /// <param name="modificationInstance">the modifications as class</param>
@@ -1700,27 +1700,27 @@ namespace TS3QueryLib.Core.Server
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }
 
-		/// <summary>
-		/// Gets the client database info.
-		/// </summary>
-		/// <param name="clientDatabaseId">The client database id.</param>
-		public ClientDbInfoResponse GetClientDatabaseInfo(int clientDatabaseId)
-		{
-			Command command = CommandName.ClientDbInfo.CreateCommand();
-			command.AddParameter("cldbid", clientDatabaseId);
+        /// <summary>
+        /// Gets the client database info.
+        /// </summary>
+        /// <param name="clientDatabaseId">The client database id.</param>
+        public ClientDbInfoResponse GetClientDatabaseInfo(int clientDatabaseId)
+        {
+            Command command = CommandName.ClientDbInfo.CreateCommand();
+            command.AddParameter("cldbid", clientDatabaseId);
 
-			return ResponseBase<ClientDbInfoResponse>.Parse(SendCommand(command));
-		}
+            return ResponseBase<ClientDbInfoResponse>.Parse(SendCommand(command));
+        }
 
-		public ClientDbEntryListResponse GetClientDatabaseList()
-		{
-			return GetClientDatabaseList(null, null, false);
-		}
+        public ClientDbEntryListResponse GetClientDatabaseList()
+        {
+            return GetClientDatabaseList(null, null, false);
+        }
 
         public ClientDbEntryListResponse GetClientDatabaseList(uint numberOfRecords)
-		{
-			return GetClientDatabaseList(null, numberOfRecords, false);
-		}
+        {
+            return GetClientDatabaseList(null, numberOfRecords, false);
+        }
 
         public ClientDbEntryListResponse GetClientDatabaseList(uint numberOfRecords, bool includeTotalCount)
         {
@@ -1728,7 +1728,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a list of client identities known by the server including their database ID, last nickname, etc. 
+        /// Displays a list of client identities known by the server including their database ID, last nickname, etc.
         /// </summary>
         /// <param name="startIndex">the index of the first record to return (starting  at 0). Default is 0.</param>
         /// <param name="numberOfRecords">The amount of records to return. Default is 25</param>
@@ -1736,7 +1736,7 @@ namespace TS3QueryLib.Core.Server
         public ClientDbEntryListResponse GetClientDatabaseList(uint? startIndex, uint? numberOfRecords, bool includeTotalCount)
         {
             Command command = CommandName.ClientDbList.CreateCommand();
-            
+
             if (startIndex.HasValue)
                 command.AddParameter("start", startIndex.Value);
 
@@ -1749,14 +1749,14 @@ namespace TS3QueryLib.Core.Server
             return ClientDbEntryListResponse.Parse(SendCommand(command));
         }
 
-		public ListResponse<uint> FindClientDatabaseIds(string pattern)
-		{
-			return FindClientDatabaseIds(pattern, false);
-		}
+        public ListResponse<uint> FindClientDatabaseIds(string pattern)
+        {
+            return FindClientDatabaseIds(pattern, false);
+        }
 
         /// <summary>
-        /// Displays a list of client database IDs matching a given pattern. You can either search for a clients last known 
-        /// nickname or his unique identity by using the -uid option. 
+        /// Displays a list of client database IDs matching a given pattern. You can either search for a clients last known
+        /// nickname or his unique identity by using the -uid option.
         /// </summary>
         /// <param name="pattern">The search pattern</param>
         /// <param name="useUniqueIdInsteadOfNicknameForSearch">if set to true, </param>
@@ -1792,7 +1792,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Deletes a clients properties from the database. 
+        /// Deletes a clients properties from the database.
         /// </summary>
         /// <param name="clientDatabaseId">Client database id</param>
         public SimpleResponse DeleteClientFromDatabase(uint clientDatabaseId)
@@ -1819,7 +1819,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays the database ID matching the unique identifier specified by cluid. 
+        /// Displays the database ID matching the unique identifier specified by cluid.
         /// </summary>
         /// <param name="clientUniqueId">The client unique id</param>
         public ListResponse<uint> GetClientDatabaseIdsByUniqueId(string clientUniqueId)
@@ -1834,7 +1834,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays the database ID and nickname matching the unique identifier specified by cluid. 
+        /// Displays the database ID and nickname matching the unique identifier specified by cluid.
         /// </summary>
         /// <param name="clientUniqueId">The client unique id</param>
         public ClientGetNameFromUniqueIdResponse GetClientNameAndDatabaseIdByUniqueId(string clientUniqueId)
@@ -1849,7 +1849,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays the unique identifier and nickname matching the database ID specified by cldbid. 
+        /// Displays the unique identifier and nickname matching the database ID specified by cldbid.
         /// </summary>
         /// <param name="clientDatabaseId">client database id</param>
         public ClientGetNameFromDbIdResponse GetClientNameAndUniqueIdByClientDatabaseId(uint clientDatabaseId)
@@ -1861,7 +1861,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Updates your own ServerQuery login credentials using a specified username. The password will be auto-generated. 
+        /// Updates your own ServerQuery login credentials using a specified username. The password will be auto-generated.
         /// </summary>
         /// <param name="username">username to generate new a new password for</param>
         public SingleValueResponse<string> UpdateServerQueryLogin(string username)
@@ -1876,7 +1876,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Change your ServerQuery clients settings using given properties. 
+        /// Change your ServerQuery clients settings using given properties.
         /// </summary>
         /// <param name="modificationInstance">the modifications as class</param>
         public SimpleResponse UpdateCurrentQueryClient(ClientModification modificationInstance)
@@ -1890,14 +1890,14 @@ namespace TS3QueryLib.Core.Server
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }
 
-		public SimpleResponse MoveClient(uint clientId, uint channelId)
-		{
-			return MoveClient(clientId, channelId, null);
-		}
+        public SimpleResponse MoveClient(uint clientId, uint channelId)
+        {
+            return MoveClient(clientId, channelId, null);
+        }
 
         /// <summary>
-        /// Moves one or more clients specified with clid to the channel with ID cid. If the target channel has a password, 
-        /// it needs to be specified with cpw. If the channel has no password, the parameter can be omitted. 
+        /// Moves one or more clients specified with clid to the channel with ID cid. If the target channel has a password,
+        /// it needs to be specified with cpw. If the channel has no password, the parameter can be omitted.
         /// </summary>
         /// <param name="clientId">the id of the client to move</param>
         /// <param name="channelId">the id of the target channel</param>
@@ -1915,15 +1915,15 @@ namespace TS3QueryLib.Core.Server
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }
 
-		public SimpleResponse KickClient(uint clientId, KickReason kickReason)
-		{
-			return KickClient(clientId, kickReason, null);
-		}
+        public SimpleResponse KickClient(uint clientId, KickReason kickReason)
+        {
+            return KickClient(clientId, kickReason, null);
+        }
 
         /// <summary>
-        /// Kicks one client specified with clid from his currently joined channel or from the server, 
-        /// depending on reasonid. The reasonmsg parameter specifies a text message sent to the kicked client. This 
-        /// parameter is optional and may only have a maximum of 40 characters. 
+        /// Kicks one client specified with clid from his currently joined channel or from the server,
+        /// depending on reasonid. The reasonmsg parameter specifies a text message sent to the kicked client. This
+        /// parameter is optional and may only have a maximum of 40 characters.
         /// </summary>
         /// <param name="clientId">the id of the client to kick</param>
         /// <param name="kickReason">the reason for kicking</param>
@@ -1933,15 +1933,15 @@ namespace TS3QueryLib.Core.Server
             return KickClients(new[] {clientId}, kickReason, reasonMessage);
         }
 
-		public SimpleResponse KickClients(IEnumerable<uint> clientIds, KickReason kickreason)
-		{
-			return KickClients(clientIds, kickreason, null);
-		}
+        public SimpleResponse KickClients(IEnumerable<uint> clientIds, KickReason kickreason)
+        {
+            return KickClients(clientIds, kickreason, null);
+        }
 
         /// <summary>
-        /// Kicks one or more clients specified with clid from their currently joined channel or from the server, 
-        /// depending on reasonid. The reasonmsg parameter specifies a text message sent to the kicked clients. This 
-        /// parameter is optional and may only have a maximum of 40 characters. 
+        /// Kicks one or more clients specified with clid from their currently joined channel or from the server,
+        /// depending on reasonid. The reasonmsg parameter specifies a text message sent to the kicked clients. This
+        /// parameter is optional and may only have a maximum of 40 characters.
         /// </summary>
         /// <param name="clientIds">the ids of the clients to kick</param>
         /// <param name="kickreason">the reason for kicking</param>
@@ -1951,7 +1951,7 @@ namespace TS3QueryLib.Core.Server
             Command command = CommandName.ClientKick.CreateCommand();
 
             foreach (uint clientId in clientIds)
-                command.AddParameter("clid", clientId);      
+                command.AddParameter("clid", clientId);
 
             command.AddParameter("reasonid", (uint) kickreason);
 
@@ -1967,7 +1967,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Sends a poke message to the client specified with clid. 
+        /// Sends a poke message to the client specified with clid.
         /// </summary>
         /// <param name="clientId">The id of the client to poke</param>
         /// <param name="message">the message to sent</param>
@@ -1981,7 +1981,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a list of permissions defined for a client. 
+        /// Displays a list of permissions defined for a client.
         /// </summary>
         /// <param name="clientDatabaseId">the client database id</param>
         public ListResponse<Permission> GetClientPermissionList(uint clientDatabaseId)
@@ -1990,7 +1990,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a list of permissions defined for a client. 
+        /// Displays a list of permissions defined for a client.
         /// </summary>
         /// <param name="clientDatabaseId">the client database id</param>
         /// <param name="returnNameInsteadOfId">If set to true, the returned permissions have the Id property set to 0 and the name property will be filled with the permission name</param>
@@ -2016,7 +2016,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Adds a set of specified permissions to a client. Multiple permissions can be added by providing the three parameters of each permission. 
+        /// Adds a set of specified permissions to a client. Multiple permissions can be added by providing the three parameters of each permission.
         /// </summary>
         /// <param name="clientDatabaseId">the database id of the client</param>
         /// <param name="permissions">the permissions to add</param>
@@ -2054,7 +2054,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Adds a set of specified permissions to a client. Multiple permissions can be added by providing the three parameters of each permission. 
+        /// Adds a set of specified permissions to a client. Multiple permissions can be added by providing the three parameters of each permission.
         /// </summary>
         /// <param name="clientDatabaseId">the database id of the client</param>
         /// <param name="permissions">the permissions to add</param>
@@ -2082,7 +2082,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Removes a set of specified permissions from a client. Multiple permissions can be removed at once. 
+        /// Removes a set of specified permissions from a client. Multiple permissions can be removed at once.
         /// </summary>
         /// <param name="clientDatabaseId">the clients database id</param>
         /// <param name="permissionId">the permission id</param>
@@ -2096,7 +2096,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Removes a set of specified permissions from the channel group. Multiple permissions can be removed at once. 
+        /// Removes a set of specified permissions from the channel group. Multiple permissions can be removed at once.
         /// </summary>
         /// <param name="clientDatabaseId">the clients database id</param>
         /// <param name="permissionIdList">the permission ids</param>
@@ -2122,7 +2122,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Removes a set of specified permissions from a client. Multiple permissions can be removed at once. 
+        /// Removes a set of specified permissions from a client. Multiple permissions can be removed at once.
         /// </summary>
         /// <param name="clientDatabaseId">the clients database id</param>
         /// <param name="permissionName">the permission id</param>
@@ -2136,7 +2136,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Removes a set of specified permissions from the channel group. Multiple permissions can be removed at once. 
+        /// Removes a set of specified permissions from the channel group. Multiple permissions can be removed at once.
         /// </summary>
         /// <param name="clientDatabaseId">the clients database id</param>
         /// <param name="permissionNameList">the permission names</param>
@@ -2162,7 +2162,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a list of permissions defined for a client in a specific channel. 
+        /// Displays a list of permissions defined for a client in a specific channel.
         /// </summary>
         /// <param name="channelId">the id of the channel></param>
         /// <param name="clientDatabaseId">the clients database id</param>
@@ -2176,7 +2176,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a list of permissions defined for a client in a specific channel. 
+        /// Displays a list of permissions defined for a client in a specific channel.
         /// </summary>
         /// <param name="channelId">the id of the channel></param>
         /// <param name="clientDatabaseId">the clients database id</param>
@@ -2205,7 +2205,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Adds a set of specified permissions to a client in a specific channel. Multiple permissions can be added by providing the three parameters of each permission. 
+        /// Adds a set of specified permissions to a client in a specific channel. Multiple permissions can be added by providing the three parameters of each permission.
         /// </summary>
         /// <param name="channelId">the id of the channel</param>
         /// <param name="clientDatabaseId">the database id of the client</param>
@@ -2245,7 +2245,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Adds a set of specified permissions to a client in a specific channel. Multiple permissions can be added by providing the three parameters of each permission. 
+        /// Adds a set of specified permissions to a client in a specific channel. Multiple permissions can be added by providing the three parameters of each permission.
         /// </summary>
         /// <param name="channelId">the id of the channel</param>
         /// <param name="clientDatabaseId">the database id of the client</param>
@@ -2285,7 +2285,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Removes a set of specified permissions from the channel group. Multiple permissions can be removed at once. 
+        /// Removes a set of specified permissions from the channel group. Multiple permissions can be removed at once.
         /// </summary>
         /// <param name="channelId">the channel id</param>
         /// <param name="clientDatabaseId">the clients database id</param>
@@ -2324,7 +2324,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Removes a set of specified permissions from the channel group. Multiple permissions can be removed at once. 
+        /// Removes a set of specified permissions from the channel group. Multiple permissions can be removed at once.
         /// </summary>
         /// <param name="channelId">the channel id</param>
         /// <param name="clientDatabaseId">the clients database id</param>
@@ -2351,36 +2351,36 @@ namespace TS3QueryLib.Core.Server
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }
 
-		/// <summary>
-		/// Displays the current value of the permission specified with permid or permsid 
-		/// for your own connection. This can be useful when you need to check your own 
-		/// privileges.
-		/// </summary>
-		/// <param name="permid">the permission id</param>
-		public OwnPermissionResponse GetOwnPermissionDetails(uint permid)
-		{
-			Command command = CommandName.PermGet.CreateCommand();
-			command.AddParameter("permid", permid);
+        /// <summary>
+        /// Displays the current value of the permission specified with permid or permsid
+        /// for your own connection. This can be useful when you need to check your own
+        /// privileges.
+        /// </summary>
+        /// <param name="permid">the permission id</param>
+        public OwnPermissionResponse GetOwnPermissionDetails(uint permid)
+        {
+            Command command = CommandName.PermGet.CreateCommand();
+            command.AddParameter("permid", permid);
 
-			return ResponseBase<OwnPermissionResponse>.Parse(SendCommand(command));
-		}
-
-		/// <summary>
-		/// Displays the current value of the permission specified with permid or permsid 
-		/// for your own connection. This can be useful when you need to check your own 
-		/// privileges.
-		/// </summary>
-		/// <param name="permsid">the permission name</param>
-		public OwnPermissionResponse GetOwnPermissionDetails(string permsid)
-		{
-			Command command = CommandName.PermGet.CreateCommand();
-			command.AddParameter("permsid", permsid);
-
-			return ResponseBase<OwnPermissionResponse>.Parse(SendCommand(command));
-		}
+            return ResponseBase<OwnPermissionResponse>.Parse(SendCommand(command));
+        }
 
         /// <summary>
-        /// Displays a list of permissions available on the server instance including ID, name and description. 
+        /// Displays the current value of the permission specified with permid or permsid
+        /// for your own connection. This can be useful when you need to check your own
+        /// privileges.
+        /// </summary>
+        /// <param name="permsid">the permission name</param>
+        public OwnPermissionResponse GetOwnPermissionDetails(string permsid)
+        {
+            Command command = CommandName.PermGet.CreateCommand();
+            command.AddParameter("permsid", permsid);
+
+            return ResponseBase<OwnPermissionResponse>.Parse(SendCommand(command));
+        }
+
+        /// <summary>
+        /// Displays a list of permissions available on the server instance including ID, name and description.
         /// </summary>
         public ListResponse<PermissionDetails> GetPermissionList()
         {
@@ -2421,7 +2421,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays all permissions assigned to a client for the channel specified with cid. If permid is set to 0, all permissions will be displayed. 
+        /// Displays all permissions assigned to a client for the channel specified with cid. If permid is set to 0, all permissions will be displayed.
         /// </summary>
         /// <param name="channelId">The channel id</param>
         /// <param name="clientDatabaseId">The client database id</param>
@@ -2437,7 +2437,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays all permissions assigned to a client for the channel specified with cid. If permid is set to 0, all permissions will be displayed. 
+        /// Displays all permissions assigned to a client for the channel specified with cid. If permid is set to 0, all permissions will be displayed.
         /// </summary>
         /// <param name="channelId">The channel id</param>
         /// <param name="clientDatabaseId">The client database id</param>
@@ -2477,8 +2477,8 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Restores the default permission settings on the selected virtual server and creates a new initial administrator 
-        /// token. Please note that in case of an error during the permreset call - e.g. when the database has been modified 
+        /// Restores the default permission settings on the selected virtual server and creates a new initial administrator
+        /// token. Please note that in case of an error during the permreset call - e.g. when the database has been modified
         /// or corrupted - the virtual server will be deleted from the database. The new admin token is returned by this method.
         /// </summary>
         public SingleValueResponse<string> ResetPermissions()
@@ -2487,7 +2487,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a list of privilege keys available including their type and group IDs. Privilege keys can be used to gain access to specified server or channel groups. 
+        /// Displays a list of privilege keys available including their type and group IDs. Privilege keys can be used to gain access to specified server or channel groups.
         /// </summary>
         public ListResponse<Token> GetPrivilegeKeyList()
         {
@@ -2495,8 +2495,8 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-		/// Create a new PrivilegeKey. If tokentype is set to 0, the ID specified with tokenid1 will be a server group ID. Otherwise, 
-        /// tokenid1 is used as a channel group ID and you need to provide a valid channel ID using tokenid2. 
+        /// Create a new PrivilegeKey. If tokentype is set to 0, the ID specified with tokenid1 will be a server group ID. Otherwise,
+        /// tokenid1 is used as a channel group ID and you need to provide a valid channel ID using tokenid2.
         /// </summary>
         /// <param name="isChannelGroupIdInsteadOfServerGroupId">if set to true, its a server group id</param>
         /// <param name="groupId">the id of the group</param>
@@ -2507,8 +2507,8 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-		/// Create a new PrivilegeKey. If tokentype is set to 0, the ID specified with tokenid1 will be a server group ID. Otherwise, 
-        /// tokenid1 is used as a channel group ID and you need to provide a valid channel ID using tokenid2. 
+        /// Create a new PrivilegeKey. If tokentype is set to 0, the ID specified with tokenid1 will be a server group ID. Otherwise,
+        /// tokenid1 is used as a channel group ID and you need to provide a valid channel ID using tokenid2.
         /// </summary>
         /// <param name="isChannelGroupIdInsteadOfServerGroupId">if set to true, its a server group id</param>
         /// <param name="groupId">the id of the group</param>
@@ -2520,8 +2520,8 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-		/// Create a new PrivilegeKey. If tokentype is set to 0, the ID specified with tokenid1 will be a server group ID. Otherwise, 
-        /// tokenid1 is used as a channel group ID and you need to provide a valid channel ID using tokenid2. 
+        /// Create a new PrivilegeKey. If tokentype is set to 0, the ID specified with tokenid1 will be a server group ID. Otherwise,
+        /// tokenid1 is used as a channel group ID and you need to provide a valid channel ID using tokenid2.
         /// </summary>
         /// <param name="isChannelGroupIdInsteadOfServerGroupId">if set to true, its a server group id</param>
         /// <param name="groupId">the id of the group</param>
@@ -2533,8 +2533,8 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-		/// Create a new PrivilegeKey. If tokentype is set to 0, the ID specified with tokenid1 will be a server group ID. Otherwise, 
-        /// tokenid1 is used as a channel group ID and you need to provide a valid channel ID using tokenid2. 
+        /// Create a new PrivilegeKey. If tokentype is set to 0, the ID specified with tokenid1 will be a server group ID. Otherwise,
+        /// tokenid1 is used as a channel group ID and you need to provide a valid channel ID using tokenid2.
         /// </summary>
         /// <param name="isChannelGroupIdInsteadOfServerGroupId">if set to true, its a server group id</param>
         /// <param name="groupId">the id of the group</param>
@@ -2552,8 +2552,8 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Create a new token. If tokentype is set to 0, the ID specified with tokenid1 will be a server group ID. Otherwise, 
-        /// tokenid1 is used as a channel group ID and you need to provide a valid channel ID using tokenid2. 
+        /// Create a new token. If tokentype is set to 0, the ID specified with tokenid1 will be a server group ID. Otherwise,
+        /// tokenid1 is used as a channel group ID and you need to provide a valid channel ID using tokenid2.
         /// </summary>
         /// <param name="isChannelGroupIdInsteadOfServerGroupId">if set to true, its a server group id</param>
         /// <param name="groupId">the id of the group</param>
@@ -2577,7 +2577,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-		/// Deletes an existing PrivilegeKey matching the PrivilegeKey specified with token. 
+        /// Deletes an existing PrivilegeKey matching the PrivilegeKey specified with token.
         /// </summary>
         /// <param name="privilegeKey">The token to delete</param>
         public SimpleResponse DeletePrivilegeKey(string privilegeKey)
@@ -2592,7 +2592,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-		/// Use a PrivilegeKey to gain access to a server or channel group. Please note that the server will automatically delete the PrivilegeKey after it has been used. 
+        /// Use a PrivilegeKey to gain access to a server or channel group. Please note that the server will automatically delete the PrivilegeKey after it has been used.
         /// </summary>
         /// <param name="privilegeKey">The token to use</param>
         public SimpleResponse UsePrivilegeKey(string privilegeKey)
@@ -2607,7 +2607,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays a list of offline messages you've received. The output contains the senders unique identifier, the messages subject, etc. 
+        /// Displays a list of offline messages you've received. The output contains the senders unique identifier, the messages subject, etc.
         /// </summary>
         public ListResponse<MessageEntry> GetMessageList()
         {
@@ -2637,7 +2637,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays an existing offline message with ID msgid from your inbox. Please note that this does not 
+        /// Displays an existing offline message with ID msgid from your inbox. Please note that this does not
         /// automatically set the flag_read property of the message.
         /// </summary>
         /// <param name="messageId">the message id</param>
@@ -2651,7 +2651,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Updates the flag_read property of the offline message specified with msgid. If flag is set to 1, the message will be marked as read. 
+        /// Updates the flag_read property of the offline message specified with msgid. If flag is set to 1, the message will be marked as read.
         /// </summary>
         /// <param name="messageId">the message id</param>
         /// <param name="setRead">set it read or not</param>
@@ -2660,7 +2660,7 @@ namespace TS3QueryLib.Core.Server
             Command command = CommandName.MessageUpdateFlag.CreateCommand();
             command.AddParameter("msgid", messageId);
             command.AddParameter("flag", setRead);
-            
+
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }
 
@@ -2676,29 +2676,29 @@ namespace TS3QueryLib.Core.Server
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }
 
-		/// <summary>
-		/// Displays a list of complaints on the selected virtual server. 
-		/// </summary>
-		public ListResponse<ComplainListEntry> GetComplainList()
-		{
-			return GetComplainList(null);
-		}
+        /// <summary>
+        /// Displays a list of complaints on the selected virtual server.
+        /// </summary>
+        public ListResponse<ComplainListEntry> GetComplainList()
+        {
+            return GetComplainList(null);
+        }
 
-		/// <summary>
-		/// Displays a list of complaints on the selected virtual server. If targetClientDatabaseId is specified, only complaints about the targeted client will be shown.
-		/// </summary>
-		public ListResponse<ComplainListEntry> GetComplainList(uint? targetClientDatabaseId)
+        /// <summary>
+        /// Displays a list of complaints on the selected virtual server. If targetClientDatabaseId is specified, only complaints about the targeted client will be shown.
+        /// </summary>
+        public ListResponse<ComplainListEntry> GetComplainList(uint? targetClientDatabaseId)
         {
             Command command = CommandName.ComplainList.CreateCommand();
 
             if (targetClientDatabaseId.HasValue)
                 command.AddParameter("tcldbid", targetClientDatabaseId.Value);
 
-			return ListResponse<ComplainListEntry>.Parse(SendCommand(command), ComplainListEntry.Parse);
+            return ListResponse<ComplainListEntry>.Parse(SendCommand(command), ComplainListEntry.Parse);
         }
 
         /// <summary>
-        /// Submits a complaint about the client with database ID tcldbid to the server. 
+        /// Submits a complaint about the client with database ID tcldbid to the server.
         /// </summary>
         /// <param name="targetClientDatabaseId">target client database id</param>
         /// <param name="message">the complain message</param>
@@ -2727,7 +2727,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Deletes all complaints about the client with database ID tcldbid from the server. 
+        /// Deletes all complaints about the client with database ID tcldbid from the server.
         /// </summary>
         /// <param name="targetClientDatabaseId">target client database id</param>
         public SimpleResponse DeleteAllComplaints(uint targetClientDatabaseId)
@@ -2737,25 +2737,25 @@ namespace TS3QueryLib.Core.Server
 
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }
-		
-		public ListResponse<uint> BanClient(uint clientId)
-		{
-			return BanClient(clientId, null, null);
-		}
 
-		public ListResponse<uint> BanClient(uint clientId, TimeSpan duration)
-		{
-			return BanClient(clientId, duration, null);
-		}
+        public ListResponse<uint> BanClient(uint clientId)
+        {
+            return BanClient(clientId, null, null);
+        }
 
-		public ListResponse<uint> BanClient(uint clientId, string reason)
-		{
-			return BanClient(clientId, null, reason);
-		}
+        public ListResponse<uint> BanClient(uint clientId, TimeSpan duration)
+        {
+            return BanClient(clientId, duration, null);
+        }
+
+        public ListResponse<uint> BanClient(uint clientId, string reason)
+        {
+            return BanClient(clientId, null, reason);
+        }
 
         /// <summary>
-        /// Bans the client specified with ID clid from the server. Please note that this will create two separate ban rules 
-        /// for the targeted clients IP address and his unique identifier. 
+        /// Bans the client specified with ID clid from the server. Please note that this will create two separate ban rules
+        /// for the targeted clients IP address and his unique identifier.
         /// </summary>
         /// <param name="clientId">the client id to ban</param>
         /// <param name="duration">the ban duration</param>
@@ -2783,7 +2783,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Adds a new ban rule on the selected virtual server. All parameters are optional but at least one of the following must be set: ip, name, or uid. 
+        /// Adds a new ban rule on the selected virtual server. All parameters are optional but at least one of the following must be set: ip, name, or uid.
         /// </summary>
         /// <param name="ipPattern">the ip pattern</param>
         /// <param name="namePattern">the name pattern</param>
@@ -2813,7 +2813,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Deletes the ban rule with ID banid from the server. 
+        /// Deletes the ban rule with ID banid from the server.
         /// </summary>
         /// <param name="banId">the ban id</param>
         /// <returns></returns>
@@ -2826,21 +2826,21 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Deletes all active ban rules from the server. 
+        /// Deletes all active ban rules from the server.
         /// </summary>
         public SimpleResponse DeleteAllBans()
         {
             return ResponseBase<SimpleResponse>.Parse(SendCommand(CommandName.BanDelAll.CreateCommand()));
         }
 
-		public InitializeFileUploadResponse InitializeFileUpload(uint clientFileTransferId, string name, uint channelId, ulong size, bool overwrite, bool resume)
-		{
-			return InitializeFileUpload(clientFileTransferId, name, channelId, size, overwrite, resume, null);
-		}
+        public InitializeFileUploadResponse InitializeFileUpload(uint clientFileTransferId, string name, uint channelId, ulong size, bool overwrite, bool resume)
+        {
+            return InitializeFileUpload(clientFileTransferId, name, channelId, size, overwrite, resume, null);
+        }
 
         /// <summary>
-        /// Initializes a file transfer upload. clientftfid is an arbitrary ID to identify the file transfer on client-side. 
-        /// On success, the server generates a new ftkey which is required to start uploading the file through TeamSpeak 3's file transfer interface. 
+        /// Initializes a file transfer upload. clientftfid is an arbitrary ID to identify the file transfer on client-side.
+        /// On success, the server generates a new ftkey which is required to start uploading the file through TeamSpeak 3's file transfer interface.
         /// </summary>
         /// <param name="clientFileTransferId">the id of the file transfer</param>
         /// <param name="name">the name of the file to upload</param>
@@ -2865,13 +2865,13 @@ namespace TS3QueryLib.Core.Server
 
         public InitializeFileDownloadResponse InitializeFileDownload(uint clientFileTransferId, string name, uint channelId, ulong seekPosition)
         {
-        	return InitializeFileDownload(clientFileTransferId, name, channelId, seekPosition, null);
+            return InitializeFileDownload(clientFileTransferId, name, channelId, seekPosition, null);
         }
 
         /// <summary>
-        /// Initializes a file transfer download. clientftfid is an arbitrary ID to identify the file transfer on client-side. 
-        /// On success, the server generates a new ftkey which is required to start downloading the file through 
-        /// TeamSpeak 3's file transfer interface. 
+        /// Initializes a file transfer download. clientftfid is an arbitrary ID to identify the file transfer on client-side.
+        /// On success, the server generates a new ftkey which is required to start downloading the file through
+        /// TeamSpeak 3's file transfer interface.
         /// </summary>
         /// <param name="clientFileTransferId">the id of the file transfer</param>
         /// <param name="name">the name of the file to upload</param>
@@ -2892,18 +2892,18 @@ namespace TS3QueryLib.Core.Server
 
 
         /// <summary>
-        /// Displays a list of running file transfers on the selected virtual server. The output contains the path to which a 
-        /// file is uploaded to, the current transfer rate in bytes per second, etc. 
+        /// Displays a list of running file transfers on the selected virtual server. The output contains the path to which a
+        /// file is uploaded to, the current transfer rate in bytes per second, etc.
         /// </summary>
         public ListResponse<FileTransferListEntry> GetFileTransferList()
         {
             return ListResponse<FileTransferListEntry>.Parse(SendCommand(CommandName.FtList.CreateCommand()), FileTransferListEntry.Parse);
         }
 
-		public ListResponse<FileTransferFileEntry> GetFileList(uint channelId, string filePath)
-		{
-			return GetFileList(channelId, filePath, null);
-		}
+        public ListResponse<FileTransferFileEntry> GetFileList(uint channelId, string filePath)
+        {
+            return GetFileList(channelId, filePath, null);
+        }
 
         /// <summary>
         /// Displays a list of files and directories stored in the specified channels file repository.
@@ -2924,13 +2924,13 @@ namespace TS3QueryLib.Core.Server
             return ListResponse<FileTransferFileEntry>.Parse(SendCommand(command), FileTransferFileEntry.Parse);
         }
 
-		public ListResponse<FileTransferFileEntry> GetFileInfo(uint channelId, string name)
-		{
-			return GetFileInfo(channelId, name, null);
-		}
+        public ListResponse<FileTransferFileEntry> GetFileInfo(uint channelId, string name)
+        {
+            return GetFileInfo(channelId, name, null);
+        }
 
         /// <summary>
-        /// Displays detailed information about the specified file stored in a channels file repository. 
+        /// Displays detailed information about the specified file stored in a channels file repository.
         /// </summary>
         /// <param name="channelId">the channel id</param>
         /// <param name="name">the name of the file</param>
@@ -2940,13 +2940,13 @@ namespace TS3QueryLib.Core.Server
             return GetFileInfo(channelId, new[] {name}, channelPassword);
         }
 
-		public ListResponse<FileTransferFileEntry> GetFileInfo(uint channelId, IEnumerable<string> names)
-		{
-			return GetFileInfo(channelId, names, null);
-		}
+        public ListResponse<FileTransferFileEntry> GetFileInfo(uint channelId, IEnumerable<string> names)
+        {
+            return GetFileInfo(channelId, names, null);
+        }
 
         /// <summary>
-        /// Displays detailed information about one or more specified files stored in a channels file repository. 
+        /// Displays detailed information about one or more specified files stored in a channels file repository.
         /// </summary>
         /// <param name="channelId">the channel id</param>
         /// <param name="names">the names of the files</param>
@@ -2973,13 +2973,13 @@ namespace TS3QueryLib.Core.Server
             return ListResponse<FileTransferFileEntry>.Parse(SendCommand(command), FileTransferFileEntry.Parse);
         }
 
-		public SimpleResponse StopFileTransfer(uint serverFileTransferId)
-		{
-			return StopFileTransfer(serverFileTransferId, false);
-		}
+        public SimpleResponse StopFileTransfer(uint serverFileTransferId)
+        {
+            return StopFileTransfer(serverFileTransferId, false);
+        }
 
         /// <summary>
-        /// Stops the running file transfer with server-side ID serverftfid. 
+        /// Stops the running file transfer with server-side ID serverftfid.
         /// </summary>
         /// <param name="serverFileTransferId">transfer id</param>
         /// <param name="deleteFile">set to true, to delete the file</param>
@@ -2992,10 +2992,10 @@ namespace TS3QueryLib.Core.Server
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }
 
-		public SimpleResponse DeleteFile(uint channelId, string filePath)
-		{
-			return DeleteFile(channelId, filePath, null);
-		}
+        public SimpleResponse DeleteFile(uint channelId, string filePath)
+        {
+            return DeleteFile(channelId, filePath, null);
+        }
 
         /// <summary>
         /// Deletes one or more files stored in a channels file repository
@@ -3016,10 +3016,10 @@ namespace TS3QueryLib.Core.Server
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }
 
-		public SimpleResponse CreateDirectory(uint channelId, string directoryPath)
-		{
-			return CreateDirectory(channelId, directoryPath, null);
-		}
+        public SimpleResponse CreateDirectory(uint channelId, string directoryPath)
+        {
+            return CreateDirectory(channelId, directoryPath, null);
+        }
 
         /// <summary>
         /// Creates new directory in a channels file repository
@@ -3040,15 +3040,15 @@ namespace TS3QueryLib.Core.Server
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }
 
-		public SimpleResponse RenameFile(uint channelId, string oldName, string newName)
-		{
-			return RenameFile(channelId, oldName, newName, null);
-		}
+        public SimpleResponse RenameFile(uint channelId, string oldName, string newName)
+        {
+            return RenameFile(channelId, oldName, newName, null);
+        }
 
-		public SimpleResponse RenameFile(uint channelId, string oldName, string newName, string channelPassword)
-		{
-			return RenameFile(channelId, oldName, newName, null, channelPassword, null);
-		}
+        public SimpleResponse RenameFile(uint channelId, string oldName, string newName, string channelPassword)
+        {
+            return RenameFile(channelId, oldName, newName, null, channelPassword, null);
+        }
 
         /// <summary>
         /// Renames a file in a channels file repository. If the two parameters tcid and tcpw are specified, the file will be moved into another channels file repository
@@ -3084,7 +3084,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Searches for custom client properties specified by ident and value. The value parameter can include regular characters and SQL wildcard characters (e.g. %). 
+        /// Searches for custom client properties specified by ident and value. The value parameter can include regular characters and SQL wildcard characters (e.g. %).
         /// </summary>
         /// <param name="ident">the ident</param>
         /// <param name="pattern">the pattern used for searching</param>
@@ -3093,12 +3093,12 @@ namespace TS3QueryLib.Core.Server
             Command command = CommandName.CustomSearch.CreateCommand();
             command.AddParameter("ident", ident);
             command.AddParameter("pattern", pattern);
- 
+
             return ListResponse<CustomSearchEntry>.Parse(SendCommand(command), CustomSearchEntry.Parse);
         }
 
         /// <summary>
-        /// Displays a list of custom properties for the client specified with cldbid. 
+        /// Displays a list of custom properties for the client specified with cldbid.
         /// </summary>
         /// <param name="clientDatabaseId">the clients database id</param>
         public ListResponse<CustomInfoEntry> GetCustomInfo(int clientDatabaseId)
@@ -3110,7 +3110,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Displays information about your current ServerQuery connection including the ID of the selected virtual server, your loginname, etc. 
+        /// Displays information about your current ServerQuery connection including the ID of the selected virtual server, your loginname, etc.
         /// </summary>
         public WhoAmIResponse SendWhoAmI()
         {
@@ -3118,7 +3118,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Creates a copy of the server group specified with sourceGroupId. 
+        /// Creates a copy of the server group specified with sourceGroupId.
         /// </summary>
         /// <param name="sourceGroupId">The id of the source group</param>
         /// <param name="targetGroupName">The name of the new group</param>
@@ -3152,7 +3152,7 @@ namespace TS3QueryLib.Core.Server
         }
 
         /// <summary>
-        /// Creates a copy of the channel group specified with sourceGroupId. 
+        /// Creates a copy of the channel group specified with sourceGroupId.
         /// </summary>
         /// <param name="sourceGroupId">The id of the source group</param>
         /// <param name="targetGroupName">The name of the new group</param>

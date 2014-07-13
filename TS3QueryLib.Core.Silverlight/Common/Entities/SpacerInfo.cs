@@ -18,7 +18,7 @@ namespace TS3QueryLib.Core.Common.Entities
 
         private SpacerInfo()
         {
-            
+
         }
 
         #endregion

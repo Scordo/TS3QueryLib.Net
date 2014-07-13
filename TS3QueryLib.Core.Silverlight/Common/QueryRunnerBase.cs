@@ -9,7 +9,7 @@ namespace TS3QueryLib.Core.Common
         #region Properties
 
         /// <summary>
-        /// The dispatcher used to send commands 
+        /// The dispatcher used to send commands
         /// </summary>
         public IQueryDispatcher Dispatcher { get; protected set; }
         /// <summary>
@@ -54,7 +54,7 @@ namespace TS3QueryLib.Core.Common
         #region Public Methods
 
         /// <summary>
-        /// Closes the ServerQuery connection to the TeamSpeak 3 Server instance. 
+        /// Closes the ServerQuery connection to the TeamSpeak 3 Server instance.
         /// </summary>
         public SimpleResponse Quit()
         {

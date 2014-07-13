@@ -73,7 +73,7 @@ namespace TS3QueryLib.Core.Server.Notification.EventArgs
             UnreadMessages = commandParameterGroupList.GetParameterValue<uint>("client_unread_messages");
             NicknamePhonetic = commandParameterGroupList.GetParameterValue("client_nickname_phonetic");
             NeededServerQueryViewPower = commandParameterGroupList.GetParameterValue<uint>("client_needed_serverquery_view_power");
-            IconId = commandParameterGroupList.GetParameterValue<uint>("client_icon_id"); 
+            IconId = commandParameterGroupList.GetParameterValue<uint>("client_icon_id");
         }
 
         #endregion

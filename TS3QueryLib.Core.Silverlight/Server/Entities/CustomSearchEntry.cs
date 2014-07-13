@@ -19,7 +19,7 @@ namespace TS3QueryLib.Core.Server.Entities
 
         protected CustomSearchEntry()
         {
-            
+
         }
 
         #endregion

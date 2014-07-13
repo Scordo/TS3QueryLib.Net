@@ -12,7 +12,7 @@ namespace TS3QueryLib.Core.Server.Entities
         public string Name { get; set; }
 
         #endregion
-        
+
         #region Public Methods
 
         public static ServerGroupLight Parse(CommandParameterGroup currentParameterGroup, CommandParameterGroup firstParameterGroup)

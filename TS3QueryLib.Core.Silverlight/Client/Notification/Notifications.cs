@@ -16,7 +16,7 @@ namespace TS3QueryLib.Core.Client.Notification
         public event EventHandler<TalkStatusEventArgs> TalkStatusChanged;
         public event EventHandler<TalkStatusEventArgsBase> ChannelTalkStatusChanged;
         public event EventHandler<TalkStatusEventArgsBase> WisperTalkStatusChanged;
-        
+
         #endregion
 
         #region Constructor

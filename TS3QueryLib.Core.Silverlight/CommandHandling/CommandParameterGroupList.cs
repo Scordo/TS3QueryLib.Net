@@ -12,7 +12,7 @@ namespace TS3QueryLib.Core.CommandHandling
 
         public CommandParameterGroupList()
         {
-            
+
         }
 
         public CommandParameterGroupList(IEnumerable<CommandParameterGroup> groups) : base(groups)
@@ -29,19 +29,19 @@ namespace TS3QueryLib.Core.CommandHandling
 
         #region Public Methods
 
-		public void AddParameter(string name)
-		{
-			AddParameter(name, null);
-		}
+        public void AddParameter(string name)
+        {
+            AddParameter(name, null);
+        }
 
-		public void AddParameter(string name, string value)
-		{
-			AddParameter(name, value, null);
-		}
+        public void AddParameter(string name, string value)
+        {
+            AddParameter(name, value, null);
+        }
 
         public void AddParameter(string name, string value, uint? groupIndex)
         {
-        	groupIndex = groupIndex ?? 0;
+            groupIndex = groupIndex ?? 0;
 
             if (groupIndex > Count)
                 throw new ArgumentOutOfRangeException(string.Format("Can not add parameter '{0}' with value '{1}' to group with index '{2}', because the index is '{3}' too big.", name, value, groupIndex, Count-groupIndex));
@@ -52,14 +52,14 @@ namespace TS3QueryLib.Core.CommandHandling
                 this[(int) groupIndex].Add(new CommandParameter(name, value));
         }
 
-		public CommandParameter GetParameter(string name)
+        public CommandParameter GetParameter(string name)
         {
-			return GetParameter(name, null);
+            return GetParameter(name, null);
         }
 
         public CommandParameter GetParameter(string name, uint? groupIndex)
         {
-        	groupIndex = groupIndex ?? 0;
+            groupIndex = groupIndex ?? 0;
             if (groupIndex >= Count)
                 return null;
 
@@ -101,7 +101,7 @@ namespace TS3QueryLib.Core.CommandHandling
 
         public string GetParameterValue(string parameterName)
         {
-        	return GetParameterValue(parameterName, null);
+            return GetParameterValue(parameterName, null);
         }
 
         public T GetParameterValue<T>(string parameterName)
@@ -111,7 +111,7 @@ namespace TS3QueryLib.Core.CommandHandling
             return CommandParameterGroup.ConvertValue<T>(parameterName, parameterValue);
         }
 
-		public string GetParameterValue(string parameterName, string defaultValue)
+        public string GetParameterValue(string parameterName, string defaultValue)
         {
             CommandParameter parameter = GetParameter(parameterName);
             return parameter == null ? defaultValue : parameter.Value;

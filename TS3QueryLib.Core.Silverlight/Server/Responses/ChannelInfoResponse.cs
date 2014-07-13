@@ -8,7 +8,7 @@ namespace TS3QueryLib.Core.Server.Responses
     {
         #region Properties
 
-		public uint ParentChannelId { get; protected set; }
+        public uint ParentChannelId { get; protected set; }
         public string Name { get; protected set; }
         public string Topic { get; protected set; }
         public string Description { get; protected set; }
@@ -42,7 +42,7 @@ namespace TS3QueryLib.Core.Server.Responses
             if (list.Count == 0)
                 return;
 
-			ParentChannelId = list.GetParameterValue<uint>("pid");
+            ParentChannelId = list.GetParameterValue<uint>("pid");
             Name = list.GetParameterValue("channel_name");
             Topic = list.GetParameterValue("channel_topic");
             Description = list.GetParameterValue("channel_description");

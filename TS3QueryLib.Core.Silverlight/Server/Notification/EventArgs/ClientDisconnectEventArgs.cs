@@ -12,7 +12,7 @@ namespace TS3QueryLib.Core.Server.Notification.EventArgs
         public uint TargetChannelId { get; protected set; }
         public uint ClientId { get; protected set; }
         public string LeaveMessage { get; protected set; }
-        
+
         #endregion
 
         #region Constructors

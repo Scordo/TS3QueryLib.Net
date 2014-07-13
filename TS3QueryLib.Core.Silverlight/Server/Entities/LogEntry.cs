@@ -18,7 +18,7 @@ namespace TS3QueryLib.Core.Server.Entities
 
         private LogEntry()
         {
-            
+
         }
 
         #endregion

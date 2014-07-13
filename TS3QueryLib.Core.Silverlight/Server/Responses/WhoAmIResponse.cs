@@ -16,7 +16,7 @@ namespace TS3QueryLib.Core.Server.Responses
         public uint VirtualServerId { get; protected set; }
         public string VirtualServerUniqueId { get; protected set; }
         public VirtualServerStatus VirtualServerStatus { get; protected set; }
-		public ushort ServerPort { get; protected set; }
+        public ushort ServerPort { get; protected set; }
         public uint OriginServerId { get; protected set; }
 
         #endregion
@@ -40,7 +40,7 @@ namespace TS3QueryLib.Core.Server.Responses
             ClientNickName = list.GetParameterValue("client_nickname");
             ClientLoginName = list.GetParameterValue("client_login_name");
             ClientUniqueId = list.GetParameterValue("client_unique_identifier");
-			ServerPort = list.GetParameterValue<ushort>("virtualserver_port");
+            ServerPort = list.GetParameterValue<ushort>("virtualserver_port");
             OriginServerId = list.GetParameterValue<uint>("client_origin_server_id");
         }
 

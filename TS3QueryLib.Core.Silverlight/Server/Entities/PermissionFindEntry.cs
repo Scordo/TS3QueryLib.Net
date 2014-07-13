@@ -19,7 +19,7 @@ namespace TS3QueryLib.Core.Server.Entities
 
         private PermissionFindEntry()
         {
-            
+
         }
 
         #endregion

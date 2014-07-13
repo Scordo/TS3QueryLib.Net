@@ -15,7 +15,7 @@ namespace TS3QueryLib.Core.Server.Entities
 
         protected LogEntryLight()
         {
-            
+
         }
 
         public LogEntryLight(string message)

@@ -13,8 +13,8 @@ namespace TS3QueryLib.Core.Server.Entities
         public ushort Type { get; protected set; }
         public uint IconId { get; protected set; }
         public bool SaveDb { get; protected set; }
-		public uint SortId { get; protected set; }
-		public uint NameMode { get; protected set; }
+        public uint SortId { get; protected set; }
+        public uint NameMode { get; protected set; }
 
         #endregion
 
@@ -22,7 +22,7 @@ namespace TS3QueryLib.Core.Server.Entities
 
         private ChannelGroup()
         {
-            
+
         }
 
         #endregion
@@ -41,8 +41,8 @@ namespace TS3QueryLib.Core.Server.Entities
                 Type = currentParameterGroup.GetParameterValue<ushort>("type"),
                 IconId = currentParameterGroup.GetParameterValue<uint>("iconid"),
                 SaveDb = currentParameterGroup.GetParameterValue("savedb").ToBool(),
-				SortId = currentParameterGroup.GetParameterValue<uint>("sortid"),
-				NameMode = currentParameterGroup.GetParameterValue<uint>("namemode"),
+                SortId = currentParameterGroup.GetParameterValue<uint>("sortid"),
+                NameMode = currentParameterGroup.GetParameterValue<uint>("namemode"),
             };
         }
 

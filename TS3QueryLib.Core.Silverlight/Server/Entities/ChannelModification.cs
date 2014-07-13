@@ -19,7 +19,7 @@ namespace TS3QueryLib.Core.Server.Entities
         public bool? IsPermanent { get; set; }
         public bool? IsSemiPermanent { get; set; }
         public bool? IsTemporary { get; set; }
-        public bool? IsDefault { get; set; }     
+        public bool? IsDefault { get; set; }
         public bool? HasUnlimitedMaxClients { get; set; }
         public bool? HasUnlimitedMaxFamilyClients { get; set; }
         public bool? ArUnlimitedMaxFamilyClientsInherited { get; set; }
@@ -63,26 +63,26 @@ namespace TS3QueryLib.Core.Server.Entities
         #endregion
     }
 
-    public enum Codec 
-    { 
+    public enum Codec
+    {
         /// <summary>
-        /// speex narrowband mono, 16bit, 8kHz) 
+        /// speex narrowband mono, 16bit, 8kHz)
         /// </summary>
-        SpeexNarrowband = 0, 
+        SpeexNarrowband = 0,
 
         /// <summary>
-        /// speex wideband (mono, 16bit, 16kHz) 
+        /// speex wideband (mono, 16bit, 16kHz)
         /// </summary>
-        SpeexWideband = 1, 
+        SpeexWideband = 1,
 
         /// <summary>
-        /// speex ultra-wideband (mono, 16bit, 32kHz) 
+        /// speex ultra-wideband (mono, 16bit, 32kHz)
         /// </summary>
         SpeexUltrawideband = 2,
 
         /// <summary>
-        /// celt mono (mono, 16bit, 48kHz) 
+        /// celt mono (mono, 16bit, 48kHz)
         /// </summary>
-        CeltMono = 3  
-    } 
+        CeltMono = 3
+    }
 }

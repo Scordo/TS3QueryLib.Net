@@ -11,7 +11,7 @@ namespace TS3QueryLib.Core.CommandHandling
 
         public CommandParameterGroup()
         {
-            
+
         }
 
         public CommandParameterGroup(IEnumerable<CommandParameter> parameters) : base(parameters)
@@ -38,15 +38,15 @@ namespace TS3QueryLib.Core.CommandHandling
             return string.Join(" ", this.Select(c => c.ToString()).ToArray());
         }
 
-		public string GetParameterValue(string parameterName)
+        public string GetParameterValue(string parameterName)
         {
-			return GetParameterValue(parameterName, null);
+            return GetParameterValue(parameterName, null);
         }
 
         public T GetParameterValue<T>(string parameterName)
         {
             string parameterValue = GetParameterValue(parameterName, null);
-            
+
             return ConvertValue<T>(parameterName, parameterValue);
         }
 
@@ -65,7 +65,7 @@ namespace TS3QueryLib.Core.CommandHandling
             try
             {
                 if (default(T) != null && parameterValue == null)
-					throw new InvalidCastException(string.Format("Can not cast null value of parameter '{0}' to target type '{1}'.", parameterName, targetType));
+                    throw new InvalidCastException(string.Format("Can not cast null value of parameter '{0}' to target type '{1}'.", parameterName, targetType));
 
                 if ( parameterValue != null && (targetType == typeof(uint) || targetType == typeof(uint?)))
                 {
@@ -74,7 +74,7 @@ namespace TS3QueryLib.Core.CommandHandling
                     if (decimalValue < 0)
                         return (T)(object)BitConverter.ToUInt32(BitConverter.GetBytes((long)decimalValue), 0);
 
-                    return (T)(object)BitConverter.ToUInt32(BitConverter.GetBytes((ulong)decimalValue), 0); 
+                    return (T)(object)BitConverter.ToUInt32(BitConverter.GetBytes((ulong)decimalValue), 0);
                 }
 
                 return parameterValue.ChangeTypeInvariant<T>();

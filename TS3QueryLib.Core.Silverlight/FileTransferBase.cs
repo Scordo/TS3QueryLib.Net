@@ -32,7 +32,7 @@ namespace TS3QueryLib.Core
                 throw new InvalidOperationException("Could not find a network device with an ip-v4-address.");
 
             return new IPEndPoint(ipV4, port);
-            
+
 #endif
         }
 

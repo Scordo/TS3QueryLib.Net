@@ -11,7 +11,7 @@ namespace TS3QueryLib.Core.Server.Entities
         public uint ChannelId { get; protected set; }
         public uint ClientDatabaseId { get; protected set; }
         public uint ChannelGroupId { get; protected set; }
-        
+
 
         #endregion
 
@@ -19,7 +19,7 @@ namespace TS3QueryLib.Core.Server.Entities
 
         private ChannelGroupClient()
         {
-            
+
         }
 
         #endregion

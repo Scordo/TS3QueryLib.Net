@@ -38,7 +38,7 @@ namespace TS3QueryLib.Core.Server.Entities
 
         protected ServerListItemBase()
         {
-            
+
         }
 
         #endregion

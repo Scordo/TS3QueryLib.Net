@@ -36,7 +36,7 @@ namespace TS3QueryLib.Core
         /// <param name="port">The port to connect to</param>
         public SyncTcpDispatcher(string host, ushort? port) : base(host?? "localhost", port ?? 11001)
         {
-            
+
         }
 
         #endregion
@@ -52,9 +52,9 @@ namespace TS3QueryLib.Core
             if (SocketAsyncEventArgs != null)
                 return;
 
-			#if !SILVERLIGHT
-				Trace.WriteLine("Starting to connect to: " + Host);
-			#endif
+            #if !SILVERLIGHT
+                Trace.WriteLine("Starting to connect to: " + Host);
+            #endif
 
             Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp) { ReceiveBufferSize = RECEIVE_BUFFER_SIZE };
 
@@ -95,24 +95,24 @@ namespace TS3QueryLib.Core
                 throw new SocketException((int) result);
             }
 
-        	string greeting = string.Empty;
-            
-			while (true)
-			{
-				KeyValuePair<SocketError, string> receiveResult = ReceiveMessage(SocketAsyncEventArgs);
+            string greeting = string.Empty;
 
-				if (receiveResult.Key != SocketError.Success)
-				{
-					Disconnect();
-					throw new SocketException((int) receiveResult.Key);
-				}
+            while (true)
+            {
+                KeyValuePair<SocketError, string> receiveResult = ReceiveMessage(SocketAsyncEventArgs);
 
-				greeting = string.Concat(greeting, receiveResult.Value);
+                if (receiveResult.Key != SocketError.Success)
+                {
+                    Disconnect();
+                    throw new SocketException((int) receiveResult.Key);
+                }
+
+                greeting = string.Concat(greeting, receiveResult.Value);
 
                 if (!IsValidGreetingPart(greeting))
                     GreetingFailed(greeting);
 
-			    QueryType? queryType = GetQueryTypeFromGreeting(greeting);
+                QueryType? queryType = GetQueryTypeFromGreeting(greeting);
 
                 if (!queryType.HasValue)
                     continue;
@@ -122,24 +122,24 @@ namespace TS3QueryLib.Core
                 if (greeting.Length < requiredGreetingLength)
                     continue;
 
-			    bool greetingCorrect;
-			    switch (queryType.Value)
-			    {
-			        case QueryType.Client:
+                bool greetingCorrect;
+                switch (queryType.Value)
+                {
+                    case QueryType.Client:
                         greetingCorrect = HandleClientQueryGreeting(greeting);
-			            break;
+                        break;
                     case QueryType.Server:
                         greetingCorrect = HandleServerQueryGreeting(greeting);
-			            break;
+                        break;
                     default:
-			            throw new InvalidOperationException("Forgott to implement query type: " + queryType);
-			    }
+                        throw new InvalidOperationException("Forgott to implement query type: " + queryType);
+                }
 
                 if (!greetingCorrect)
-				    GreetingFailed(greeting);
+                    GreetingFailed(greeting);
 
-			    break;
-			}
+                break;
+            }
         }
 
         private bool HandleClientQueryGreeting(string greeting)
@@ -202,16 +202,16 @@ namespace TS3QueryLib.Core
             return true;
         }
 
-		private void GreetingFailed(string greeting)
-		{
-			Disconnect();
+        private void GreetingFailed(string greeting)
+        {
+            Disconnect();
 
-			#if !SILVERLIGHT
-				Trace.WriteLine("Greeting was wrong! Greeting was: " + greeting);
-			#endif
+            #if !SILVERLIGHT
+                Trace.WriteLine("Greeting was wrong! Greeting was: " + greeting);
+            #endif
 
-			throw new SocketException((int)SocketError.ProtocolNotSupported);
-		}
+            throw new SocketException((int)SocketError.ProtocolNotSupported);
+        }
 
         /// <summary>
         /// Disconnects from the connected socket
@@ -226,7 +226,7 @@ namespace TS3QueryLib.Core
             {
                 Socket.Close();
                 Socket = null;
-                
+
                 SocketAsyncEventArgs.Dispose();
                 SocketAsyncEventArgs = null;
                 return false;
@@ -242,9 +242,9 @@ namespace TS3QueryLib.Core
             }
             catch (ObjectDisposedException)
             {
-                
+
             }
-            
+
             return true;
         }
 

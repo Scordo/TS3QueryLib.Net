@@ -28,7 +28,7 @@ namespace TS3QueryLib.Core
         private readonly object _sendMessageLockObject = new object();
         private readonly object _dispatchLockObject = new object();
         private StringBuilder _receiveRepository;
-    	private bool _greetingReceived;
+        private bool _greetingReceived;
 
         #endregion
 
@@ -74,9 +74,9 @@ namespace TS3QueryLib.Core
             if (SocketAsyncEventArgs != null)
                 return;
 
-			#if !SILVERLIGHT
-				Trace.WriteLine("Starting to connect to: " + Host);
-			#endif
+            #if !SILVERLIGHT
+                Trace.WriteLine("Starting to connect to: " + Host);
+            #endif
 
             _receiveRepository = new StringBuilder();
             _lastCommandResponse = null;
@@ -105,7 +105,7 @@ namespace TS3QueryLib.Core
             else
                 RemoteEndPoint = new IPEndPoint(ipV4, Port);
 
-        	_greetingReceived = false;
+            _greetingReceived = false;
             SocketAsyncEventArgs = new SocketAsyncEventArgs {RemoteEndPoint = RemoteEndPoint, UserToken = new SocketAsyncEventArgsUserToken {Socket = Socket}};
             Socket.InvokeAsyncMethod(Socket.ConnectAsync, Client_Connected, SocketAsyncEventArgs);
         }
@@ -116,7 +116,7 @@ namespace TS3QueryLib.Core
         /// <returns>Returns true if the disconnect was done or false when the socket was already disconnected</returns>
         public bool Disconnect()
         {
-        	_greetingReceived = false;
+            _greetingReceived = false;
 
             if (SocketAsyncEventArgs == null)
                 return false;
@@ -173,7 +173,7 @@ namespace TS3QueryLib.Core
                 byte[] sizeBuffer = new byte[RECEIVE_BUFFER_SIZE];
                 socketAsyncEventArgs.SetBuffer(sizeBuffer, 0, sizeBuffer.Length);
 
-				userToken.Socket.InvokeAsyncMethod(userToken.Socket.ReceiveAsync, MessageReceived, socketAsyncEventArgs);
+                userToken.Socket.InvokeAsyncMethod(userToken.Socket.ReceiveAsync, MessageReceived, socketAsyncEventArgs);
             });
         }
 
@@ -207,53 +207,53 @@ namespace TS3QueryLib.Core
 
                 _receiveRepository.Append(message);
 
-				if (_greetingReceived)
-				{
-					while (true)
-					{
-						Match notifyMatch = NotifyResponseMatch(_receiveRepository.ToString());
+                if (_greetingReceived)
+                {
+                    while (true)
+                    {
+                        Match notifyMatch = NotifyResponseMatch(_receiveRepository.ToString());
 
-						if (notifyMatch.Success)
-						{
-							ThreadPool.QueueUserWorkItem(OnNotificationReceived, notifyMatch.Value);
+                        if (notifyMatch.Success)
+                        {
+                            ThreadPool.QueueUserWorkItem(OnNotificationReceived, notifyMatch.Value);
 
-							_receiveRepository.Remove(0, notifyMatch.Length);
+                            _receiveRepository.Remove(0, notifyMatch.Length);
 
-							if (_receiveRepository.Length == 0)
-								break;
+                            if (_receiveRepository.Length == 0)
+                                break;
 
-							continue;
-						}
+                            continue;
+                        }
 
-						Match statusLineMatch = StatusLineMatch(_receiveRepository.ToString());
+                        Match statusLineMatch = StatusLineMatch(_receiveRepository.ToString());
 
-						if (statusLineMatch.Success)
-						{
-							ModifyLastCommandResponse(statusLineMatch.Value);
-							_receiveRepository.Remove(0, statusLineMatch.Length);
+                        if (statusLineMatch.Success)
+                        {
+                            ModifyLastCommandResponse(statusLineMatch.Value);
+                            _receiveRepository.Remove(0, statusLineMatch.Length);
 
-							SimpleResponse response = SimpleResponse.Parse(statusLineMatch.Value);
+                            SimpleResponse response = SimpleResponse.Parse(statusLineMatch.Value);
 
-							if (response.IsBanned)
-							{
-								ThreadPool.QueueUserWorkItem(OnBanDetected, response);
-								Disconnect();
-								OnSocketError(System.Net.Sockets.SocketError.ConnectionReset);
-								return;
-							}
+                            if (response.IsBanned)
+                            {
+                                ThreadPool.QueueUserWorkItem(OnBanDetected, response);
+                                Disconnect();
+                                OnSocketError(System.Net.Sockets.SocketError.ConnectionReset);
+                                return;
+                            }
 
-							if (_receiveRepository.Length == 0)
-								break;
+                            if (_receiveRepository.Length == 0)
+                                break;
 
-							continue;
-						}
+                            continue;
+                        }
 
-						break;
-					}
+                        break;
+                    }
                 }
-				else
-				{
-				    string greeting = _receiveRepository.ToString();
+                else
+                {
+                    string greeting = _receiveRepository.ToString();
                     if (!IsValidGreetingPart(greeting))
                         GreetingFailed();
 
@@ -282,7 +282,7 @@ namespace TS3QueryLib.Core
                                 GreetingFailed();
                         }
                     }
-				}
+                }
 
                 ReceiveMessage(socketAsyncEventArgs);
             });
@@ -337,16 +337,16 @@ namespace TS3QueryLib.Core
             return true;
         }
 
-		private void GreetingFailed()
-		{
-			#if !SILVERLIGHT
-				Trace.WriteLine("Greeting was wrong! Greeting was: " + _receiveRepository);
-			#endif
-							
-    		OnSocketError(System.Net.Sockets.SocketError.ProtocolNotSupported);
-    	}
+        private void GreetingFailed()
+        {
+            #if !SILVERLIGHT
+                Trace.WriteLine("Greeting was wrong! Greeting was: " + _receiveRepository);
+            #endif
 
-    	private static Match NotifyResponseMatch(string text)
+            OnSocketError(System.Net.Sockets.SocketError.ProtocolNotSupported);
+        }
+
+        private static Match NotifyResponseMatch(string text)
         {
             const string pattern = @"^notify.+?"+Ts3Util.QUERY_REGEX_LINE_BREAK;
 
@@ -406,9 +406,9 @@ namespace TS3QueryLib.Core
 
         private void AdvancedTcpDispatcher_SocketError(object sender, SocketErrorEventArgs e)
         {
-        	_greetingReceived = false;
+            _greetingReceived = false;
 
-            if (SocketAsyncEventArgs != null) 
+            if (SocketAsyncEventArgs != null)
             {
                 SocketAsyncEventArgs.Dispose();
                 SocketAsyncEventArgs = null;

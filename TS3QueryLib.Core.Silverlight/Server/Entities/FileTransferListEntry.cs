@@ -25,7 +25,7 @@ namespace TS3QueryLib.Core.Server.Entities
 
         private FileTransferListEntry()
         {
-            
+
         }
 
         #endregion

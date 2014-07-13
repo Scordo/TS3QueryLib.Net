@@ -25,9 +25,9 @@ namespace TS3QueryLib.Core.Common
 
         static Ts3Util()
         {
-            _escapeCharacters = new Dictionary<string, string>  
-            { 
-                { "\\", @"\\" }, { "/", @"\/" },  { " ", @"\s" },  { "|", @"\p" },  { "\a", @"\a" }, { "\b", @"\b" }, 
+            _escapeCharacters = new Dictionary<string, string>
+            {
+                { "\\", @"\\" }, { "/", @"\/" },  { " ", @"\s" },  { "|", @"\p" },  { "\a", @"\a" }, { "\b", @"\b" },
                 { "\f", @"\f" }, { "\n", @"\n" }, { "\r", @"\r" }, { "\t", @"\t" }, { "\v", @"\v" }
             };
 
