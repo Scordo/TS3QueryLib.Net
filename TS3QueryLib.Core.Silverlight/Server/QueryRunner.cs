@@ -890,6 +890,7 @@ namespace TS3QueryLib.Core.Server
                 throw new ArgumentNullException("logEntry");
 
             Command command = CommandName.LogAdd.CreateCommand();
+            command.AddParameter("loglevel", (uint)logEntry.LogLevel);
             command.AddParameter("logmsg", logEntry.Message);
 
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
@@ -899,12 +900,12 @@ namespace TS3QueryLib.Core.Server
         /// Writes a custom entry into the servers log. Depending on your permissions, you'll be able to add entries into
         /// the server instance log and/or your virtual servers log. The loglevel parameter specifies the type of the entry.
         /// </summary>
-        /// <param name="logLevel">the loglevel</param>
-        /// <param name="message">the message</param>
+        /// <param name="logLevel">The loglevel</param>
+        /// <param name="message">The message</param>
         /// <returns></returns>
-        public SimpleResponse AddLogEntry(string message)
+        public SimpleResponse AddLogEntry(LogLevel logLevel, string message)
         {
-            return AddLogEntry(new LogEntryLight(message));
+            return AddLogEntry(new LogEntryLight(logLevel, message));
         }
 
         public ListResponse<ChannelListEntry> GetChannelList()
