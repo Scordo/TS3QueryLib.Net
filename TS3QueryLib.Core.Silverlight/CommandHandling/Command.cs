@@ -12,14 +12,14 @@ namespace TS3QueryLib.Core.CommandHandling
         public string Name { get; protected set; }
         protected List<string> Options { get; set; }
         protected CommandParameterGroupList ParameterGroups { get; set; }
-        
+
         #endregion
 
         #region Constructors
 
         public Command(Server.CommandName commandName, params string[] options): this(commandName.ToString(), options)
         {
-            
+
         }
 
         public Command(Client.CommandName commandName, params string[] options): this(commandName.ToString(), options)
@@ -54,17 +54,17 @@ namespace TS3QueryLib.Core.CommandHandling
 
         #region Public Methods
 
-		public void AddParameter(string parameterName)
-		{
-			ParameterGroups.AddParameter(parameterName, null, 0);
-		}
+        public void AddParameter(string parameterName)
+        {
+            ParameterGroups.AddParameter(parameterName, null, 0);
+        }
 
-		public void AddParameter(string parameterName, string parameterValue)
+        public void AddParameter(string parameterName, string parameterValue)
         {
             ParameterGroups.AddParameter(parameterName, parameterValue, 0);
         }
 
-		public void AddParameter(string parameterName, string parameterValue, uint? groupIndex)
+        public void AddParameter(string parameterName, string parameterValue, uint? groupIndex)
         {
             ParameterGroups.AddParameter(parameterName, parameterValue, groupIndex ?? 0);
         }
@@ -74,7 +74,7 @@ namespace TS3QueryLib.Core.CommandHandling
             AddParameter(parameterName, parameterValue.ToString(), 0);
         }
 
-		public void AddParameter(string parameterName, int parameterValue, uint? groupIndex)
+        public void AddParameter(string parameterName, int parameterValue, uint? groupIndex)
         {
             AddParameter(parameterName, parameterValue.ToString(), groupIndex ?? 0);
         }
@@ -84,7 +84,7 @@ namespace TS3QueryLib.Core.CommandHandling
             AddParameter(parameterName, parameterValue.ToString(), 0);
         }
 
-		public void AddParameter(string parameterName, uint parameterValue, uint? groupIndex)
+        public void AddParameter(string parameterName, uint parameterValue, uint? groupIndex)
         {
             AddParameter(parameterName, parameterValue.ToString(), groupIndex ?? 0);
         }
@@ -94,7 +94,7 @@ namespace TS3QueryLib.Core.CommandHandling
             AddParameter(parameterName, parameterValue.ToString(), 0);
         }
 
-		public void AddParameter(string parameterName, ulong parameterValue, uint? groupIndex)
+        public void AddParameter(string parameterName, ulong parameterValue, uint? groupIndex)
         {
             AddParameter(parameterName, parameterValue.ToString(), groupIndex ?? 0);
         }
@@ -104,7 +104,7 @@ namespace TS3QueryLib.Core.CommandHandling
             AddParameter(parameterName, parameterValue ? "1" : "0", 0);
         }
 
-		public void AddParameter(string parameterName, bool parameterValue, uint? groupIndex)
+        public void AddParameter(string parameterName, bool parameterValue, uint? groupIndex)
         {
             AddParameter(parameterName, parameterValue ? "1" : "0", groupIndex ?? 0);
         }
@@ -114,7 +114,7 @@ namespace TS3QueryLib.Core.CommandHandling
             AddParameter(parameterName, parameterValue.ToString(), 0);
         }
 
-		public void AddParameter(string parameterName, char parameterValue, uint? groupIndex)
+        public void AddParameter(string parameterName, char parameterValue, uint? groupIndex)
         {
             AddParameter(parameterName, parameterValue.ToString(), groupIndex ?? 0);
         }

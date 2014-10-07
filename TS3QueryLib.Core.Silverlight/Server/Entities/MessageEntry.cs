@@ -20,7 +20,7 @@ namespace TS3QueryLib.Core.Server.Entities
 
         private MessageEntry()
         {
-            
+
         }
 
         #endregion

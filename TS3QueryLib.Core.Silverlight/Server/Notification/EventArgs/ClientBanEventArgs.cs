@@ -17,7 +17,7 @@ namespace TS3QueryLib.Core.Server.Notification.EventArgs
         public string InvokerUniqueId { get; protected set; }
         public TimeSpan? BanDuration { get; protected set; }
         public bool IsPermanentBan { get { return !BanDuration.HasValue; } }
-        
+
         #endregion
 
         #region Constructors

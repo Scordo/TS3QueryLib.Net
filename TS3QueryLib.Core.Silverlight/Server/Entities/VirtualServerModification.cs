@@ -113,7 +113,7 @@ namespace TS3QueryLib.Core.Server.Entities
             AddToCommand(command, "virtualserver_name_phonetic", PhoneticName);
             AddToCommand(command, "virtualserver_icon_id", IconId);
             AddToCommand(command, "virtualserver_hostbutton_gfx_url", HostButtonGraphicsUrl);
-            
+
             if (HostBannerMode.HasValue)
                 AddToCommand(command, "virtualserver_hostbanner_mode", (uint) HostBannerMode.Value);
 

@@ -17,7 +17,7 @@ namespace TS3QueryLib.Core.Server.Entities
 
         private ClientIdEntry()
         {
-            
+
         }
 
         #endregion

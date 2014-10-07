@@ -7,6 +7,6 @@
         TextServer,
         TextChannel,
         TextPrivate,
-		TokenUsed
+        TokenUsed
     }
 }

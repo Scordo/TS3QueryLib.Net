@@ -4,7 +4,7 @@ using TS3QueryLib.Core.CommandHandling;
 
 namespace TS3QueryLib.Core.Server.Responses
 {
-	public class ClientInfoResponse : ClientInfoBaseResponse<ClientInfoResponse>
+    public class ClientInfoResponse : ClientInfoBaseResponse<ClientInfoResponse>
     {
         #region Properties
 
@@ -51,14 +51,14 @@ namespace TS3QueryLib.Core.Server.Responses
         public TimeSpan ConnectedTime { get; protected set; }
         public string ClientIP { get; protected set; }
         public string ClientCountry { get; protected set; }
-        
+
         #endregion
 
         #region Non Public Methods
 
         protected override void FillFrom(string responseText, params object[] additionalStates)
         {
-			base.FillFrom(responseText, additionalStates);
+            base.FillFrom(responseText, additionalStates);
 
             CommandParameterGroupList list = CommandParameterGroupList.Parse(BodyText);
 

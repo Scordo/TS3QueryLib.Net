@@ -21,7 +21,7 @@ namespace TS3QueryLib.Core.Common.Entities
         public uint Order { get; protected set; }
         public string Name { get; protected set; }
         public int TotalClients { get; protected set; }
-        
+
         public bool IsSpacer { get { return SpacerInfo != null; } }
         public SpacerInfo SpacerInfo
         {
@@ -69,11 +69,11 @@ namespace TS3QueryLib.Core.Common.Entities
 
         #endregion
 
-		#region Icon-Properties
+        #region Icon-Properties
 
-		public uint? ChannelIconId { get; protected set; }
+        public uint? ChannelIconId { get; protected set; }
 
-		#endregion
+        #endregion
         #endregion
 
         #region Public Methods

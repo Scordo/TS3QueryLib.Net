@@ -15,7 +15,7 @@ namespace TS3QueryLib.Core.Server.Notification.EventArgs
         public string KickReason { get; protected set; }
         public string InvokerNickname { get; protected set; }
         public string InvokerUniqueId { get; protected set; }
-        
+
         #endregion
 
         #region Constructors

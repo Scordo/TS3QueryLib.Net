@@ -6,7 +6,7 @@ namespace TS3QueryLib.Core.Server.Entities
     public class ServerGroup : ServerGroupLight
     {
         #region Properties
- 
+
         public ushort Type { get; protected set; }
         public uint IconId { get; protected set; }
         public bool SaveDb { get; protected set; }
@@ -17,7 +17,7 @@ namespace TS3QueryLib.Core.Server.Entities
 
         protected ServerGroup()
         {
-            
+
         }
 
         #endregion

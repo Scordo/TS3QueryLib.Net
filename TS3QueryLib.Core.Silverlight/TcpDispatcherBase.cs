@@ -24,7 +24,7 @@ namespace TS3QueryLib.Core
 
         protected const string CLIENT_GREETING_FIRST_LINE = "TS3 Client" + Ts3Util.QUERY_LINE_BREAK;
         protected const string SERVER_GREETING_FIRST_LINE = "TS3" + Ts3Util.QUERY_LINE_BREAK;
-		protected const string SERVER_GREETING = SERVER_GREETING_FIRST_LINE + "Welcome to the TeamSpeak 3 ServerQuery interface, type \"help\" for a list of commands and \"help <command>\" for information on a specific command." + Ts3Util.QUERY_LINE_BREAK;
+        protected const string SERVER_GREETING = SERVER_GREETING_FIRST_LINE + "Welcome to the TeamSpeak 3 ServerQuery interface, type \"help\" for a list of commands and \"help <command>\" for information on a specific command." + Ts3Util.QUERY_LINE_BREAK;
         protected const string CLIENT_GREETING = CLIENT_GREETING_FIRST_LINE + "Welcome to the TeamSpeak 3 ClientQuery interface, type \"help\" for a list of commands and \"help <command>\" for information on a specific command." + Ts3Util.QUERY_LINE_BREAK;
         protected const int RECEIVE_BUFFER_SIZE = 4 * 1024;
 
@@ -90,12 +90,12 @@ namespace TS3QueryLib.Core
 
         #region Constructor
 
-		/// <summary>
+        /// <summary>
         /// Creates an instance of the current class  using localhost on port 10011
         /// </summary>
         protected TcpDispatcherBase() : this(null, null)
         {
-            
+
         }
 
         /// <summary>
@@ -103,13 +103,13 @@ namespace TS3QueryLib.Core
         /// </summary>
         /// <param name="host">The host to connect to</param>
         /// <param name="port">The port to connect to</param>
-		protected TcpDispatcherBase(string host, ushort? port)
-		{
-			Host = host ?? "localhost";
-			Port = port ?? 10011;
+        protected TcpDispatcherBase(string host, ushort? port)
+        {
+            Host = host ?? "localhost";
+            Port = port ?? 10011;
 
             SyncContext = SynchronizationContext.Current;
-		}
+        }
 
         #endregion
 
@@ -213,7 +213,7 @@ namespace TS3QueryLib.Core
 
         protected virtual void DisposeInternal()
         {
-            
+
         }
 
         protected virtual void Dispose(bool disposing)

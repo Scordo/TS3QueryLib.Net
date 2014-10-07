@@ -35,11 +35,11 @@ namespace TS3QueryLib.Core.Client
         #region Public Methods
 
         /// <summary>
-        /// This command allows you to listen to events that the client encounters. Events 
-        /// are things like people starting or stopping to talk, people joining or leaving, 
-        /// new channels being created and many more. It registers for client notifications 
-        /// for the specified serverConnectionHandlerId. If the serverConnectionHandlerID 
-        /// is set to null it applies to all server connection handlers. 
+        /// This command allows you to listen to events that the client encounters. Events
+        /// are things like people starting or stopping to talk, people joining or leaving,
+        /// new channels being created and many more. It registers for client notifications
+        /// for the specified serverConnectionHandlerId. If the serverConnectionHandlerID
+        /// is set to null it applies to all server connection handlers.
         /// </summary>
         /// <param name="event">The event to register for. Choose ClientNotifyRegisterEvent.Any to register for all events.</param>
         /// <param name="serverConnectionHandlerId">The id of the server connection handler.</param>
@@ -53,7 +53,7 @@ namespace TS3QueryLib.Core.Client
         }
 
         /// <summary>
-        /// Sets one or more values concerning your own client, and makes them available to other clients through the server where applicable 
+        /// Sets one or more values concerning your own client, and makes them available to other clients through the server where applicable
         /// </summary>
         /// <param name="modificationInstance">The modifications as class</param>
         public SimpleResponse UpdateClient(ClientModification modificationInstance)
@@ -68,7 +68,7 @@ namespace TS3QueryLib.Core.Client
         }
 
         /// <summary>
-        /// Displays a list of channels created on a virtual server including their ID, order, name, etc. The output can be modified using several command options. 
+        /// Displays a list of channels created on a virtual server including their ID, order, name, etc. The output can be modified using several command options.
         /// </summary>
         /// <param name="includeAll">if set to true all options are set to true.</param>
         /// <param name="includeTopics">if set to true topic is included</param>
@@ -154,7 +154,7 @@ namespace TS3QueryLib.Core.Client
         }
 
         /// <summary>
-        /// Displays information about your current ServerQuery connection including the ID of the selected virtual server, your loginname, etc. 
+        /// Displays information about your current ServerQuery connection including the ID of the selected virtual server, your loginname, etc.
         /// </summary>
         public WhoAmIResponse SendWhoAmI()
         {

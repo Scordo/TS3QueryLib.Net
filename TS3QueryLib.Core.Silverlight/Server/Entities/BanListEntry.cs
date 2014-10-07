@@ -23,7 +23,7 @@ namespace TS3QueryLib.Core.Server.Entities
 
         private BanListEntry()
         {
-            
+
         }
 
         #endregion

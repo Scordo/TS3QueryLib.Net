@@ -15,7 +15,7 @@ namespace TS3QueryLib.Core.Server.Entities
         public string ServerName { get; protected set; }
         public bool ServerAutoStart { get; protected set; }
         public string ServerMachineId { get; protected set; }
-        
+
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace TS3QueryLib.Core.Server.Entities
 
         private ServerListItem()
         {
-            
+
         }
 
         #endregion

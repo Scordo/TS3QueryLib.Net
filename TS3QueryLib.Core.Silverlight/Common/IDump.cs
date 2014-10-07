@@ -10,14 +10,14 @@ namespace TS3QueryLib.Core.Common
 
     public static class DumpExtender
     {
-		public static string GetDumpString(this IDump instance)
-		{
-			return GetDumpString(instance, null);
-		}
+        public static string GetDumpString(this IDump instance)
+        {
+            return GetDumpString(instance, null);
+        }
 
         public static string GetDumpString(this IDump instance, bool? includeTypeHeader)
         {
-        	includeTypeHeader = includeTypeHeader ?? true;
+            includeTypeHeader = includeTypeHeader ?? true;
             StringBuilder result = new StringBuilder();
 
             if (includeTypeHeader.Value && instance != null)

@@ -7,6 +7,7 @@ namespace TS3QueryLib.Core.Server.Entities
     {
         #region Properties
 
+        public LogLevel LogLevel { get; set; }
         public string Message { get; set; }
 
         #endregion
@@ -15,14 +16,15 @@ namespace TS3QueryLib.Core.Server.Entities
 
         protected LogEntryLight()
         {
-            
+
         }
 
-        public LogEntryLight(string message)
+        public LogEntryLight(LogLevel logLevel, string message)
         {
             if (message.IsNullOrTrimmedEmpty())
                 throw new ArgumentException("message is null or trimmed empty");
 
+            LogLevel = logLevel;
             Message = message;
         }
 

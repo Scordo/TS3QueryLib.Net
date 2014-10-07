@@ -33,10 +33,10 @@ namespace TS3QueryLib.Core.Server.Entities
         public bool? IsPrioritySpeaker { get; set; }
         public bool? IsClientRecording { get; set; }
         public bool? IsChannelCommander { get; set; }
-		public uint? ClientIconId { get; set; }
-		public string ClientCountry { get; set; }
-		public DateTime? ClientCreated { get; set; }
-		public DateTime? ClientLastConnected { get; set; }
+        public uint? ClientIconId { get; set; }
+        public string ClientCountry { get; set; }
+        public DateTime? ClientCreated { get; set; }
+        public DateTime? ClientLastConnected { get; set; }
         public string ClientIP { get; set; }
 
         #endregion
@@ -45,7 +45,7 @@ namespace TS3QueryLib.Core.Server.Entities
 
         private ClientListEntry()
         {
-            
+
         }
 
         #endregion
@@ -58,8 +58,8 @@ namespace TS3QueryLib.Core.Server.Entities
                 throw new ArgumentNullException("currentParameterGroup");
 
             uint? idleSeconds = currentParameterGroup.GetParameterValue<uint?>("client_idle_time");
-        	ulong? created = currentParameterGroup.GetParameterValue<ulong?>("client_created");
-        	ulong? lastConnected = currentParameterGroup.GetParameterValue<ulong?>("client_lastconnected");
+            ulong? created = currentParameterGroup.GetParameterValue<ulong?>("client_created");
+            ulong? lastConnected = currentParameterGroup.GetParameterValue<ulong?>("client_lastconnected");
 
             return new ClientListEntry
             {
@@ -86,11 +86,11 @@ namespace TS3QueryLib.Core.Server.Entities
                 ClientIdleDuration = idleSeconds.HasValue ? (TimeSpan?)TimeSpan.FromMilliseconds(idleSeconds.Value) : null,
                 IsPrioritySpeaker = currentParameterGroup.GetParameterValue("client_is_priority_speaker").ToNullableBool(),
                 IsClientRecording = currentParameterGroup.GetParameterValue("client_is_recording").ToNullableBool(),
-				ClientIconId = currentParameterGroup.GetParameterValue<uint?>("client_icon_id"),
+                ClientIconId = currentParameterGroup.GetParameterValue<uint?>("client_icon_id"),
                 IsChannelCommander = currentParameterGroup.GetParameterValue("CLIENT_IS_CHANNEL_COMMANDER").ToNullableBool(),
-				ClientCountry = currentParameterGroup.GetParameterValue("client_country"),
-				ClientCreated = created.HasValue ? (DateTime?) new DateTime(1970, 1, 1).AddSeconds(created.Value) : null,
-				ClientLastConnected = lastConnected.HasValue ? (DateTime?)new DateTime(1970, 1, 1).AddSeconds(lastConnected.Value) : null,
+                ClientCountry = currentParameterGroup.GetParameterValue("client_country"),
+                ClientCreated = created.HasValue ? (DateTime?) new DateTime(1970, 1, 1).AddSeconds(created.Value) : null,
+                ClientLastConnected = lastConnected.HasValue ? (DateTime?)new DateTime(1970, 1, 1).AddSeconds(lastConnected.Value) : null,
                 ClientIP = currentParameterGroup.GetParameterValue("connection_client_ip"),
             };
         }

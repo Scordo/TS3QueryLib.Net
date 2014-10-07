@@ -23,7 +23,7 @@ namespace TS3QueryLib.Core.Server.Notification
         /// </summary>
         public event EventHandler<ClientKickEventArgs> ClientKick;
         /// <summary>
-        /// Raised, when a client disconnected from the server 
+        /// Raised, when a client disconnected from the server
         /// </summary>
         public event EventHandler<ClientDisconnectEventArgs> ClientDisconnect;
         /// <summary>
@@ -58,10 +58,10 @@ namespace TS3QueryLib.Core.Server.Notification
         /// Raised, when a client joined the server
         /// </summary>
         public event EventHandler<ClientJoinedEventArgs> ClientJoined;
-		/// <summary>
-		/// Raised, when a client has used a token
-		/// </summary>
-		public event EventHandler<TokenUsedEventArgs> TokenUsed;
+        /// <summary>
+        /// Raised, when a client has used a token
+        /// </summary>
+        public event EventHandler<TokenUsedEventArgs> TokenUsed;
 
         #endregion
 
@@ -84,15 +84,15 @@ namespace TS3QueryLib.Core.Server.Notification
                 { "notifytextmessage", HandleMessages },
                 { "notifyclientmoved", HandleClientMove },
                 { "notifycliententerview", HandleClientJoin },
-				{ "notifytokenused", HandleTokenUsed },
+                { "notifytokenused", HandleTokenUsed },
             };
         }
 
-		private void HandleTokenUsed(CommandParameterGroupList parameterGroupList)
-		{
-			if (TokenUsed != null)
-				ThreadPool.QueueUserWorkItem(x => TokenUsed(this, new TokenUsedEventArgs(parameterGroupList)), null);
-		}
+        private void HandleTokenUsed(CommandParameterGroupList parameterGroupList)
+        {
+            if (TokenUsed != null)
+                ThreadPool.QueueUserWorkItem(x => TokenUsed(this, new TokenUsedEventArgs(parameterGroupList)), null);
+        }
 
         private void HandleClientLeave(CommandParameterGroupList parameterGroupList)
         {
@@ -149,7 +149,7 @@ namespace TS3QueryLib.Core.Server.Notification
         private void HandleClientMove(CommandParameterGroupList parameterGroupList)
         {
             int? invokerId = parameterGroupList.GetParameterValue<int?>("invokerid");
-            
+
             if (!invokerId.HasValue)
             {
                 if (ClientMoved != null)

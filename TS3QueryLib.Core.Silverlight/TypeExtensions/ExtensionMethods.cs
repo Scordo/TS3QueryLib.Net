@@ -33,9 +33,9 @@ namespace System
             return values.ToArray();
         }
 
-		public static T ChangeTypeInvariant<T>(this object sourceValue)
+        public static T ChangeTypeInvariant<T>(this object sourceValue)
         {
-			return ChangeTypeInvariant(sourceValue, default(T));
+            return ChangeTypeInvariant(sourceValue, default(T));
         }
 
         public static T ChangeTypeInvariant<T>(this object sourceValue, T defaultValue)
@@ -48,15 +48,15 @@ namespace System
             return ChangeType(sourceValue, default(T), formatProvider);
         }
 
-		public static T ChangeType<T>(this object sourceValue)
-		{
-			return ChangeType(sourceValue, default(T), null);
-		}
+        public static T ChangeType<T>(this object sourceValue)
+        {
+            return ChangeType(sourceValue, default(T), null);
+        }
 
-		public static T ChangeType<T>(this object sourceValue, T defaultValue)
-		{
-			return ChangeType(sourceValue, defaultValue, null);
-		}
+        public static T ChangeType<T>(this object sourceValue, T defaultValue)
+        {
+            return ChangeType(sourceValue, defaultValue, null);
+        }
 
         public static T ChangeType<T>(this object sourceValue, T defaultValue, IFormatProvider formatProvider)
         {
@@ -93,7 +93,7 @@ namespace System
         public static bool? ToNullableBool(this byte? value)
         {
             return value.HasValue ? (bool?) (value == 1) : null;
-		}
+        }
 
         public static List<uint> ToIdList(this string idString)
         {

@@ -5,12 +5,12 @@ using TS3QueryLib.Core.Server.Entities;
 
 namespace TS3QueryLib.Core.Server.Responses
 {
-    public enum HostMessageMode 
+    public enum HostMessageMode
     {
         HostMessageModeNone = 0,        // dont display anything
-        HostMessageModeLog = 1,         // display message in chatlog 
-        HostMessageModeModal = 2,       // display message in modal dialog 
-        HostMessageModeModalQuit = 3    // display message in modal dialog and close connection 
+        HostMessageModeLog = 1,         // display message in chatlog
+        HostMessageModeModal = 2,       // display message in modal dialog
+        HostMessageModeModalQuit = 3    // display message in modal dialog and close connection
     }
 
     public class ServerInfoResponse : ResponseBase<ServerInfoResponse>
@@ -92,7 +92,7 @@ namespace TS3QueryLib.Core.Server.Responses
         public string PhoneticName { get; protected set; }
         public uint IconId { get; protected set; }
         public string HostButtonGraphicsUrl { get; protected set; }
-        
+
         public HostBannerMode HostBannerMode { get; protected set; }
         public double TotalPacketLossSpeech { get; protected set; }
         public double TotalPacketLossKeepalive { get; protected set; }

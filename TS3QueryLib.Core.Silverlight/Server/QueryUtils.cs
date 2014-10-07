@@ -38,7 +38,7 @@ namespace TS3QueryLib.Core.Server
         {
             return GetChannelTree(false);
         }
-        
+
         /// <summary>
         /// Returns a tree of channels and contained clients by calling GetChannelList() and GetClientList() on QueryRunner when useCachedData is set to false. Otherwise the data retrieved by previous calls is used.
         /// </summary>
