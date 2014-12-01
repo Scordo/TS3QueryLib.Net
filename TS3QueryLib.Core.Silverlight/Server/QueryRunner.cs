@@ -1617,9 +1617,10 @@ namespace TS3QueryLib.Core.Server
         /// <param name="includeTimes">if set to true, time information is included</param>
         /// <param name="includeIcon">if set to true, icon information is included</param>
         /// <param name="includeCountry">if set to true, country information is included</param>
+        /// <param name="includeIPs">if set to true, ip information is included</param>
         public ListResponse<ClientListEntry> GetClientList(bool includeUniqueId, bool includeAwayState, bool includeVoiceInfo, bool includeGroupInfo, bool includeClientInfo, bool includeTimes, bool includeIcon, bool includeCountry, bool includeIPs)
         {
-            return GetClientList(false, includeUniqueId, includeAwayState, includeVoiceInfo, includeGroupInfo, includeClientInfo, includeTimes, includeIcon, includeCountry);
+            return GetClientList(false, includeUniqueId, includeAwayState, includeVoiceInfo, includeGroupInfo, includeClientInfo, includeTimes, includeIcon, includeCountry, includeIPs);
         }
 
         private ListResponse<ClientListEntry> GetClientList(bool includeAll, bool includeUniqueId, bool includeAwayState, bool includeVoiceInfo, bool includeGroupInfo, bool includeClientInfo, bool includeTimes, bool includeIcon, bool includeCountry, bool includeIPs)
