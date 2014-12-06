@@ -135,7 +135,8 @@ namespace TS3QueryLib.Core
                 {
                     Socket.Shutdown(SocketShutdown.Both);
                     Socket = null;
-                    SocketAsyncEventArgs.Dispose();
+                    if (SocketAsyncEventArgs != null) //somehow I managed to throw an Exception on the next line...
+                        SocketAsyncEventArgs.Dispose();
                     SocketAsyncEventArgs = null;
                 }
             }
@@ -225,27 +226,32 @@ namespace TS3QueryLib.Core
                             continue;
                         }
 
-                        Match statusLineMatch = StatusLineMatch(_receiveRepository.ToString());
+                        
 
-                        if (statusLineMatch.Success)
+                        if(_receiveRepository.ToString().Contains("error id="))//performance fix (mainly for permissionlist)
                         {
-                            ModifyLastCommandResponse(statusLineMatch.Value);
-                            _receiveRepository.Remove(0, statusLineMatch.Length);
-
-                            SimpleResponse response = SimpleResponse.Parse(statusLineMatch.Value);
-
-                            if (response.IsBanned)
+                            Match statusLineMatch = StatusLineMatch(_receiveRepository.ToString());
+    
+                            if (statusLineMatch.Success)
                             {
-                                ThreadPool.QueueUserWorkItem(OnBanDetected, response);
-                                Disconnect();
-                                OnSocketError(System.Net.Sockets.SocketError.ConnectionReset);
-                                return;
+                                ModifyLastCommandResponse(statusLineMatch.Value);
+                                _receiveRepository.Remove(0, statusLineMatch.Length);
+    
+                                SimpleResponse response = SimpleResponse.Parse(statusLineMatch.Value);
+    
+                                if (response.IsBanned)
+                                {
+                                    ThreadPool.QueueUserWorkItem(OnBanDetected, response);
+                                    Disconnect();
+                                    OnSocketError(System.Net.Sockets.SocketError.ConnectionReset);
+                                    return;
+                                }
+    
+                                if (_receiveRepository.Length == 0)
+                                    break;
+    
+                                continue;
                             }
-
-                            if (_receiveRepository.Length == 0)
-                                break;
-
-                            continue;
                         }
 
                         break;
