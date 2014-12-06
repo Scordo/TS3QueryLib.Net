@@ -228,7 +228,7 @@ namespace TS3QueryLib.Core
 
                         
 
-                        if(_receiveRepository.ToString().Contains("error id="))//performance fix (mainly for permissionlist)
+                        if(_receiveRepository.ToString().IndexOf("error id=", StringComparison.InvariantCultureIgnoreCase)!=-1)//performance fix (mainly for permissionlist)
                         {
                             Match statusLineMatch = StatusLineMatch(_receiveRepository.ToString());
     
