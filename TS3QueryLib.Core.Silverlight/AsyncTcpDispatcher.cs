@@ -3,7 +3,6 @@
 using System.Diagnostics;
 using System.Linq;
 #endif
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -12,7 +11,6 @@ using System.Threading;
 using TS3QueryLib.Core.Common;
 using TS3QueryLib.Core.Common.Responses;
 using TS3QueryLib.Core.Communication;
-using TS3QueryLib.Core.Server.Responses;
 
 namespace TS3QueryLib.Core
 {
@@ -421,13 +419,13 @@ namespace TS3QueryLib.Core
         private void OnServerClosedConnection(object state)
         {
             if (ServerClosedConnection != null)
-                SyncContext.Post(sender => ServerClosedConnection(sender, EventArgs.Empty), this);
+                SyncContext.PostEx(sender => ServerClosedConnection(sender, EventArgs.Empty), this);
         }
 
         private void OnReadyForSendingCommands()
         {
             if (ReadyForSendingCommands != null)
-                SyncContext.Post(sender => ReadyForSendingCommands(sender, EventArgs.Empty), this);
+                SyncContext.PostEx(sender => ReadyForSendingCommands(sender, EventArgs.Empty), this);
         }
 
         protected void OnSocketError(SocketError socketError)
@@ -440,7 +438,7 @@ namespace TS3QueryLib.Core
             SocketError socketError = (SocketError) state;
 
             if (SocketError != null)
-                SyncContext.Post(p => SocketError(((object[])p)[0], new SocketErrorEventArgs((SocketError)((object[])p)[1])), new object[] { this, socketError });
+                SyncContext.PostEx(p => SocketError(((object[])p)[0], new SocketErrorEventArgs((SocketError)((object[])p)[1])), new object[] { this, socketError });
         }
 
         protected override void DisposeInternal()

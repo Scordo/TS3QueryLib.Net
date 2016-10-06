@@ -5,7 +5,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using TS3QueryLib.Core.Common;
 using TS3QueryLib.Core.Common.Responses;
-using TS3QueryLib.Core.Server.Responses;
 
 namespace TS3QueryLib.Core
 {
@@ -103,12 +102,13 @@ namespace TS3QueryLib.Core
         /// </summary>
         /// <param name="host">The host to connect to</param>
         /// <param name="port">The port to connect to</param>
-        protected TcpDispatcherBase(string host, ushort? port)
+        /// <param name="synchronizationContext">The synchronization context on which to raise events.</param>
+        protected TcpDispatcherBase(string host, ushort? port, SynchronizationContext synchronizationContext = null)
         {
             Host = host ?? "localhost";
             Port = port ?? 10011;
 
-            SyncContext = SynchronizationContext.Current;
+            SyncContext = synchronizationContext ?? SynchronizationContext.Current;
         }
 
         #endregion
@@ -172,13 +172,13 @@ namespace TS3QueryLib.Core
         protected void OnNotificationReceived(object notificationText)
         {
             if (NotificationReceived != null)
-                SyncContext.Post(p => NotificationReceived(((object[])p)[0], new EventArgs<string>(Convert.ToString(((object[])p)[1]))), new[] { this, notificationText });
+                SyncContext.PostEx(p => NotificationReceived(((object[])p)[0], new EventArgs<string>(Convert.ToString(((object[])p)[1]))), new[] { this, notificationText });
         }
 
         protected void OnBanDetected(object banResponse)
         {
             if (BanDetected != null)
-                SyncContext.Post(p => BanDetected(((object[])p)[0], new EventArgs<SimpleResponse>((SimpleResponse)((object[])p)[1])), new [] { this, banResponse });
+                SyncContext.PostEx(p => BanDetected(((object[])p)[0], new EventArgs<SimpleResponse>((SimpleResponse)((object[])p)[1])), new [] { this, banResponse });
         }
 
         #endregion

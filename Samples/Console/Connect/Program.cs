@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net.Sockets;
-using System.Threading;
 using TS3QueryLib.Core;
 using TS3QueryLib.Core.Common;
 using TS3QueryLib.Core.Common.Responses;
@@ -10,7 +9,7 @@ using TS3QueryLib.Core.Server.Responses;
 
 namespace Connect
 {
-  class Program
+    class Program
   {
     #region Program Start
 
@@ -33,7 +32,6 @@ namespace Connect
     {
       ServerAddress = serverAddress;
       Port = port;
-      SynchronizationContext.SetSynchronizationContext(new SynchronizationContext());
     }
 
     private void Run()

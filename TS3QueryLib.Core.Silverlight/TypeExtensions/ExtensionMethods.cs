@@ -1,6 +1,6 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Threading;
-using System.Collections.Generic;
 using TS3QueryLib.Core.Common;
 
 namespace System
@@ -112,6 +112,20 @@ namespace System
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Posts on the provided SyncContext if it is not <value>null</value>, otherwise executes the callback on the current thread.
+        /// </summary>
+        /// <param name="syncContext">The synchronize context.</param>
+        /// <param name="callback">The callback.</param>
+        /// <param name="state">The state.</param>
+        public static void PostEx(this SynchronizationContext syncContext, SendOrPostCallback callback, object state)
+        {
+            if (syncContext == null)
+                callback(state);
+            else
+                syncContext.Post(callback, state);
         }
     }
 }
