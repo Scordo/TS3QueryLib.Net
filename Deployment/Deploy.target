@@ -1,11 +1,11 @@
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Deploy">
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Deploy">
 	<Import Project="Assemblies\CommTasks\MSBuild.Community.Tasks.Targets"/>
 	<Import Project="Assemblies\ExtPack\MSBuild.ExtensionPack.tasks"/>
            
   <PropertyGroup>
     <RootDirectory>..</RootDirectory>
     <Config>Release</Config>
-    <ReleaseVersion>1.0.0.0</ReleaseVersion>
+    <ReleaseVersion>1.1.0.0</ReleaseVersion>
     <ReleaseVersionEscaped>$(ReleaseVersion.Replace(".", "_"))</ReleaseVersionEscaped>
     <ReleaseName>TS3QueryLib.Net.V$(ReleaseVersionEscaped)</ReleaseName>
     <ReleaseDirectory>Releases\$(ReleaseVersionEscaped)</ReleaseDirectory>
