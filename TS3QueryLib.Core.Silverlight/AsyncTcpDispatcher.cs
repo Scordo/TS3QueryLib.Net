@@ -227,10 +227,23 @@ namespace TS3QueryLib.Core
 
                         if (statusLineMatch.Success)
                         {
-                            ModifyLastCommandResponse(statusLineMatch.Value);
+                            string responseText = statusLineMatch.Value;
+
+                            // happens when there is a notification between the body and statusline of a command response --> I think this is a bug of ts3
+                            if (responseText.IndexOf("\n\rnotify", StringComparison.OrdinalIgnoreCase) != -1)
+                            {
+                                // extract the notification data and raise notification
+                                notifyMatch = GetNotifyResponseMatchBetweenCommandResponse(responseText);
+                                ThreadPool.QueueUserWorkItem(OnNotificationReceived, notifyMatch.Groups["event"].Value);
+                                
+                                // modify the response thext used for the command response
+                                responseText = notifyMatch.Groups["part1"].Value + notifyMatch.Groups["part2"].Value;
+                            }
+
+                            ModifyLastCommandResponse(responseText);
                             _receiveRepository.Remove(0, statusLineMatch.Length);
 
-                            SimpleResponse response = SimpleResponse.Parse(statusLineMatch.Value);
+                            SimpleResponse response = SimpleResponse.Parse(responseText);
 
                             if (response.IsBanned)
                             {
@@ -348,14 +361,20 @@ namespace TS3QueryLib.Core
         {
             const string pattern = @"^notify.+?"+Ts3Util.QUERY_REGEX_LINE_BREAK;
 
-            return Regex.Match(text, pattern, RegexOptions.Singleline);
+            return text.StartsWith("notify", StringComparison.OrdinalIgnoreCase) ? Regex.Match(text, pattern, RegexOptions.Singleline) : Match.Empty;
+        }
+        private static Match GetNotifyResponseMatchBetweenCommandResponse(string text)
+        {
+            const string PATTERN = @"^(?<part1>.*?\x0A\x0D)(?<event>notify.+?\x0A\x0D)(?<part2>.*)$";
+
+            return Regex.Match(text, PATTERN, RegexOptions.Singleline);
         }
 
         protected static Match StatusLineMatch(string responseText)
         {
             const string pattern = @"((^)|(.*?" + Ts3Util.QUERY_REGEX_LINE_BREAK + "))error id=.+?" + Ts3Util.QUERY_REGEX_LINE_BREAK;
 
-            return Regex.Match(responseText, pattern, RegexOptions.Singleline);
+            return responseText.IndexOf("error id=", StringComparison.OrdinalIgnoreCase) != -1 ? Regex.Match(responseText, pattern, RegexOptions.Singleline) : Match.Empty;
         }
 
         private void Send(string messageToSend)
