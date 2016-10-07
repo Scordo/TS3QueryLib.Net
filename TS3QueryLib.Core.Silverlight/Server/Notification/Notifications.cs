@@ -63,6 +63,16 @@ namespace TS3QueryLib.Core.Server.Notification
         /// </summary>
         public event EventHandler<TokenUsedEventArgs> TokenUsed;
 
+        /// <summary>
+        /// Raised, when a channel is edited
+        /// </summary>
+        public event EventHandler<ChannelEditedEventArgs> ChannelEdited;
+
+        /// <summary>
+        /// Raised, when a channel is moved
+        /// </summary>
+        public event EventHandler<ChannelMovedEventArgs> ChannelMoved;
+
         #endregion
 
         #region Constructor
@@ -85,6 +95,8 @@ namespace TS3QueryLib.Core.Server.Notification
                 { "notifyclientmoved", HandleClientMove },
                 { "notifycliententerview", HandleClientJoin },
                 { "notifytokenused", HandleTokenUsed },
+                { "notifychanneledited", HandleChannelEdited },
+                { "notifychannelmoved", HandleChannelMoved },
             };
         }
 
@@ -104,7 +116,7 @@ namespace TS3QueryLib.Core.Server.Notification
                 return;
             }
 
-            switch ((ClientLeftReason) reasonId.Value)
+            switch ((ClientLeftReason)reasonId.Value)
             {
                 case ClientLeftReason.Kicked:
                     if (ClientKick != null)
@@ -174,6 +186,18 @@ namespace TS3QueryLib.Core.Server.Notification
         {
             if (ClientJoined != null)
                 ThreadPool.QueueUserWorkItem(x => ClientJoined(this, new ClientJoinedEventArgs(parameterGroupList)), null);
+        }
+
+        private void HandleChannelEdited(CommandParameterGroupList parameterGroupList)
+        {
+            if (ChannelEdited != null)
+                ThreadPool.QueueUserWorkItem(x => ChannelEdited(this, new ChannelEditedEventArgs(parameterGroupList)), null);
+        }
+
+        private void HandleChannelMoved(CommandParameterGroupList parameterGroupList)
+        {
+            if (ChannelMoved != null)
+                ThreadPool.QueueUserWorkItem(x => ChannelMoved(this, new ChannelMovedEventArgs(parameterGroupList)), null);
         }
 
         #endregion

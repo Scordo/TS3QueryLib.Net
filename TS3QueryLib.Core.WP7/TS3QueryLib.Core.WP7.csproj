@@ -357,6 +357,12 @@
     <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\VirtualServerModification.cs">
       <Link>Server\Entities\VirtualServerModification.cs</Link>
     </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\ChannelEditedEventArgs.cs">
+      <Link>Server\Entities\ChannelEditedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\ChannelMovedEventArgs.cs">
+      <Link>Server\Entities\ChannelMovedEventArgs.cs</Link>
+    </Compile>
     <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\ClientBanEventArgs.cs">
       <Link>Server\Notification\EventArgs\ClientBanEventArgs.cs</Link>
     </Compile>
