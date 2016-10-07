@@ -333,6 +333,9 @@
     <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ServerGroupLight.cs">
       <Link>Server\Entities\ServerGroupLight.cs</Link>
     </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ServerGroupType.cs">
+      <Link>Server\Entities\ServerGroupType.cs</Link>
+    </Compile>
     <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\ServerInstanceModification.cs">
       <Link>Server\Entities\ServerInstanceModification.cs</Link>
     </Compile>
@@ -404,6 +407,9 @@
     </Compile>
     <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\ClientGetNameFromUniqueIdResponse.cs">
       <Link>Server\Responses\ClientGetNameFromUniqueIdResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\ClientGetUidFromClidResponse.cs">
+      <Link>Server\Responses\ClientGetUidFromClidResponse.cs</Link>
     </Compile>
     <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Responses\ClientInfoBaseResponse.cs">
       <Link>Server\Responses\ClientInfoBaseResponse.cs</Link>

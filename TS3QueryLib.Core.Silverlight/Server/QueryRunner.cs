@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TS3QueryLib.Core.CommandHandling;
 using TS3QueryLib.Core.Common;
-using System.Linq;
 using TS3QueryLib.Core.Common.Responses;
 using TS3QueryLib.Core.Server.Entities;
 using TS3QueryLib.Core.Server.Notification;
@@ -547,6 +547,107 @@ namespace TS3QueryLib.Core.Server
                 command.AddParameter("permvalue", permission.Value, index);
                 command.AddParameter("permnegated", permission.Negated, index);
                 command.AddParameter("permskip", permission.Skip, index);
+                index++;
+            }
+
+            return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
+        }
+
+        /// <summary>
+        /// Adds a set of specified permissions to *ALL* regular server groups on all virtual servers. The target groups will be identified by the value of their i_group_auto_update_type permission specified with sgtype. Multiple permissions can be added at once. A permission can be specified by permid or permsid. The known values for sgtype are: 10: Channel Guest 15: Server Guest 20: Query Guest 25: Channel Voice 30: Server Normal 35: Channel Operator 40: Channel Admin 45: Server Admin 50: Query Admin
+        /// </summary>
+        /// <param name="serverGroupType">the type of server group</param>
+        /// <param name="permissions">the permissions to add</param>
+        public SimpleResponse AddServerGroupAutoPermission(ServerGroupType serverGroupType, IEnumerable<Permission> permissions)
+        {
+            if (permissions == null)
+                throw new ArgumentNullException(nameof(permissions));
+
+            if (!permissions.Any())
+                throw new ArgumentException("permissions are empty.");
+
+            Command command = CommandName.ServerGroupAutoAddPerm.CreateCommand();
+            command.AddParameter("sgtype", (uint)serverGroupType);
+
+            uint index = 0;
+            foreach (Permission permission in permissions)
+            {
+                command.AddParameter("permid", permission.Id, index);
+                command.AddParameter("permvalue", permission.Value, index);
+                command.AddParameter("permnegated", permission.Negated, index);
+                command.AddParameter("permskip", permission.Skip, index);
+                index++;
+            }
+
+            return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
+        }
+
+        /// <summary>
+        /// Removes a set of specified permissions from *ALL* regular server groups on all virtual servers. The target groups will be identified by the value of their i_group_auto_update_type permission specified with sgtype. Multiple permissions can be removed at once. A permission can be specified by permid or permsid. The known values for sgtype are: 10: Channel Guest 15: Server Guest 20: Query Guest 25: Channel Voice 30: Server Normal 35: Channel Operator 40: Channel Admin 45: Server Admin 50: Query Admin
+        /// </summary>
+        /// <param name="serverGroupType">The server group type</param>
+        /// <param name="permissionId">The id of the permission to remove</param>
+        public SimpleResponse DeleteServerGroupAutoPermission(ServerGroupType serverGroupType, uint permissionId)
+        {
+            return DeleteServerGroupAutoPermissions(serverGroupType, new [] {permissionId});
+        }
+
+        /// <summary>
+        /// Removes a set of specified permissions from *ALL* regular server groups on all virtual servers. The target groups will be identified by the value of their i_group_auto_update_type permission specified with sgtype. Multiple permissions can be removed at once. A permission can be specified by permid or permsid. The known values for sgtype are: 10: Channel Guest 15: Server Guest 20: Query Guest 25: Channel Voice 30: Server Normal 35: Channel Operator 40: Channel Admin 45: Server Admin 50: Query Admin
+        /// </summary>
+        /// <param name="serverGroupType">The server group type</param>
+        /// <param name="permissionIdList">The ids of the permissions to remove</param>
+        public SimpleResponse DeleteServerGroupAutoPermissions(ServerGroupType serverGroupType, IEnumerable<uint> permissionIdList)
+        {
+            if (permissionIdList == null)
+                throw new ArgumentNullException(nameof(permissionIdList));
+
+            if (!permissionIdList.Any())
+                throw new ArgumentException("permissions are empty.");
+
+            Command command = CommandName.ServerGroupAutoDelPerm.CreateCommand();
+            command.AddParameter("sgtype", (uint)serverGroupType);
+
+            uint index = 0;
+            foreach (uint permissionId in permissionIdList)
+            {
+                command.AddParameter("permid", permissionId, index);
+                index++;
+            }
+
+            return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
+        }
+
+        /// <summary>
+        /// Removes a set of specified permissions from *ALL* regular server groups on all virtual servers. The target groups will be identified by the value of their i_group_auto_update_type permission specified with sgtype. Multiple permissions can be removed at once. A permission can be specified by permid or permsid. The known values for sgtype are: 10: Channel Guest 15: Server Guest 20: Query Guest 25: Channel Voice 30: Server Normal 35: Channel Operator 40: Channel Admin 45: Server Admin 50: Query Admin
+        /// </summary>
+        /// <param name="serverGroupType">The server group type</param>
+        /// <param name="permissionName">The name of the permission to remove</param>
+        public SimpleResponse DeleteServerGroupAutoPermission(ServerGroupType serverGroupType, string permissionName)
+        {
+            return DeleteServerGroupAutoPermissions(serverGroupType, new[] { permissionName });
+        }
+
+        /// <summary>
+        /// Removes a set of specified permissions from *ALL* regular server groups on all virtual servers. The target groups will be identified by the value of their i_group_auto_update_type permission specified with sgtype. Multiple permissions can be removed at once. A permission can be specified by permid or permsid. The known values for sgtype are: 10: Channel Guest 15: Server Guest 20: Query Guest 25: Channel Voice 30: Server Normal 35: Channel Operator 40: Channel Admin 45: Server Admin 50: Query Admin
+        /// </summary>
+        /// <param name="serverGroupType">The server group type</param>
+        /// <param name="permissionNameList">The names of the permissions to remove</param>
+        public SimpleResponse DeleteServerGroupAutoPermissions(ServerGroupType serverGroupType, IEnumerable<string> permissionNameList)
+        {
+            if (permissionNameList == null)
+                throw new ArgumentNullException(nameof(permissionNameList));
+
+            if (!permissionNameList.Any())
+                throw new ArgumentException("permissions are empty.");
+
+            Command command = CommandName.ServerGroupAutoDelPerm.CreateCommand();
+            command.AddParameter("sgtype", (uint)serverGroupType);
+
+            uint index = 0;
+            foreach (string permissionName in permissionNameList)
+            {
+                command.AddParameter("permsid", permissionName, index);
                 index++;
             }
 
@@ -1818,6 +1919,18 @@ namespace TS3QueryLib.Core.Server
             command.AddParameter("cluid", clientUniqueId);
 
             return ListResponse<ClientIdEntry>.Parse(SendCommand(command), ClientIdEntry.Parse);
+        }
+
+        /// <summary>
+        /// Displays the database ID and nickname matching the unique identifier specified by cluid.
+        /// </summary>
+        /// <param name="clientId">The client id</param>
+        public ClientGetUidFromClidResponse GetUniqueIdFromClientId(uint clientId)
+        {
+            Command command = CommandName.ClientGetUidFromClid.CreateCommand();
+            command.AddParameter("clid", clientId);
+
+            return ResponseBase<ClientGetUidFromClidResponse>.Parse(SendCommand(command));
         }
 
         /// <summary>

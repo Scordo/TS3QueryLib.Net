@@ -122,6 +122,7 @@
     <Compile Include="Server\Entities\ServerGroup.cs" />
     <Compile Include="Server\Entities\ServerGroupClient.cs" />
     <Compile Include="Server\Entities\ServerGroupLight.cs" />
+    <Compile Include="Server\Entities\ServerGroupType.cs" />
     <Compile Include="Server\Entities\ServerInstanceModification.cs" />
     <Compile Include="Server\Entities\ServerListItem.cs" />
     <Compile Include="Server\Entities\ServerListItemBase.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Server\QueryRunner.cs" />
     <Compile Include="Server\QueryUtils.cs" />
     <Compile Include="Server\Responses\ClientDbInfoResponse.cs" />
+    <Compile Include="Server\Responses\ClientGetUidFromClidResponse.cs" />
     <Compile Include="Server\Responses\ClientInfoBaseResponse.cs" />
     <Compile Include="Server\Responses\HostBannerMode.cs" />
     <Compile Include="Server\Responses\InitializeFileUploadResponse.cs" />
