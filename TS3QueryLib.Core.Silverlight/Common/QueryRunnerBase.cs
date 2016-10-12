@@ -17,6 +17,11 @@ namespace TS3QueryLib.Core.Common
         /// </summary>
         public bool IsDisposed { get { return _disposed || Dispatcher == null || Dispatcher.IsDisposed; } }
 
+        /// <summary>
+        /// Gets or sets an optional predicate action which is executed before a command is sent. If the predicate action returns <value>true</value>, the command is sent, otherwise not.
+        /// </summary>
+        public Func<Command, QueryRunnerBase, bool> SendCommandValidationPredicate { get; set; }
+
         #endregion
 
         #region Events
@@ -70,9 +75,9 @@ namespace TS3QueryLib.Core.Common
             CheckForDisposed();
 
             if (command == null)
-                throw new ArgumentNullException("command");
+                throw new ArgumentNullException(nameof(command));
 
-            return Dispatcher.Dispatch(command);
+            return SendCommandValidationPredicate?.Invoke(command, this) == false ? @"error id=256 msg=command\snot\ssent" : Dispatcher.Dispatch(command);
         }
 
         /// <summary>
