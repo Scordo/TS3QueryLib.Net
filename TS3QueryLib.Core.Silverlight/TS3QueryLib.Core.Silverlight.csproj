@@ -131,6 +131,7 @@
     <Compile Include="Common\Entities\SpacerInfo.cs" />
     <Compile Include="Server\Entities\Token.cs" />
     <Compile Include="Server\Entities\VirtualServerModification.cs" />
+    <Compile Include="Server\Notification\EventArgs\ChannelDescriptionChangedEventArgs.cs" />
     <Compile Include="Server\Notification\EventArgs\ChannelEditedEventArgs.cs" />
     <Compile Include="Server\Notification\EventArgs\ChannelMovedEventArgs.cs" />
     <Compile Include="Server\Notification\EventArgs\ClientBanEventArgs.cs" />

@@ -72,6 +72,11 @@ namespace TS3QueryLib.Core.Server.Notification
         /// Raised, when a channel is moved
         /// </summary>
         public event EventHandler<ChannelMovedEventArgs> ChannelMoved;
+        
+        /// <summary>
+        /// Raised, when the description of a channelw as raised
+        /// </summary>
+        public event EventHandler<ChannelDescriptionChangedEventArgs> ChannelDescriptionChanged;
 
         #endregion
 
@@ -97,6 +102,7 @@ namespace TS3QueryLib.Core.Server.Notification
                 { "notifytokenused", HandleTokenUsed },
                 { "notifychanneledited", HandleChannelEdited },
                 { "notifychannelmoved", HandleChannelMoved },
+                { "notifychanneldescriptionchanged", HandleChannelDescriptionChanged },
             };
         }
 
@@ -198,6 +204,12 @@ namespace TS3QueryLib.Core.Server.Notification
         {
             if (ChannelMoved != null)
                 ThreadPool.QueueUserWorkItem(x => ChannelMoved(this, new ChannelMovedEventArgs(parameterGroupList)), null);
+        }
+
+        private void HandleChannelDescriptionChanged(CommandParameterGroupList parameterGroupList)
+        {
+            if (ChannelDescriptionChanged != null)
+                ThreadPool.QueueUserWorkItem(x => ChannelDescriptionChanged(this, new ChannelDescriptionChangedEventArgs(parameterGroupList)), null);
         }
 
         #endregion
