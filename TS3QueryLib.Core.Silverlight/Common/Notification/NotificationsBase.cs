@@ -40,7 +40,8 @@ namespace TS3QueryLib.Core.Common.Notification
                 return;
 
             Action<CommandParameterGroupList> handler;
-            if (NotificationHandlers.TryGetValue(parameterGroupList[0][0].Name, out handler))
+            string notificationName = parameterGroupList[0][0].Name;
+            if (NotificationHandlers.TryGetValue(notificationName, out handler) || NotificationHandlers.TryGetValue("*", out handler))
                 handler(parameterGroupList);
         }
 

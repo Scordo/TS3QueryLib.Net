@@ -393,6 +393,9 @@
     <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\TokenUsedEventArgs.cs">
       <Link>Server\Notification\EventArgs\TokenUsedEventArgs.cs</Link>
     </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\UnknownNotificationEventArgs.cs">
+      <Link>Server\Notification\EventArgs\UnknownNotificationEventArgs.cs</Link>
+    </Compile>
     <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\Notifications.cs">
       <Link>Server\Notification\Notifications.cs</Link>
     </Compile>

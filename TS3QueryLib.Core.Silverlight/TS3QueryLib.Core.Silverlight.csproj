@@ -143,6 +143,7 @@
     <Compile Include="Server\Notification\EventArgs\ClientMovedEventArgs.cs" />
     <Compile Include="Server\Notification\EventArgs\MessageReceivedEventArgs.cs" />
     <Compile Include="Server\Notification\EventArgs\TokenUsedEventArgs.cs" />
+    <Compile Include="Server\Notification\EventArgs\UnknownNotificationEventArgs.cs" />
     <Compile Include="Server\Notification\Notifications.cs" />
     <Compile Include="Server\Notification\ReasonEnums.cs" />
     <Compile Include="Server\QueryRunner.cs" />

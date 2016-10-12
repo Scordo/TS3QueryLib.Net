@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using TS3QueryLib.Core.CommandHandling;
 using TS3QueryLib.Core.Common.Notification;
@@ -78,6 +79,11 @@ namespace TS3QueryLib.Core.Server.Notification
         /// </summary>
         public event EventHandler<ChannelDescriptionChangedEventArgs> ChannelDescriptionChanged;
 
+        /// <summary>
+        /// Raised, when a unknown notification was received
+        /// </summary>
+        public event EventHandler<UnknownNotificationEventArgs> UnknownNotificationReceived;
+
         #endregion
 
         #region Constructor
@@ -103,6 +109,7 @@ namespace TS3QueryLib.Core.Server.Notification
                 { "notifychanneledited", HandleChannelEdited },
                 { "notifychannelmoved", HandleChannelMoved },
                 { "notifychanneldescriptionchanged", HandleChannelDescriptionChanged },
+                { "*", HandleUnknownNotificationReceived },
             };
         }
 
@@ -211,6 +218,13 @@ namespace TS3QueryLib.Core.Server.Notification
             if (ChannelDescriptionChanged != null)
                 ThreadPool.QueueUserWorkItem(x => ChannelDescriptionChanged(this, new ChannelDescriptionChangedEventArgs(parameterGroupList)), null);
         }
+
+        private void HandleUnknownNotificationReceived(CommandParameterGroupList parameterGroupList)
+        {
+            if (UnknownNotificationReceived != null)
+                ThreadPool.QueueUserWorkItem(x => UnknownNotificationReceived(this, new UnknownNotificationEventArgs(parameterGroupList.First()?.First()?.Name, parameterGroupList)), null);
+        }
+
 
         #endregion
     }
