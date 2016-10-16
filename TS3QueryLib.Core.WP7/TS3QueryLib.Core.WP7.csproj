@@ -357,6 +357,12 @@
     <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Entities\VirtualServerModification.cs">
       <Link>Server\Entities\VirtualServerModification.cs</Link>
     </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\ChannelCreatedEventArgs.cs">
+      <Link>Server\Notification\EventArgs\ChannelCreatedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\ChannelDeletedEventArgs.cs">
+      <Link>Server\Notification\EventArgs\ChannelDeletedEventArgs.cs</Link>
+    </Compile>
     <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\ChannelDescriptionChangedEventArgs.cs">
       <Link>Server\Notification\EventArgs\ChannelDescriptionChangedEventArgs.cs</Link>
     </Compile>
@@ -365,6 +371,9 @@
     </Compile>
     <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\ChannelMovedEventArgs.cs">
       <Link>Server\Entities\ChannelMovedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\ChannelPasswordChangedEventArgs.cs">
+      <Link>Server\Notification\EventArgs\ChannelPasswordChangedEventArgs.cs</Link>
     </Compile>
     <Compile Include="..\TS3QueryLib.Core.Silverlight\Server\Notification\EventArgs\ClientBanEventArgs.cs">
       <Link>Server\Notification\EventArgs\ClientBanEventArgs.cs</Link>

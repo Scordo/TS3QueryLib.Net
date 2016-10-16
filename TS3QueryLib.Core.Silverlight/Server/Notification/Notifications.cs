@@ -75,9 +75,24 @@ namespace TS3QueryLib.Core.Server.Notification
         public event EventHandler<ChannelMovedEventArgs> ChannelMoved;
         
         /// <summary>
-        /// Raised, when the description of a channelw as raised
+        /// Raised, when the description of a channel has changed
         /// </summary>
         public event EventHandler<ChannelDescriptionChangedEventArgs> ChannelDescriptionChanged;
+
+        /// <summary>
+        /// Raised, when the password of a channel has changed
+        /// </summary>
+        public event EventHandler<ChannelPasswordChangedEventArgs> ChannelPasswordChanged;
+
+        /// <summary>
+        /// Raised, when a channel was created
+        /// </summary>
+        public event EventHandler<ChannelCreatedEventArgs> ChannelCreated;
+
+        /// <summary>
+        /// Raised, when a channel was deleted
+        /// </summary>
+        public event EventHandler<ChannelDeletedEventArgs> ChannelDeleted;
 
         /// <summary>
         /// Raised, when a unknown notification was received
@@ -109,6 +124,9 @@ namespace TS3QueryLib.Core.Server.Notification
                 { "notifychanneledited", HandleChannelEdited },
                 { "notifychannelmoved", HandleChannelMoved },
                 { "notifychanneldescriptionchanged", HandleChannelDescriptionChanged },
+                { "notifychannelpasswordchanged", HandleChannelPasswordChanged },
+                { "notifychannelcreated", HandleChannelCreated },
+                { "notifychanneldeleted", HandleChannelDeleted },
                 { "*", HandleUnknownNotificationReceived },
             };
         }
@@ -217,6 +235,24 @@ namespace TS3QueryLib.Core.Server.Notification
         {
             if (ChannelDescriptionChanged != null)
                 ThreadPool.QueueUserWorkItem(x => ChannelDescriptionChanged(this, new ChannelDescriptionChangedEventArgs(parameterGroupList)), null);
+        }
+
+        private void HandleChannelPasswordChanged(CommandParameterGroupList parameterGroupList)
+        {
+            if (ChannelPasswordChanged != null)
+                ThreadPool.QueueUserWorkItem(x => ChannelPasswordChanged(this, new ChannelPasswordChangedEventArgs(parameterGroupList)), null);
+        }
+
+        private void HandleChannelCreated(CommandParameterGroupList parameterGroupList)
+        {
+            if (ChannelCreated != null)
+                ThreadPool.QueueUserWorkItem(x => ChannelCreated(this, new ChannelCreatedEventArgs(parameterGroupList)), null);
+        }
+
+        private void HandleChannelDeleted(CommandParameterGroupList parameterGroupList)
+        {
+            if (ChannelDeleted != null)
+                ThreadPool.QueueUserWorkItem(x => ChannelDeleted(this, new ChannelDeletedEventArgs(parameterGroupList)), null);
         }
 
         private void HandleUnknownNotificationReceived(CommandParameterGroupList parameterGroupList)
