@@ -95,6 +95,11 @@ namespace TS3QueryLib.Core.Server.Notification
         public event EventHandler<ChannelDeletedEventArgs> ChannelDeleted;
 
         /// <summary>
+        /// Raised, when the current server was edited
+        /// </summary>
+        public event EventHandler<ServerEditedEventArgs> ServerEdited;
+
+        /// <summary>
         /// Raised, when a unknown notification was received
         /// </summary>
         public event EventHandler<UnknownNotificationEventArgs> UnknownNotificationReceived;
@@ -127,6 +132,7 @@ namespace TS3QueryLib.Core.Server.Notification
                 { "notifychannelpasswordchanged", HandleChannelPasswordChanged },
                 { "notifychannelcreated", HandleChannelCreated },
                 { "notifychanneldeleted", HandleChannelDeleted },
+                { "notifyserveredited", HandleServerEdited },
                 { "*", HandleUnknownNotificationReceived },
             };
         }
@@ -253,6 +259,12 @@ namespace TS3QueryLib.Core.Server.Notification
         {
             if (ChannelDeleted != null)
                 ThreadPool.QueueUserWorkItem(x => ChannelDeleted(this, new ChannelDeletedEventArgs(parameterGroupList)), null);
+        }
+
+        private void HandleServerEdited(CommandParameterGroupList parameterGroupList)
+        {
+            if (ServerEdited != null)
+                ThreadPool.QueueUserWorkItem(x => ServerEdited(this, new ServerEditedEventArgs(parameterGroupList)), null);
         }
 
         private void HandleUnknownNotificationReceived(CommandParameterGroupList parameterGroupList)
