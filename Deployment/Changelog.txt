@@ -1,3 +1,18 @@
+Version 1.2.0.0
+==========================================
+- Added notification notifyserveredited
+- Added notification notifychannelpasswordchanged
+- Added notification notifychannelcreated
+- Added notification notifychanneldeleted
+- Added notification notifychannelmoved
+- Added notification notifychanneledited
+- Added notification notifychanneldescriptionchanged
+- Added handler for unknown notifications
+- Added command ServerGroupAutoDelPerm
+- Added command ServerGroupAutoAddPerm
+- Added command ClientGetUidFromClid
+- Added SendCommandValidationPredicate property to QueryRunner, which allows controlling when a command is sent or not using a single function
+
 Version 1.1.0.0
 ==========================================
 - Fixed SynchronizationContext issues
