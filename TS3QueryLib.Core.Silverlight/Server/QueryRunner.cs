@@ -2030,6 +2030,31 @@ namespace TS3QueryLib.Core.Server
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }
 
+        /// <summary>
+        /// Moves the clients with the specified ids to the channel specified with id. The password is optional.
+        /// </summary>
+        /// <param name="clientIds">The client ids.</param>
+        /// <param name="channelId">The channel identifier.</param>
+        /// <param name="channelPassword">The optional channel password.</param>
+        public SimpleResponse MoveClients(IEnumerable<uint> clientIds, uint channelId, string channelPassword = null)
+        {
+            Command command = CommandName.ClientMove.CreateCommand();
+            command.AddParameter("cid", channelId);
+
+            if (channelPassword != null)
+                command.AddParameter("cpw", channelPassword);
+
+            uint index = 0;
+            foreach (uint clientId in clientIds)
+            {
+                command.AddParameter("clid", clientId, index);
+                index++;
+            }
+
+            return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
+        }
+
+
         public SimpleResponse KickClient(uint clientId, KickReason kickReason)
         {
             return KickClient(clientId, kickReason, null);
