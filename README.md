@@ -7,4 +7,4 @@ This library allows you to query team speak 3 servers using the query port. All 
 Releases can be found here:
 * https://ts3querylib.codeplex.com/releases
 
-**A version for ".Net Core" can be found here:** https://github.com/Scordo/TS3QueryLib.Net.Core
+**A version for ".Net Core" or .Net 4.6.1 and up can be found here:** https://github.com/Scordo/TS3QueryLib.Net.Core
