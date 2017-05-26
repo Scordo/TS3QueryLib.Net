@@ -34,6 +34,7 @@ namespace TS3QueryLib.Core.Server.Notification.EventArgs
         public int? FlagMaxClientsUnlimited { get; protected set; }
         public int? FlagMaxFamilyClientsUnlimited { get; protected set; }
         public int? FlagMaxFamilyClientsInherited { get; protected set; }
+        public uint? IconId { get; protected set; }
 
         #endregion
 
@@ -70,6 +71,7 @@ namespace TS3QueryLib.Core.Server.Notification.EventArgs
             MaxClients = commandParameterGroupList.GetParameterValue<int?>("channel_maxclients");
             MaxFamilyClients = commandParameterGroupList.GetParameterValue<int?>("channel_maxfamilyclients");
             FlagMaxClientsUnlimited = commandParameterGroupList.GetParameterValue<int?>("channel_flag_maxclients_unlimited");
+            IconId = commandParameterGroupList.GetParameterValue<uint?>("channel_icon_id");
         }
 
         #endregion
