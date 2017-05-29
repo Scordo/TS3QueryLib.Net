@@ -71,7 +71,14 @@ namespace System
 
             if (targetTypeIsNullableValueTyoe)
                 targetType = Nullable.GetUnderlyingType(targetType);
-
+            
+            //fix for channelcreate
+            if (targetType == System.Type.GetType("System.UInt32"))
+            {
+                if (sourceValue.ToString().Contains("\n"))
+                    sourceValue = sourceValue.ToString().Substring(0, sourceValue.ToString().IndexOf('\n'));
+            }
+            
             return (T)Convert.ChangeType(sourceValue, targetType, formatProvider);
         }
 
