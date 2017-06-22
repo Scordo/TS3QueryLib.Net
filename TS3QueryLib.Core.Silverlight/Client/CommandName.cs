@@ -4,6 +4,7 @@ namespace TS3QueryLib.Core.Client
 {
     public enum CommandName
     {
+        Auth,
         ChannelConnectInfo,
         ClientNotifyRegister,
         ServerConnectionHandlerList,

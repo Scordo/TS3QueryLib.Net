@@ -301,6 +301,7 @@ namespace TS3QueryLib.Core
 
         private bool HandleClientQueryGreeting(string greeting)
         {
+            string originalGreeting = greeting;
             if (!greeting.StartsWith(CLIENT_GREETING, StringComparison.InvariantCultureIgnoreCase))
             {
                 _greetingReceived = true;
@@ -312,7 +313,7 @@ namespace TS3QueryLib.Core
             const string PATTERN_STATIC_PART = "selected schandlerid=";
             const string PATTERN = PATTERN_STATIC_PART + @"(?<id>\d+)" + Ts3Util.QUERY_REGEX_LINE_BREAK;
 
-            if (!PATTERN_STATIC_PART.StartsWith(greeting, StringComparison.InvariantCultureIgnoreCase) && !greeting.StartsWith(PATTERN_STATIC_PART, StringComparison.InvariantCultureIgnoreCase))
+            if (greeting.IndexOf(PATTERN_STATIC_PART, StringComparison.InvariantCultureIgnoreCase) == -1)
             {
                 _greetingReceived = true;
                 return false;
@@ -329,7 +330,7 @@ namespace TS3QueryLib.Core
 
             LastServerConnectionHandlerId = Convert.ToInt32(match.Groups["id"].Value);
             // greeting was correct!
-            _receiveRepository.Remove(0, CLIENT_GREETING.Length + match.Length);
+            _receiveRepository.Remove(0, originalGreeting.Length);
             ThreadPool.QueueUserWorkItem(x => OnReadyForSendingCommands());
 
             return true;

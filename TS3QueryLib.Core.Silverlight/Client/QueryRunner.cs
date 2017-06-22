@@ -35,6 +35,22 @@ namespace TS3QueryLib.Core.Client
         #region Public Methods
 
         /// <summary>
+        /// Authenticate against the local query client
+        /// </summary>
+        /// <param name="apiKey">The api key used to authenticate</param>
+        public SimpleResponse Authenticate(string apiKey)
+        {
+            Command command = CommandName.Auth.CreateCommand();
+
+            if (apiKey == null)
+                throw new ArgumentNullException("apiKey");
+
+            command.AddParameter("apikey", apiKey);
+
+            return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
+        }
+
+        /// <summary>
         /// This command allows you to listen to events that the client encounters. Events
         /// are things like people starting or stopping to talk, people joining or leaving,
         /// new channels being created and many more. It registers for client notifications
