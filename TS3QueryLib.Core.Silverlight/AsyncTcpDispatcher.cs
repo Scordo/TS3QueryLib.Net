@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 #if !SILVERLIGHT
 using System.Diagnostics;
 using System.Linq;
@@ -265,87 +266,44 @@ namespace TS3QueryLib.Core
                 else
                 {
                     string greeting = _receiveRepository.ToString();
-                    if (!IsValidGreetingPart(greeting))
-                        GreetingFailed();
-
                     QueryType? queryType = GetQueryTypeFromGreeting(greeting);
 
-                    if (queryType.HasValue)
+                    if (!queryType.HasValue)
                     {
-                        int requiredGreetingLength = queryType == QueryType.Client ? CLIENT_GREETING.Length : SERVER_GREETING.Length;
-
-                        if (greeting.Length >= requiredGreetingLength)
-                        {
-                            bool greetingCorrect;
-                            switch (queryType.Value)
-                            {
-                                case QueryType.Client:
-                                    greetingCorrect = HandleClientQueryGreeting(greeting);
-                                    break;
-                                case QueryType.Server:
-                                    greetingCorrect = HandleServerQueryGreeting(greeting);
-                                    break;
-                                default:
-                                    throw new InvalidOperationException("Forgott to implement query type: " + queryType);
-                            }
-
-                            if (_greetingReceived && !greetingCorrect)
-                                GreetingFailed();
-                        }
+                        GreetingFailed();
+                        return;
                     }
+
+                    _greetingReceived = true;
+
+                    switch (queryType.Value)
+                    {
+                        case QueryType.Client:
+                            HandleClientQueryGreeting(greeting);
+                            break;
+                        case QueryType.Server:
+                            break;
+                        default:
+                            throw new InvalidOperationException("Forgott to implement query type: " + queryType);
+                    }
+
+                    _receiveRepository.Remove(0, greeting.Length);
+                    ThreadPool.QueueUserWorkItem(x => OnReadyForSendingCommands());
                 }
 
                 ReceiveMessage(socketAsyncEventArgs);
             });
         }
 
-        private bool HandleClientQueryGreeting(string greeting)
+        private void HandleClientQueryGreeting(string greeting)
         {
-            if (!greeting.StartsWith(CLIENT_GREETING, StringComparison.InvariantCultureIgnoreCase))
-            {
-                _greetingReceived = true;
-                return false;
-            }
+            string[] greetingLines = greeting.Split(new[] {Ts3Util.QUERY_LINE_BREAK}, StringSplitOptions.RemoveEmptyEntries);
+            const string PATTERN = @"selected schandlerid=(?<id>\d+)";
 
-            greeting = greeting.Substring(CLIENT_GREETING.Length);
-
-            const string PATTERN_STATIC_PART = "selected schandlerid=";
-            const string PATTERN = PATTERN_STATIC_PART + @"(?<id>\d+)" + Ts3Util.QUERY_REGEX_LINE_BREAK;
-
-            if (!PATTERN_STATIC_PART.StartsWith(greeting, StringComparison.InvariantCultureIgnoreCase) && !greeting.StartsWith(PATTERN_STATIC_PART, StringComparison.InvariantCultureIgnoreCase))
-            {
-                _greetingReceived = true;
-                return false;
-            }
-
-            if (!greeting.Contains(Ts3Util.QUERY_LINE_BREAK))
-                return false;
-
-            _greetingReceived = true;
-            Match match = Regex.Match(greeting, PATTERN, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-
-            if (!match.Success)
-                return false;
-
-            LastServerConnectionHandlerId = Convert.ToInt32(match.Groups["id"].Value);
-            // greeting was correct!
-            _receiveRepository.Remove(0, CLIENT_GREETING.Length + match.Length);
-            ThreadPool.QueueUserWorkItem(x => OnReadyForSendingCommands());
-
-            return true;
-        }
-
-        private bool HandleServerQueryGreeting(string greeting)
-        {
-            _greetingReceived = true;
-            if (!greeting.StartsWith(SERVER_GREETING, StringComparison.InvariantCultureIgnoreCase))
-                return false;
-
-            // greeting was correct!
-            _receiveRepository.Remove(0, SERVER_GREETING.Length);
-            ThreadPool.QueueUserWorkItem(x => OnReadyForSendingCommands());
-
-            return true;
+            Match match = greetingLines.Select(l => Regex.Match(l, PATTERN, RegexOptions.IgnoreCase | RegexOptions.Singleline)).FirstOrDefault(m => m.Success);
+            
+            if (match?.Success == true)
+                LastServerConnectionHandlerId = Convert.ToInt32(match.Groups["id"].Value);
         }
 
         private void GreetingFailed()

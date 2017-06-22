@@ -23,8 +23,6 @@ namespace TS3QueryLib.Core
 
         protected const string CLIENT_GREETING_FIRST_LINE = "TS3 Client" + Ts3Util.QUERY_LINE_BREAK;
         protected const string SERVER_GREETING_FIRST_LINE = "TS3" + Ts3Util.QUERY_LINE_BREAK;
-        protected const string SERVER_GREETING = SERVER_GREETING_FIRST_LINE + "Welcome to the TeamSpeak 3 ServerQuery interface, type \"help\" for a list of commands and \"help <command>\" for information on a specific command." + Ts3Util.QUERY_LINE_BREAK;
-        protected const string CLIENT_GREETING = CLIENT_GREETING_FIRST_LINE + "Welcome to the TeamSpeak 3 ClientQuery interface, type \"help\" for a list of commands and \"help <command>\" for information on a specific command." + Ts3Util.QUERY_LINE_BREAK;
         protected const int RECEIVE_BUFFER_SIZE = 4 * 1024;
 
         #endregion
@@ -136,17 +134,6 @@ namespace TS3QueryLib.Core
         #endregion
 
         #region Non Public Methods
-
-        protected bool IsValidGreetingPart(string greetingPart)
-        {
-            if (greetingPart.IsNullOrTrimmedEmpty())
-                return false;
-
-            return SERVER_GREETING_FIRST_LINE.StartsWith(greetingPart, StringComparison.InvariantCultureIgnoreCase) ||
-                   greetingPart.StartsWith(SERVER_GREETING_FIRST_LINE, StringComparison.InvariantCultureIgnoreCase) ||
-                   CLIENT_GREETING_FIRST_LINE.StartsWith(greetingPart, StringComparison.InvariantCultureIgnoreCase) ||
-                   greetingPart.StartsWith(CLIENT_GREETING_FIRST_LINE, StringComparison.InvariantCultureIgnoreCase);
-        }
 
         protected QueryType? GetQueryTypeFromGreeting(string greetingPart)
         {

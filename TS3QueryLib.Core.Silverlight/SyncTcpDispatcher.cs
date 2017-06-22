@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -108,106 +109,60 @@ namespace TS3QueryLib.Core
                 }
 
                 greeting = string.Concat(greeting, receiveResult.Value);
-
-                if (!IsValidGreetingPart(greeting))
-                    GreetingFailed(greeting);
-
                 QueryType? queryType = GetQueryTypeFromGreeting(greeting);
 
                 if (!queryType.HasValue)
-                    continue;
+                {
+                    GreetingFailed();
+                    return;
+                }
 
-                int requiredGreetingLength = queryType == QueryType.Client ? CLIENT_GREETING.Length : SERVER_GREETING.Length;
-
-                if (greeting.Length < requiredGreetingLength)
-                    continue;
-
-                bool greetingCorrect;
                 switch (queryType.Value)
                 {
                     case QueryType.Client:
-                        greetingCorrect = HandleClientQueryGreeting(greeting);
+                        HandleClientQueryGreeting(greeting);
                         break;
                     case QueryType.Server:
-                        greetingCorrect = HandleServerQueryGreeting(greeting);
+                        HandleServerQueryGreeting(greeting);
                         break;
                     default:
                         throw new InvalidOperationException("Forgott to implement query type: " + queryType);
                 }
 
-                if (!greetingCorrect)
-                    GreetingFailed(greeting);
-
                 break;
             }
         }
 
-        private bool HandleClientQueryGreeting(string greeting)
+        private void HandleClientQueryGreeting(string greeting)
         {
-            if (!greeting.StartsWith(CLIENT_GREETING, StringComparison.InvariantCultureIgnoreCase))
-                return false;
+            string[] greetingLines = greeting.Split(new[] { Ts3Util.QUERY_LINE_BREAK }, StringSplitOptions.RemoveEmptyEntries);
+            const string PATTERN = @"selected schandlerid=(?<id>\d+)";
 
-            greeting = greeting.Substring(CLIENT_GREETING.Length);
+            Match match = greetingLines.Select(l => Regex.Match(l, PATTERN, RegexOptions.IgnoreCase | RegexOptions.Singleline)).FirstOrDefault(m => m.Success);
 
-            const string PATTERN_STATIC_PART = "selected schandlerid=";
-            const string PATTERN = PATTERN_STATIC_PART+@"(?<id>\d+)" + Ts3Util.QUERY_REGEX_LINE_BREAK;
-
-            while (true)
-            {
-                if (!PATTERN_STATIC_PART.StartsWith(greeting, StringComparison.InvariantCultureIgnoreCase) && !greeting.StartsWith(PATTERN_STATIC_PART, StringComparison.InvariantCultureIgnoreCase))
-                    return false;
-
-                if (!greeting.Contains(Ts3Util.QUERY_LINE_BREAK))
-                {
-                    KeyValuePair<SocketError, string> receiveResult = ReceiveMessage(SocketAsyncEventArgs);
-
-                    if (receiveResult.Key != SocketError.Success)
-                    {
-                        Disconnect();
-                        throw new SocketException((int)receiveResult.Key);
-                    }
-
-                    greeting = string.Concat(greeting, receiveResult.Value);
-                    continue;
-                }
-
-                Match match = Regex.Match(greeting, PATTERN, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-
-                if (!match.Success)
-                    return false;
-
+            if (match?.Success == true)
                 LastServerConnectionHandlerId = Convert.ToInt32(match.Groups["id"].Value);
-
-                break;
-            }
-
-            return true;
         }
 
-        private static bool HandleServerQueryGreeting(string greeting)
+        private static void HandleServerQueryGreeting(string greeting)
         {
-            if (!greeting.StartsWith(SERVER_GREETING, StringComparison.InvariantCultureIgnoreCase))
-                return false;
+            string lastGreetingLine = greeting.Split(new[] { Ts3Util.QUERY_LINE_BREAK }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
 
-            greeting = greeting.Substring(SERVER_GREETING.Length);
+            if (lastGreetingLine == null || !lastGreetingLine.Contains("="))
+                return;
 
-            if (greeting.Length > 0)
-            {
-                SimpleResponse response = SimpleResponse.Parse(greeting);
+            SimpleResponse response = SimpleResponse.Parse(lastGreetingLine);
 
-                if (response.IsBanned)
-                    throw new InvalidOperationException("You are banned from the server: " + response.BanExtraMessage);
-            }
-
-            return true;
+            if (response.IsBanned)
+                throw new InvalidOperationException("You are banned from the server: " + response.BanExtraMessage);
         }
 
-        private void GreetingFailed(string greeting)
+        private void GreetingFailed()
         {
             Disconnect();
 
             #if !SILVERLIGHT
-                Trace.WriteLine("Greeting was wrong! Greeting was: " + greeting);
+                Trace.WriteLine("Greeting was wrong! ");
             #endif
 
             throw new SocketException((int)SocketError.ProtocolNotSupported);

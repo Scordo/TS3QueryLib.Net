@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{28DD445B-3B32-48D5-A755-2ACC41EBD11A}"
 	ProjectSection(SolutionItems) = preProject
@@ -143,6 +143,7 @@ Global
 		{9544DFE1-17E7-4F2D-B162-A67D24AD03E9}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
 		{9544DFE1-17E7-4F2D-B162-A67D24AD03E9}.Release|x86.ActiveCfg = Release|Any CPU
 		{71A164BB-5E30-45DE-8136-DF1A84AF3FDC}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{71A164BB-5E30-45DE-8136-DF1A84AF3FDC}.Debug|Any CPU.Build.0 = Debug|x86
 		{71A164BB-5E30-45DE-8136-DF1A84AF3FDC}.Debug|ARM.ActiveCfg = Debug|x86
 		{71A164BB-5E30-45DE-8136-DF1A84AF3FDC}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{71A164BB-5E30-45DE-8136-DF1A84AF3FDC}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -179,6 +180,7 @@ Global
 		{AAEB27BE-3E6C-4434-A89A-5A78312742BA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{AAEB27BE-3E6C-4434-A89A-5A78312742BA}.Release|x86.ActiveCfg = Release|Any CPU
 		{E28196B4-257C-4B59-8FEB-17CDD0F30797}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{E28196B4-257C-4B59-8FEB-17CDD0F30797}.Debug|Any CPU.Build.0 = Debug|x86
 		{E28196B4-257C-4B59-8FEB-17CDD0F30797}.Debug|ARM.ActiveCfg = Debug|x86
 		{E28196B4-257C-4B59-8FEB-17CDD0F30797}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{E28196B4-257C-4B59-8FEB-17CDD0F30797}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -191,6 +193,7 @@ Global
 		{E28196B4-257C-4B59-8FEB-17CDD0F30797}.Release|x86.ActiveCfg = Release|x86
 		{E28196B4-257C-4B59-8FEB-17CDD0F30797}.Release|x86.Build.0 = Release|x86
 		{E3E4B862-F490-4950-BFBC-D8F7365BFC5A}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{E3E4B862-F490-4950-BFBC-D8F7365BFC5A}.Debug|Any CPU.Build.0 = Debug|x86
 		{E3E4B862-F490-4950-BFBC-D8F7365BFC5A}.Debug|ARM.ActiveCfg = Debug|x86
 		{E3E4B862-F490-4950-BFBC-D8F7365BFC5A}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{E3E4B862-F490-4950-BFBC-D8F7365BFC5A}.Debug|Mixed Platforms.Build.0 = Debug|x86

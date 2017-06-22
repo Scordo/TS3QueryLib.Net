@@ -74,8 +74,26 @@ namespace TS3QueryLib.ClientQuery.TestApp
         private void QueryDispatcher_ReadyForSendingCommands(object sender, System.EventArgs e)
         {
             Model.ConnectionState = ConnectionState.Connected;
+
+            string apiKey = Microsoft.VisualBasic.Interaction.InputBox("Api-Key:", "Please provide your API-Key");
+            
+            if (string.IsNullOrWhiteSpace(apiKey))
+            {
+                Disconnect();
+                return;
+            }
+            
             // you can only run commands on the queryrunner when this event has been raised first!
             QueryRunner = new QueryRunner(QueryDispatcher);
+            SimpleResponse authResponse = QueryRunner.Authenticate(apiKey);
+
+            if (authResponse.IsErroneous)
+            {
+                MessageBox.Show("Api-Key was wrong!");
+                Disconnect();
+                return;
+            }
+
             QueryRunner.Notifications.ChannelTalkStatusChanged += Notifications_ChannelTalkStatusChanged;
             QueryRunner.RegisterForNotifications(ClientNotifyRegisterEvent.Any);
 
