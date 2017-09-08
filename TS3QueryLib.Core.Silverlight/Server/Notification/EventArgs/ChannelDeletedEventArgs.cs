@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TS3QueryLib.Core.CommandHandling;
 using TS3QueryLib.Core.Common;
 
@@ -9,6 +11,7 @@ namespace TS3QueryLib.Core.Server.Notification.EventArgs
         #region Properties
 
         public int? ChannelId { get; protected set; }
+        public List<int> SubChannelIdList { get; protected set; }
         public int? InvokerId { get; protected set; }
         public string InvokerName { get; protected set; }
 
@@ -25,6 +28,8 @@ namespace TS3QueryLib.Core.Server.Notification.EventArgs
             ChannelId = commandParameterGroupList.GetParameterValue<int?>("cid");
             InvokerId = commandParameterGroupList.GetParameterValue<int?>("invokerid");
             InvokerName = commandParameterGroupList.GetParameterValue<string>("invokername");
+
+            SubChannelIdList = commandParameterGroupList.Skip(1).Select(pg => pg.GetParameterValue<int>("cid")).ToList();
         }
 
         #endregion
