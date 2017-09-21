@@ -54,6 +54,11 @@ namespace TS3QueryLib.Core.CommandHandling
 
         #region Public Methods
 
+        public void AddRaw(string rawText)
+        {
+            ParameterGroups.AddRaw(rawText);
+        }
+
         public void AddParameter(string parameterName)
         {
             ParameterGroups.AddParameter(parameterName, null, 0);

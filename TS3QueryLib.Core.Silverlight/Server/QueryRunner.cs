@@ -874,7 +874,7 @@ namespace TS3QueryLib.Core.Server
                 throw new ArgumentException("snapshotData is null or trimmed empty", "snapshotData");
 
             Command command = CommandName.ServerSnapshotDeploy.CreateCommand();
-            command.AddParameter(snapshotData);
+            command.AddRaw(snapshotData);
 
             return ResponseBase<SimpleResponse>.Parse(SendCommand(command));
         }

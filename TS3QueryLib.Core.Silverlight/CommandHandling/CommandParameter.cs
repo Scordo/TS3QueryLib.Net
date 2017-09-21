@@ -11,6 +11,7 @@ namespace TS3QueryLib.Core.CommandHandling
         public string EncodedName { get { return Ts3Util.EncodeString(Name); } }
         public string Value { get; set; }
         public string EncodedValue { get { return Ts3Util.EncodeString(Value); } }
+        public bool EncodeNameWhenValueIsNull { get; set; }
 
         #endregion
 
@@ -21,13 +22,14 @@ namespace TS3QueryLib.Core.CommandHandling
 
         }
 
-        public CommandParameter(string name, string value)
+        public CommandParameter(string name, string value, bool encodeNameWhenValueIsNull = true)
         {
             if (name.IsNullOrTrimmedEmpty())
                 throw new ArgumentException("name is null or trimmed empty", "name");
 
             Name = name.Trim();
             Value = value == null? null : value.Trim();
+            EncodeNameWhenValueIsNull = encodeNameWhenValueIsNull;
         }
 
         #endregion
@@ -36,7 +38,7 @@ namespace TS3QueryLib.Core.CommandHandling
 
         public override string ToString()
         {
-            return Value == null ? EncodedName : string.Format("{0}={1}", Name, EncodedValue);
+            return Value == null ? (EncodeNameWhenValueIsNull ? EncodedName : Name) : string.Format("{0}={1}", Name, EncodedValue);
         }
 
         #endregion
