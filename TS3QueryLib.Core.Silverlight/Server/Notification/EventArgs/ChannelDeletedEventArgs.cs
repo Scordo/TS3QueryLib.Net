@@ -25,11 +25,13 @@ namespace TS3QueryLib.Core.Server.Notification.EventArgs
             if (commandParameterGroupList == null)
                 throw new ArgumentNullException(nameof(commandParameterGroupList));
 
-            ChannelId = commandParameterGroupList.GetParameterValue<int?>("cid");
+            List<int> channelIds = commandParameterGroupList.Select(pg => pg.GetParameterValue<int>("cid")).ToList();
+
+            ChannelId = channelIds.Count > 0 ? (int?)channelIds.Last() : null;
             InvokerId = commandParameterGroupList.GetParameterValue<int?>("invokerid");
             InvokerName = commandParameterGroupList.GetParameterValue<string>("invokername");
 
-            SubChannelIdList = commandParameterGroupList.Skip(1).Select(pg => pg.GetParameterValue<int>("cid")).ToList();
+            SubChannelIdList = channelIds.GetRange(0, Math.Max(0, channelIds.Count - 1));
         }
 
         #endregion
