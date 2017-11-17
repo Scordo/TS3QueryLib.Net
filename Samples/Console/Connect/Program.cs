@@ -5,6 +5,7 @@ using TS3QueryLib.Core.Common;
 using TS3QueryLib.Core.Common.Responses;
 using TS3QueryLib.Core.Communication;
 using TS3QueryLib.Core.Server;
+using TS3QueryLib.Core.Server.Entities;
 using TS3QueryLib.Core.Server.Responses;
 
 namespace Connect
@@ -54,8 +55,17 @@ namespace Connect
     {
       // you can only run commands on the queryrunner when this event has been raised first!
       QueryRunner = new QueryRunner(QueryDispatcher);
+        SimpleResponse loginResponse = QueryRunner.Login("serveradmin", "RWkzzXu9");
+        SimpleResponse selectVirtualServerById = QueryRunner.SelectVirtualServerById(1);
+        ChannelModification cm = new ChannelModification
+            {
+                Name = "randomName",
+                Description = "desc-test",
+                IsPermanent = true
+            };
+            var response = QueryRunner.CreateChannel(cm);
 
-      VersionResponse versionResponse = QueryRunner.GetVersion();
+            VersionResponse versionResponse = QueryRunner.GetVersion();
 
       if (versionResponse.IsErroneous)
       {

@@ -2,12 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-
-#if !SILVERLIGHT
 using System.Linq;
-#else
-
-#endif
 
 namespace TS3QueryLib.Core
 {
@@ -15,12 +10,6 @@ namespace TS3QueryLib.Core
     {
         protected static EndPoint ResolveEndpoint(string host, ushort port)
         {
-#if SILVERLIGHT
-
-            return new DnsEndPoint(host, port);
-
-#else
-
             IPHostEntry hostEntry = Dns.GetHostEntry(host);
 
             if (hostEntry.AddressList.Length == 0)
@@ -32,8 +21,6 @@ namespace TS3QueryLib.Core
                 throw new InvalidOperationException("Could not find a network device with an ip-v4-address.");
 
             return new IPEndPoint(ipV4, port);
-
-#endif
         }
 
         protected static void Validate(string fileTransferKey, string host, ushort filePort, Stream stream)
