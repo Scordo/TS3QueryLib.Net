@@ -1,4 +1,4 @@
-<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Deploy">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Deploy">
 	<Import Project="Assemblies\CommTasks\MSBuild.Community.Tasks.Targets"/>
 	<Import Project="Assemblies\ExtPack\MSBuild.ExtensionPack.tasks"/>
            
@@ -24,7 +24,7 @@
 
   <Target Name="ChangeFileVersion">
     <PropertyGroup>
-      <AssemblyInfoFile>$(RootDirectory)\TS3QueryLib.Core.Silverlight\Properties\AssemblyInfo.cs</AssemblyInfoFile>
+      <AssemblyInfoFile>$(RootDirectory)\TS3QueryLib.Core.Framework\Properties\AssemblyInfo.cs</AssemblyInfoFile>
     </PropertyGroup>
 
     <Exec Command="attrib -r $(AssemblyInfoFile)"/>
@@ -33,34 +33,22 @@
   </Target>
   
   <Target Name="Build">
-    <Message Text="Cleaning Solution"/>
-    <MSBuild Projects="$(RootDirectory)\TS3QueryLib.Net 2010.sln" Properties="Configuration=$(Config)" Targets="Clean"/>
-
-    <Message Text="Building Solution"/>
-    <MSBuild Projects="$(RootDirectory)\TS3QueryLib.Net 2010.sln" Properties="Configuration=$(Config)"/>
+    <Message Text="Cleaning and Building Solution"/>
+    <MSBuild Projects="$(RootDirectory)\TS3QueryLib.Net.sln" Properties="Configuration=$(Config)" Targets="Clean;Build"/>
   </Target>
 
   <Target Name="CopyFiles">
     <PropertyGroup>
-      <SilverlightDirectory>$(RootDirectory)\TS3QueryLib.Core.Silverlight</SilverlightDirectory>
-      <SilverlightBinDirectory>$(SilverlightDirectory)\bin\$(Config)</SilverlightBinDirectory>
-      <WP7Directory>$(RootDirectory)\TS3QueryLib.Core.WP7</WP7Directory>
-      <WP7BinDirectory>$(WP7Directory)\bin\$(Config)</WP7BinDirectory>
-      <NonSilverlightDirectory>$(RootDirectory)\TS3QueryLib.Core.Framework</NonSilverlightDirectory>
-      <NonSilverlightBinDirectory>$(NonSilverlightDirectory)\bin\$(Config)</NonSilverlightBinDirectory>
+      <BinDirectory>$(RootDirectory)\TS3QueryLib.Core.Framework\bin\$(Config)</BinDirectory>
     </PropertyGroup>
     
     <ItemGroup>
-      <SilverlightFiles Include="$(SilverlightBinDirectory)\**\*.dll;$(SilverlightBinDirectory)\**\*.pdb;$(SilverlightBinDirectory)\**\*.xml"/>
-      <WP7Files Include="$(WP7BinDirectory)\**\*.dll;$(WP7BinDirectory)\**\*.pdb;$(WP7BinDirectory)\**\*.xml"/>
-      <NonSilverlightFiles Include="$(NonSilverlightBinDirectory)\**\*.dll;$(NonSilverlightBinDirectory)\**\*.pdb;$(NonSilverlightBinDirectory)\**\*.xml"/>
+      <AssemblyAndDocumentationFiles Include="$(BinDirectory)\**\*.dll;$(BinDirectory)\**\*.pdb;$(BinDirectory)\**\*.xml"/>
     </ItemGroup>
 
     <RemoveDir Directories="$(ReleaseDirectory)" ContinueOnError="true"/>
 
-    <Copy SourceFiles="@(SilverlightFiles)" DestinationFiles="@(SilverlightFiles->'$(ReleaseDirectory)\Silverlight\%(RecursiveDir)%(Filename)%(Extension)')" />
-    <Copy SourceFiles="@(WP7Files)" DestinationFiles="@(WP7Files->'$(ReleaseDirectory)\Windows Phone 7.1\%(RecursiveDir)%(Filename)%(Extension)')" />
-    <Copy SourceFiles="@(NonSilverlightFiles)" DestinationFiles="@(NonSilverlightFiles->'$(ReleaseDirectory)\Non Silverlight\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(AssemblyAndDocumentationFiles)" DestinationFiles="@(AssemblyAndDocumentationFiles->'$(ReleaseDirectory)\%(RecursiveDir)%(Filename)%(Extension)')" />
     <Copy SourceFiles="Changelog.txt;ReleaseNotes.txt" DestinationFolder="$(ReleaseDirectory)"/>
   </Target>
 
@@ -71,5 +59,4 @@
     
     <Zip Files="@(ZipFiles)" WorkingDirectory="$(ReleaseDirectory)" ZipFileName="$(ReleaseDirectory)\$(ReleaseName).zip" ZipLevel="9" />
   </Target>
-  
 </Project>

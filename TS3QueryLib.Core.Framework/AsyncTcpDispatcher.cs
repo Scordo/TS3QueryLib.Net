@@ -1,8 +1,6 @@
 ﻿using System;
-#if !SILVERLIGHT
 using System.Diagnostics;
 using System.Linq;
-#endif
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -72,9 +70,7 @@ namespace TS3QueryLib.Core
             if (SocketAsyncEventArgs != null)
                 return;
 
-            #if !SILVERLIGHT
-                Trace.WriteLine("Starting to connect to: " + Host);
-            #endif
+            Trace.WriteLine("Starting to connect to: " + Host);
 
             _receiveRepository = new StringBuilder();
             _lastCommandResponse = null;
@@ -84,9 +80,6 @@ namespace TS3QueryLib.Core
 
             if (!IPAddress.TryParse(Host, out ipV4))
             {
-            #if SILVERLIGHT
-                RemoteEndPoint = new DnsEndPoint(Host, Port);
-            #else
                 IPHostEntry hostEntry = Dns.GetHostEntry(Host);
 
                 if (hostEntry.AddressList.Length == 0)
@@ -98,7 +91,6 @@ namespace TS3QueryLib.Core
                     throw new InvalidOperationException("Could not find a network device with an ip-v4-address.");
 
                 RemoteEndPoint = new IPEndPoint(ipV4, Port);
-            #endif
             }
             else
                 RemoteEndPoint = new IPEndPoint(ipV4, Port);
@@ -351,9 +343,7 @@ namespace TS3QueryLib.Core
 
         private void GreetingFailed()
         {
-            #if !SILVERLIGHT
-                Trace.WriteLine("Greeting was wrong! Greeting was: " + _receiveRepository);
-            #endif
+            Trace.WriteLine("Greeting was wrong! Greeting was: " + _receiveRepository);
 
             OnSocketError(System.Net.Sockets.SocketError.ProtocolNotSupported);
         }

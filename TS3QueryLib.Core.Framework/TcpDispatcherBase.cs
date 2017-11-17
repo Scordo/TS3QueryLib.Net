@@ -223,11 +223,6 @@ namespace TS3QueryLib.Core
                 if (disposing)
                     DisposeInternal();
 
-#if SILVERLIGHT
-                if (Socket != null)
-                    Socket.Dispose();
-#endif
-
                 Socket = null;
             }
 

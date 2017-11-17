@@ -4,15 +4,12 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-#if !SILVERLIGHT
 using System.Linq;
-#endif
 using System.Text.RegularExpressions;
 using System.Threading;
 using TS3QueryLib.Core.Common;
 using TS3QueryLib.Core.Common.Responses;
 using TS3QueryLib.Core.Communication;
-using TS3QueryLib.Core.Server.Responses;
 
 namespace TS3QueryLib.Core
 {
@@ -51,10 +48,8 @@ namespace TS3QueryLib.Core
         {
             if (SocketAsyncEventArgs != null)
                 return;
-
-            #if !SILVERLIGHT
-                Trace.WriteLine("Starting to connect to: " + Host);
-            #endif
+            
+            Trace.WriteLine("Starting to connect to: " + Host);
 
             Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp) { ReceiveBufferSize = RECEIVE_BUFFER_SIZE };
 
@@ -62,9 +57,6 @@ namespace TS3QueryLib.Core
 
             if (!IPAddress.TryParse(Host, out ipV4))
             {
-            #if SILVERLIGHT
-                RemoteEndPoint = new DnsEndPoint(Host, Port);
-            #else
                 IPHostEntry hostEntry = Dns.GetHostEntry(Host);
 
                 if (hostEntry.AddressList.Length == 0)
@@ -76,7 +68,6 @@ namespace TS3QueryLib.Core
                     throw new InvalidOperationException("Could not find a network device with an ip-v4-address.");
 
                 RemoteEndPoint = new IPEndPoint(ipV4, Port);
-            #endif
             }
             else
                 RemoteEndPoint = new IPEndPoint(ipV4, Port);
@@ -206,9 +197,7 @@ namespace TS3QueryLib.Core
         {
             Disconnect();
 
-            #if !SILVERLIGHT
-                Trace.WriteLine("Greeting was wrong! Greeting was: " + greeting);
-            #endif
+            Trace.WriteLine("Greeting was wrong! Greeting was: " + greeting);
 
             throw new SocketException((int)SocketError.ProtocolNotSupported);
         }
