@@ -54,7 +54,8 @@ namespace TS3QueryLib.Core
         private StreamWriter ClientWriter { get; set; }
         private NetworkStream ClientStream { get; set; }
         protected SynchronizationContext SyncContext { get; set; }
-        
+        private SemaphoreSlim SendLock { get; } = new SemaphoreSlim(1, 1);
+
         #endregion
 
         #region Constructor
@@ -132,17 +133,26 @@ namespace TS3QueryLib.Core
 
         public async Task<string> SendAsync(string messageToSend)
         {
-            await SendAsync(ClientWriter, messageToSend);
+            await SendLock.WaitAsync();
 
-            do
+            try
             {
-                if (MessageResponses.TryDequeue(out var result))
-                    return result;
+                await SendAsync(ClientWriter, messageToSend);
 
-                await Task.Delay(TimeSpan.FromMilliseconds(10)).ConfigureAwait(false);
-            } while (Connected);
+                do
+                {
+                    if (MessageResponses.TryDequeue(out var result))
+                        return result;
 
-            return null;
+                    await Task.Delay(TimeSpan.FromMilliseconds(10)).ConfigureAwait(false);
+                } while (Connected);
+
+                return null;
+            }
+            finally
+            {
+                SendLock.Release();
+            }
         }
 
         protected static async Task SendAsync(StreamWriter writer, string messageToSend)
@@ -182,7 +192,7 @@ namespace TS3QueryLib.Core
             while (Client != null && KeepAliveInterval.HasValue)
             {
                 await Task.Delay(KeepAliveInterval.Value);
-                await SendAsync(ClientWriter, "\n");
+                await SendAsync("\n");
             }
         }
 
