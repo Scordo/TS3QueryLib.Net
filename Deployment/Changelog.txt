@@ -1,6 +1,8 @@
 Version 2.0.0.0
 ==========================================
+- Added AwaitableQueryDispatcher
 - Dropped support for Silverligt and Windows Phone 7
+- Changed minimum .Net Framework Version to 4.5
 
 Version 1.2.2.0
 ==========================================

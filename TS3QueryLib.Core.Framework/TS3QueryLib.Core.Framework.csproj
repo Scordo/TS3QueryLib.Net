@@ -68,6 +68,7 @@
     <Compile Include="AsyncFileTransfer.cs" />
     <Compile Include="AsyncHelper.cs" />
     <Compile Include="AsyncTcpDispatcher.cs" />
+    <Compile Include="AwaitableQueryDispatcher.cs" />
     <Compile Include="Client\CommandName.cs" />
     <Compile Include="Client\Entities\ChannelListEntry.cs" />
     <Compile Include="Client\Entities\ClientModification.cs" />
