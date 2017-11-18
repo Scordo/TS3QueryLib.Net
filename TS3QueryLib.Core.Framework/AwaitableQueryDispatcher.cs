@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using TS3QueryLib.Core.Common;
@@ -146,8 +147,14 @@ namespace TS3QueryLib.Core
 
         protected static async Task SendAsync(StreamWriter writer, string messageToSend)
         {
-            await writer.WriteLineAsync(messageToSend).ConfigureAwait(false);
-            await writer.FlushAsync().ConfigureAwait(false);
+            ConfiguredTaskAwaitable? writeLineAwaitable = writer?.WriteLineAsync(messageToSend).ConfigureAwait(false);
+
+            if (writeLineAwaitable.HasValue)
+                await writeLineAwaitable.Value;
+
+            ConfiguredTaskAwaitable? flushAwaitable = writer?.FlushAsync().ConfigureAwait(false);
+            if (flushAwaitable.HasValue)
+                await flushAwaitable.Value;
         }
 
         public void Disconnect()
@@ -197,7 +204,7 @@ namespace TS3QueryLib.Core
                         ReceivedLines.Clear();
                     }
 
-                    string responseText = string.Join("\r\n", ReceivedLines.Concat(new[] { message }));
+                    string responseText = string.Join("\n\r", ReceivedLines.Concat(new[] { message }));
                     MessageResponses.Enqueue(responseText);
                     ReceivedLines.Clear();
 
@@ -231,7 +238,8 @@ namespace TS3QueryLib.Core
 
         protected async Task<string> ReadLineAsync(bool throwOnEmptyMessage = true)
         {
-            string message = await ClientReader.ReadLineAsync().ConfigureAwait(false);
+            ConfiguredTaskAwaitable<string>? readLineAwaitable = ClientReader?.ReadLineAsync().ConfigureAwait(false);
+            string message = readLineAwaitable.HasValue ? await readLineAwaitable.Value : null;
 
             if (message != null)
                 return message;

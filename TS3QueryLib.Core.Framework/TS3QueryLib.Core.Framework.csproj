@@ -83,6 +83,7 @@
     <Compile Include="CommandHandling\Command.cs" />
     <Compile Include="Common\Entities\ChannelListEntryBase.cs" />
     <Compile Include="Common\Entities\ClientModificationBase.cs" />
+    <Compile Include="Common\Exceptions\ParseException.cs" />
     <Compile Include="Common\Notification\NotificationsBase.cs" />
     <Compile Include="Common\SharedCommandName.cs" />
     <Compile Include="Server\CommandName.cs" />
