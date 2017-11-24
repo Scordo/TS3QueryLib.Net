@@ -192,7 +192,7 @@ namespace TS3QueryLib.Core
             while (Client != null && KeepAliveInterval.HasValue)
             {
                 await Task.Delay(KeepAliveInterval.Value);
-                await SendAsync("\n");
+                await SendAsync("version");
             }
         }
 
