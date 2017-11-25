@@ -1,18 +1,14 @@
 Requirements
 ==============================================================
-
-- Visual Studio 2008 with .Net Framework 3.5
-- Silverlight Toolkit and so on (only if you want to use this library with silverlight)
+- Visual Studio 2015 with .Net Framework 4.5+
 
 How to use?
 ==============================================================
 
-For Windows Phone 7.1 reference the assembly : TS3QueryLib.Core.WP7
-For Silverlight reference the assembly : TS3QueryLib.Core.Silverlight
-For ASP.Net, Winforms, WPF and so on reference the assembly: TS3QueryLib.Core.Framework
+Reference the assembly: TS3QueryLib.Core.Framework
 
 
-Sample Code (Silverlight)
+Sample Code
 ==============================================================
 
 using System.Windows;
