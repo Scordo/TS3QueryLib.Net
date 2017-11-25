@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TS3QueryLib.Core</RootNamespace>
     <AssemblyName>TS3QueryLib.Core.Framework</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -31,6 +31,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +43,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\TS3QueryLib.Core.Framework.XML</DocumentationFile>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -52,6 +54,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\TS3QueryLib.Core.Framework.XML</DocumentationFile>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -63,7 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncFileTransfer.cs" />
+    <Compile Include="AsyncHelper.cs" />
     <Compile Include="AsyncTcpDispatcher.cs" />
+    <Compile Include="AwaitableQueryDispatcher.cs" />
     <Compile Include="Client\CommandName.cs" />
     <Compile Include="Client\Entities\ChannelListEntry.cs" />
     <Compile Include="Client\Entities\ClientModification.cs" />
@@ -78,6 +83,7 @@
     <Compile Include="CommandHandling\Command.cs" />
     <Compile Include="Common\Entities\ChannelListEntryBase.cs" />
     <Compile Include="Common\Entities\ClientModificationBase.cs" />
+    <Compile Include="Common\Exceptions\ParseException.cs" />
     <Compile Include="Common\Notification\NotificationsBase.cs" />
     <Compile Include="Common\SharedCommandName.cs" />
     <Compile Include="Server\CommandName.cs" />

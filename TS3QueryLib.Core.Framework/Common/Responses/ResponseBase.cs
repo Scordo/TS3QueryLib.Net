@@ -1,5 +1,6 @@
 ﻿using System;
 using TS3QueryLib.Core.CommandHandling;
+using TS3QueryLib.Core.Common.Exceptions;
 
 namespace TS3QueryLib.Core.Common.Responses
 {
@@ -23,21 +24,28 @@ namespace TS3QueryLib.Core.Common.Responses
 
         public static T Parse(string response, params object[] additionalStates)
         {
-            T instance = (T) Activator.CreateInstance(typeof(T));
-            instance.ResponseText = response;
-
-            if (response != null)
+            try
             {
-                string body, statusLine;
-                SplitResponse(response, out body, out statusLine);
-                instance.BodyText = body;
-                instance.StatusText = statusLine;
+                T instance = (T)Activator.CreateInstance(typeof(T));
+                instance.ResponseText = response;
 
-                instance.DetermineErrorDetails(statusLine);
-                instance.FillFrom(response, additionalStates);
+                if (response != null)
+                {
+                    SplitResponse(response, out var body, out var statusLine);
+                    instance.BodyText = body;
+                    instance.StatusText = statusLine;
+
+                    instance.DetermineErrorDetails(statusLine);
+                    instance.FillFrom(response, additionalStates);
+                }
+
+                return instance;
+            }
+            catch (Exception e)
+            {
+                throw new ParseException($"Error while trying to parse the response.\n\nRaw-Response:"+response, e);
             }
 
-            return instance;
         }
 
         #endregion
