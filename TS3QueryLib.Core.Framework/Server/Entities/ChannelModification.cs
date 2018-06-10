@@ -83,6 +83,16 @@ namespace TS3QueryLib.Core.Server.Entities
         /// <summary>
         /// celt mono (mono, 16bit, 48kHz)
         /// </summary>
-        CeltMono = 3
+        CeltMono = 3,
+
+        /// <summary>
+        /// opus voice
+        /// </summary>
+        OpusVoice = 4,
+
+        /// <summary>
+        /// opus music
+        /// </summary>
+        OpusMusic = 5
     }
 }
