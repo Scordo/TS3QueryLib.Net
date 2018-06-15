@@ -2760,7 +2760,7 @@ namespace TS3QueryLib.Core.Server
         /// <param name="clientUniqueId">the unique id of the receiver</param>
         /// <param name="subject">the subject</param>
         /// <param name="message">the message</param>
-        public SimpleResponse AddMessage(uint clientUniqueId, string subject, string message)
+        public SimpleResponse AddMessage(string clientUniqueId, string subject, string message)
         {
             if (subject.IsNullOrTrimmedEmpty())
                 throw new ArgumentException("subject is null or trimmed empty", "subject");
