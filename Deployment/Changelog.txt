@@ -1,3 +1,7 @@
+Version 2.1.0.0
+==========================================
+- Fixed #39 GetClientDatabaseInfo Parameter must be uint
+
 Version 2.0.0.0
 ==========================================
 - Changed minimum .Net Framework Version to 4.5
