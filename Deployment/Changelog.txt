@@ -1,5 +1,6 @@
 Version 2.1.0.0
 ==========================================
+- Add support for Opus codecs when editing channels.
 - Fixed #39 GetClientDatabaseInfo Parameter must be uint
 - Fixed #40 Could not cast parameter with name 'client_icon_id' and value '' to target type of 'System.UInt32
 
