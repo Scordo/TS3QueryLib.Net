@@ -17,7 +17,7 @@ namespace TS3QueryLib.Core.Server.Responses
         public ulong MonthBytesDonwloaded { get; protected set; }
         public ulong TotalBytesUploaded { get; protected set; }
         public ulong TotalBytesDownloaded { get; protected set; }
-        public uint IconId { get; protected set; }
+        public uint? IconId { get; protected set; }
         public string HashedUniqueId { get; protected set; }
 
         protected override void FillFrom(string responseText, params object[] additionalStates)
@@ -38,7 +38,7 @@ namespace TS3QueryLib.Core.Server.Responses
             MonthBytesDonwloaded = list.GetParameterValue<ulong>("client_month_bytes_downloaded");
             TotalBytesUploaded = list.GetParameterValue<ulong>("client_total_bytes_uploaded");
             TotalBytesDownloaded = list.GetParameterValue<ulong>("client_total_bytes_downloaded");
-            IconId = list.GetParameterValue<uint>("client_icon_id");
+            IconId = list.GetParameterValue<uint?>("client_icon_id");
             HashedUniqueId = list.GetParameterValue("client_base64HashClientUID");
         }
     }
