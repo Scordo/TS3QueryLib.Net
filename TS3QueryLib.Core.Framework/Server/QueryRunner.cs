@@ -1807,7 +1807,7 @@ namespace TS3QueryLib.Core.Server
         /// Gets the client database info.
         /// </summary>
         /// <param name="clientDatabaseId">The client database id.</param>
-        public ClientDbInfoResponse GetClientDatabaseInfo(int clientDatabaseId)
+        public ClientDbInfoResponse GetClientDatabaseInfo(uint clientDatabaseId)
         {
             Command command = CommandName.ClientDbInfo.CreateCommand();
             command.AddParameter("cldbid", clientDatabaseId);
