@@ -171,12 +171,19 @@ namespace TS3QueryLib.Core
         {
             EnsureSocketSuccess(socketAsyncEventArgs, () =>
             {
-                SocketAsyncEventArgsUserToken userToken = (SocketAsyncEventArgsUserToken)socketAsyncEventArgs.UserToken;
+                try
+                {
+                    SocketAsyncEventArgsUserToken userToken = (SocketAsyncEventArgsUserToken)socketAsyncEventArgs.UserToken;
 
-                byte[] sizeBuffer = new byte[RECEIVE_BUFFER_SIZE];
-                socketAsyncEventArgs.SetBuffer(sizeBuffer, 0, sizeBuffer.Length);
+                    byte[] sizeBuffer = new byte[RECEIVE_BUFFER_SIZE];
+                    socketAsyncEventArgs.SetBuffer(sizeBuffer, 0, sizeBuffer.Length);
 
-                userToken.Socket.InvokeAsyncMethod(userToken.Socket.ReceiveAsync, MessageReceived, socketAsyncEventArgs);
+                    userToken.Socket.InvokeAsyncMethod(userToken.Socket.ReceiveAsync, MessageReceived, socketAsyncEventArgs);
+                }
+                catch (ObjectDisposedException)
+                {
+
+                }
             });
         }
 
