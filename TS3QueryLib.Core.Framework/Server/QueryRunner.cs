@@ -1016,7 +1016,7 @@ namespace TS3QueryLib.Core.Server
 
         public ListResponse<ChannelListEntry> GetChannelList(bool includeAll)
         {
-            return GetChannelList(includeAll, false, false, false, false, false, true);
+            return GetChannelList(includeAll, false, false, false, false, false, false);
         }
 
         /// <summary>
