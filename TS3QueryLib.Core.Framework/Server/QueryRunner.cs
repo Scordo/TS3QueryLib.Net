@@ -1016,7 +1016,7 @@ namespace TS3QueryLib.Core.Server
 
         public ListResponse<ChannelListEntry> GetChannelList(bool includeAll)
         {
-            return GetChannelList(includeAll, false, false, false, false, false);
+            return GetChannelList(includeAll, false, false, false, false, false, false);
         }
 
         /// <summary>
@@ -1027,12 +1027,12 @@ namespace TS3QueryLib.Core.Server
         /// <param name="includeVoiceInfo">if set to true voice parameters are included</param>
         /// <param name="includeLimits">if set to true limit parameters are included</param>
         /// <param name="includeIcon">if set to true icon parameter is included</param>
-        public ListResponse<ChannelListEntry> GetChannelList(bool includeTopics, bool includeFlags, bool includeVoiceInfo, bool includeLimits, bool includeIcon)
+        public ListResponse<ChannelListEntry> GetChannelList(bool includeTopics, bool includeFlags, bool includeVoiceInfo, bool includeLimits, bool includeIcon, bool includeEmpty)
         {
-            return GetChannelList(false, includeTopics, includeFlags, includeVoiceInfo, includeLimits, includeIcon);
+            return GetChannelList(false, includeTopics, includeFlags, includeVoiceInfo, includeLimits, includeIcon, includeEmpty);
         }
 
-        private ListResponse<ChannelListEntry> GetChannelList(bool includeAll, bool includeTopics, bool includeFlags, bool includeVoiceInfo, bool includeLimits, bool includeIcon)
+        private ListResponse<ChannelListEntry> GetChannelList(bool includeAll, bool includeTopics, bool includeFlags, bool includeVoiceInfo, bool includeLimits, bool includeIcon, bool includeEmpty)
         {
             Command command = CommandName.ChannelList.CreateCommand();
 
@@ -1050,6 +1050,9 @@ namespace TS3QueryLib.Core.Server
 
             if (includeIcon || includeAll)
                 command.AddOption("icon");
+
+            if (includeEmpty || includeAll)
+                command.AddOption("secondsempty");
 
             return ListResponse<ChannelListEntry>.Parse(SendCommand(command), ChannelListEntry.Parse);
         }

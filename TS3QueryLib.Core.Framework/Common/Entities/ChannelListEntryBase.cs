@@ -74,6 +74,13 @@ namespace TS3QueryLib.Core.Common.Entities
         public uint? ChannelIconId { get; protected set; }
 
         #endregion
+
+        #region "SecondsEmpty-Properties"
+
+        public TimeSpan? ChannelEmptyDuration { get; protected set; }
+
+        #endregion
+
         #endregion
 
         #region Public Methods
@@ -104,6 +111,10 @@ namespace TS3QueryLib.Core.Common.Entities
             MaxClients = currrentParameterGroup.GetParameterValue<int?>("channel_maxclients");
             MaxFamilyClients = currrentParameterGroup.GetParameterValue<int?>("channel_maxfamilyclients");
             ChannelIconId = currrentParameterGroup.GetParameterValue<uint?>("channel_icon_id");
+
+            // Seconds empty
+            int? emptySeconds = currrentParameterGroup.GetParameterValue<int?>("seconds_empty");
+            ChannelEmptyDuration = emptySeconds.HasValue ? (TimeSpan?)TimeSpan.FromSeconds(emptySeconds.Value) : null;
         }
 
         #endregion
