@@ -30,14 +30,14 @@ namespace TS3QueryLib.Core.Common.Entities
             if (channelName.IsNullOrTrimmedEmpty())
                 return null;
 
-            const string pattern = @"\[(?<Alignment>r|l|c|\*)spacer.*?\](?<VisibleName>.*)";
+            const string pattern = @"\[(?<Alignment>r|l|c|\\*)spacer.*?\](?<VisibleName>.*)";
             Match match = Regex.Match(channelName, pattern, RegexOptions.Singleline);
 
             if (!match.Success)
                 return null;
 
-            char alignmentChar = match.Groups["Alignment"].Value[0];
-            SpacerAlignment alignment = SpacerAlignment.Repeat;
+            char alignmentChar = match.Groups["Alignment"].Length == 0 ? ' ' : match.Groups["Alignment"].Value[0];
+            SpacerAlignment alignment;
             switch (alignmentChar)
             {
                 case 'c': alignment = SpacerAlignment.Center;
@@ -45,6 +45,8 @@ namespace TS3QueryLib.Core.Common.Entities
                 case 'r': alignment = SpacerAlignment.Right;
                     break;
                 case 'l': alignment = SpacerAlignment.Left;
+                    break;
+                default: alignment = SpacerAlignment.Repeat;
                     break;
             }
 
