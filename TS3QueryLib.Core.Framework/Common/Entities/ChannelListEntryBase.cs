@@ -31,7 +31,7 @@ namespace TS3QueryLib.Core.Common.Entities
                     return _spacerInfo;
 
                 _spacerInfoChecked = true;
-                _spacerInfo = SpacerInfo.Parse(Name);
+                _spacerInfo = SpacerInfo.Parse(Name, ParentChannelId);
 
                 return _spacerInfo;
             }

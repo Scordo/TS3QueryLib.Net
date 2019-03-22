@@ -25,12 +25,12 @@ namespace TS3QueryLib.Core.Common.Entities
 
         #region Public Methods
 
-        public static SpacerInfo Parse(string channelName)
+        public static SpacerInfo Parse(string channelName, uint channelParentId)
         {
-            if (channelName.IsNullOrTrimmedEmpty())
+            if (channelName.IsNullOrTrimmedEmpty() || channelParentId != 0)
                 return null;
 
-            const string pattern = @"\[(?<Alignment>r|l|c|\\*)spacer.*?\](?<VisibleName>.*)";
+            const string pattern = @"\[(?<Alignment>[r|l|c|\*]?)spacer.*?\](?<VisibleName>.*)";
             Match match = Regex.Match(channelName, pattern, RegexOptions.Singleline);
 
             if (!match.Success)
