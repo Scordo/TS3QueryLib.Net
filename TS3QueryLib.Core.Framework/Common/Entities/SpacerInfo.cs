@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 using TS3QueryLib.Core.Server.Entities;
 
@@ -23,6 +24,17 @@ namespace TS3QueryLib.Core.Common.Entities
 
         #endregion
 
+        #region SpecialSpacerNames
+        private static readonly string[] SpecialSpacerNames =
+        {
+            "---",
+            "...",
+            "___",
+            "-.-",
+            "-.."
+        };
+        #endregion
+
         #region Public Methods
 
         public static SpacerInfo Parse(string channelName, uint channelParentId)
@@ -40,13 +52,17 @@ namespace TS3QueryLib.Core.Common.Entities
             SpacerAlignment alignment;
             switch (alignmentChar)
             {
-                case 'c': alignment = SpacerAlignment.Center;
+                case '*':
+                    alignment = SpacerAlignment.Repeat;
                     break;
-                case 'r': alignment = SpacerAlignment.Right;
+                case 'c':
+                    alignment = SpacerAlignment.Center;
                     break;
-                case 'l': alignment = SpacerAlignment.Left;
+                case 'r':
+                    alignment = SpacerAlignment.Right;
                     break;
-                default: alignment = SpacerAlignment.Repeat;
+                default:
+                    alignment = SpacerAlignment.Left;
                     break;
             }
 
@@ -55,7 +71,12 @@ namespace TS3QueryLib.Core.Common.Entities
             if (visibleName.IsNullOrTrimmedEmpty())
                 visibleName = channelName.Trim();
 
-            return new SpacerInfo{Alignment = alignment, Name = channelName.Trim(), VisibleName = visibleName};
+            if (SpecialSpacerNames.Any(visibleName.Contains))
+            {
+                alignment = SpacerAlignment.Repeat;
+            }
+
+            return new SpacerInfo { Alignment = alignment, Name = channelName.Trim(), VisibleName = visibleName };
         }
 
         #endregion
