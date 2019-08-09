@@ -22,7 +22,8 @@ namespace TS3QueryLib.Core.Common.Entities
         public string Name { get; protected set; }
         public int TotalClients { get; protected set; }
 
-        public bool IsSpacer { get { return SpacerInfo != null; } }
+        public bool IsSpacer => SpacerInfo != null;
+
         public SpacerInfo SpacerInfo
         {
             get
@@ -31,7 +32,7 @@ namespace TS3QueryLib.Core.Common.Entities
                     return _spacerInfo;
 
                 _spacerInfoChecked = true;
-                _spacerInfo = SpacerInfo.Parse(Name);
+                _spacerInfo = SpacerInfo.Parse(Name, ParentChannelId);
 
                 return _spacerInfo;
             }
